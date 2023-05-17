@@ -21,6 +21,12 @@ class App extends StatelessWidget {
                   orderItems: [],
                   orderStatus: OrderStatus.createOrder,
                   validate: false,
+                  customerDetails: CustomerDetails(
+                    name: '',
+                    address: '',
+                    phone: ''
+                  ),
+                  paymentDetails: PaymentDetails()
                 ),
                 orderRepository: orderRepository
               )

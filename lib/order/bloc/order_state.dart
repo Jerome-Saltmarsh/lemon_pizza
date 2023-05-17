@@ -25,14 +25,16 @@ class OrderItem {
 class OrderState {
   final List<OrderItem> orderItems;
   final OrderStatus orderStatus;
-  final CustomerDetails? customerDetails;
+  final CustomerDetails customerDetails;
+  final PaymentDetails paymentDetails;
   final bool validate;
 
   OrderState({
     required this.orderItems,
     required this.orderStatus,
     required this.validate,
-    this.customerDetails,
+    required this.customerDetails,
+    required this.paymentDetails,
   });
 
   OrderStatus get nextOrderStatus {
@@ -51,6 +53,28 @@ class OrderState {
          return OrderStatus.paymentInProgress;
      }
   }
+}
+
+class PaymentDetails {
+  final int? cardNumber;
+  final int? expiryYear;
+  final int? expiryMonth;
+  final int? cvv;
+
+  PaymentDetails({
+    this.cardNumber,
+    this.expiryYear,
+    this.expiryMonth,
+    this.cvv,
+  });
+
+  bool get valid =>
+      cardNumber    != null &&
+      expiryYear    != null &&
+      expiryMonth   != null &&
+      cvvValid ;
+
+  bool get cvvValid => cvv != null && cvv.toString().length != 3;
 }
 
 class CustomerDetails {

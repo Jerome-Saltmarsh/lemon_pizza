@@ -8,6 +8,13 @@ import 'package:lemon_pizza/order/bloc/order_state.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_status_changed.dart';
 
 class OrderBackButton extends StatelessWidget {
+
+  static const supportedOrderStatuses = [
+    OrderStatus.customerDetails,
+    OrderStatus.paymentDetails,
+    OrderStatus.paymentFailed,
+  ];
+
   const OrderBackButton({super.key});
 
   @override
@@ -17,13 +24,10 @@ class OrderBackButton extends StatelessWidget {
         onPressed: context.read<OrderBloc>().back,
     );
     return OrderStatusChanged((context, orderStatus) {
-       switch(orderStatus) {
-         case OrderStatus.customerDetails:
-           return backIcon;
-         default:
-           return const SizedBox();
-       }
-
+      if (supportedOrderStatuses.contains(orderStatus)){
+         return backIcon;
+      }
+      return const SizedBox();
     });
   }
 }

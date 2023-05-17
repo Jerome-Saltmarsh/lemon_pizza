@@ -8,7 +8,7 @@ class OrderRepositoryMemory implements OrderRepository {
   final random = Random();
 
   @override
-  Future submitOrder() async  {
+  Future submitOrder() async {
     return Future.delayed(const Duration(seconds: 2), (){
         if (random.nextBool()) throw Exception('Insufficient Funds');
     });

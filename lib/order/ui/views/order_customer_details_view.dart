@@ -28,61 +28,63 @@ class CustomerDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final orderBloc = context.read<OrderBloc>();
     final customerDetails = orderBloc.state.customerDetails;
-    controllerName.text = customerDetails?.name ?? '';
-    controllerAddress.text = customerDetails?.address ?? '';
-    controllerPhone.text = customerDetails?.phone ?? '';
+    controllerName.text = customerDetails.name;
+    controllerAddress.text = customerDetails.address;
+    controllerPhone.text = customerDetails.phone;
     onChanged(String value) => applyCustomDetails(orderBloc);
 
-    return OrderValidateBuilder(
-        builder: (context, validate) {
-        return SizedBox(
-          width: 300,
-          child: Column(
-            children: [
-              const Text("CUSTOMER DETAILS"),
-              BlocBuilder<OrderBloc, OrderState>(
+    return Center(
+      child: OrderValidateBuilder(
+          builder: (context, validate) {
+          return SizedBox(
+            width: 300,
+            child: Column(
+              children: [
+                const Text("CUSTOMER DETAILS"),
+                BlocBuilder<OrderBloc, OrderState>(
+                    builder: (context, orderState) =>
+                        TextField(
+                          controller: controllerName,
+                          decoration: InputDecoration(
+                              label: const Text("Name"),
+                              errorText: validate && controllerName.text.isEmpty ? 'required' : null
+                          ),
+                          onChanged: onChanged,
+                        ),
+                      buildWhen: (previous, current) =>
+                        previous.customerDetails.name != current.customerDetails.name,
+                ),
+                BlocBuilder<OrderBloc, OrderState>(
                   builder: (context, orderState) =>
                       TextField(
-                        controller: controllerName,
+                        controller: controllerAddress,
                         decoration: InputDecoration(
-                            label: const Text("Name"),
-                            errorText: validate && controllerName.text.isEmpty ? 'required' : null
+                            label: const Text("Address"),
+                            errorText: validate && controllerAddress.text.isEmpty ? 'required' : null
                         ),
                         onChanged: onChanged,
                       ),
-                    buildWhen: (previous, current) =>
-                      previous.customerDetails?.name != current.customerDetails?.name,
-              ),
-              BlocBuilder<OrderBloc, OrderState>(
-                builder: (context, orderState) =>
-                    TextField(
-                      controller: controllerAddress,
-                      decoration: InputDecoration(
-                          label: const Text("Address"),
-                          errorText: validate && controllerAddress.text.isEmpty ? 'required' : null
+                  buildWhen: (previous, current) =>
+                  previous.customerDetails.address != current.customerDetails.address,
+                ),
+                BlocBuilder<OrderBloc, OrderState>(
+                  builder: (context, orderState) =>
+                      TextField(
+                        controller: controllerPhone,
+                        decoration: InputDecoration(
+                            label: const Text("Phone"),
+                            errorText: validate && controllerPhone.text.isEmpty ? 'required' : null
+                        ),
+                        onChanged: onChanged,
                       ),
-                      onChanged: onChanged,
-                    ),
-                buildWhen: (previous, current) =>
-                previous.customerDetails?.address != current.customerDetails?.address,
-              ),
-              BlocBuilder<OrderBloc, OrderState>(
-                builder: (context, orderState) =>
-                    TextField(
-                      controller: controllerPhone,
-                      decoration: InputDecoration(
-                          label: const Text("Phone"),
-                          errorText: validate && controllerPhone.text.isEmpty ? 'required' : null
-                      ),
-                      onChanged: onChanged,
-                    ),
-                buildWhen: (previous, current) =>
-                previous.customerDetails?.phone != current.customerDetails?.phone,
-              ),
-            ],
-          ),
-        );
-      }
+                  buildWhen: (previous, current) =>
+                    previous.customerDetails.phone != current.customerDetails.phone,
+                ),
+              ],
+            ),
+          );
+        }
+      ),
     );
   }
 }

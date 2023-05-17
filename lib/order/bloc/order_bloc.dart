@@ -47,32 +47,35 @@ class OrderBloc extends Cubit<OrderState> {
     );
   }
 
-  void _makePayment() async {
-    if (state.orderItems.isEmpty) {
-      return;
-    }
-
+  void emitPaymentDetails({
+    int? cardNumber,
+    int? expiryYear,
+    int? expiryMonth,
+    int? cvv,
+  }){
+    final paymentDetails = state.paymentDetails;
     emitOrderState(
-      orderStatus: OrderStatus.paymentInProgress
+      paymentDetails: PaymentDetails(
+        cardNumber: cardNumber ?? paymentDetails.cardNumber,
+        expiryYear: expiryYear ?? paymentDetails.expiryYear,
+        expiryMonth: expiryMonth ?? paymentDetails.expiryMonth,
+        cvv: cvv ?? paymentDetails.cvv,
+      )
     );
-
-    await orderRepository.submitOrder().then((value) {
-      emitOrderState(orderStatus: OrderStatus.paymentSucceeded);
-    }).catchError((error){
-      emitOrderState(orderStatus: OrderStatus.paymentFailed);
-    });
   }
 
   void emitOrderState({
     List<OrderItem>? orderItems,
     OrderStatus? orderStatus,
     CustomerDetails? customerDetails,
+    PaymentDetails? paymentDetails,
     bool? validate,
   }){
     emit(OrderState(
       orderItems: orderItems ?? state.orderItems,
       orderStatus: orderStatus ?? state.orderStatus,
       customerDetails: customerDetails ?? state.customerDetails,
+      paymentDetails: paymentDetails ?? state.paymentDetails,
       validate: validate ?? state.validate,
     ));
   }
@@ -85,31 +88,39 @@ class OrderBloc extends Cubit<OrderState> {
            validate: false,
          );
          break;
+       case OrderStatus.paymentDetails:
+         emitOrderState(
+           orderStatus: OrderStatus.customerDetails,
+           validate: false,
+         );
+         break;
+       case OrderStatus.paymentFailed:
+         emitOrderState(
+           orderStatus: OrderStatus.paymentDetails,
+           validate: false,
+         );
+         break;
        default:
          break;
      }
   }
 
-  void next() {
+  void next() async {
     switch (state.orderStatus) {
       case OrderStatus.createOrder:
-        if (state.orderItems.isNotEmpty) {
-          emitOrderState(
-              orderStatus: OrderStatus.customerDetails,
-              validate: false,
-          );
+        if (state.orderItems.isEmpty) {
+          emitOrderState(validate: true);
           return;
         }
         emitOrderState(
-          validate: true,
+          orderStatus: OrderStatus.customerDetails,
+          validate: false,
         );
         break;
       case OrderStatus.customerDetails:
         final customerDetails = state.customerDetails;
-        if (customerDetails == null || !customerDetails.valid) {
-          emitOrderState(
-            validate: true,
-          );
+        if (!customerDetails.valid) {
+          emitOrderState(validate: true);
           return;
         }
         emitOrderState(
@@ -118,7 +129,19 @@ class OrderBloc extends Cubit<OrderState> {
         );
         break;
       case OrderStatus.paymentDetails:
-        _makePayment();
+        if (!state.paymentDetails.valid) {
+          emitOrderState(validate: true);
+          return;
+        }
+        emitOrderState(
+            orderStatus: OrderStatus.paymentInProgress,
+            validate: false,
+        );
+        await orderRepository.submitOrder().then((value) {
+          emitOrderState(orderStatus: OrderStatus.paymentSucceeded);
+        }).catchError((error){
+          emitOrderState(orderStatus: OrderStatus.paymentFailed);
+        });
         break;
       case OrderStatus.paymentFailed:
         emitOrderState(orderStatus: OrderStatus.paymentDetails);
