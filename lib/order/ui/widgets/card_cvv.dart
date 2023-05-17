@@ -19,7 +19,8 @@ class CardCvv extends StatelessWidget {
                     ? 'invalid'
                     : null),
             controller: TextEditingController(
-                text: orderState.paymentDetails.cvv?.toString() ?? ''),
+                text: orderState.paymentDetails.cvv?.toString() ?? ''
+            ),
             onChanged: (cvv) {
               context
                   .read<OrderBloc>()

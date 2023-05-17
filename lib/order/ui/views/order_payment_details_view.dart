@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lemon_pizza/order/ui/widgets/card_cvv.dart';
 import 'package:lemon_pizza/order/ui/widgets/card_expiry_date_year.dart';
 import 'package:lemon_pizza/order/ui/widgets/card_expiry_month.dart';
+import 'package:lemon_pizza/order/ui/widgets/card_number.dart';
 
 class PaymentDetailsView extends StatelessWidget {
   const PaymentDetailsView({super.key});
@@ -17,7 +18,7 @@ class PaymentDetailsView extends StatelessWidget {
         child: Column(
            children: [
               Text("CREDIT CARD NUMBER"),
-              TextField(),
+              CardNumber(),
               Text("EXPIRES"),
               Row(
                 children: [

@@ -69,12 +69,18 @@ class PaymentDetails {
   });
 
   bool get valid =>
-      cardNumber    != null &&
+      cardNumberValid &&
       expiryYear    != null &&
       expiryMonth   != null &&
       cvvValid ;
 
-  bool get cvvValid => cvv != null && cvv.toString().length != 3;
+  bool get cvvValid =>
+      cvv != null &&
+      cvv.toString().length != 3;
+
+  bool get cardNumberValid =>
+      cardNumber != null &&
+      cardNumber.toString().length >= 16;
 }
 
 class CustomerDetails {
