@@ -11,23 +11,40 @@ class PaymentDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: SizedBox(
-        width: 300,
-        height: 400,
+    const width = 500.0;
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        width: width,
+        height: width * 0.630434782608696,
+        decoration: const BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+        ),
         child: Column(
            children: [
-              Text("CREDIT CARD NUMBER"),
-              CardNumber(),
-              Text("EXPIRES"),
+              Container(
+                 width: double.infinity,
+                 height: 40,
+                 color: Colors.black54,
+              ),
+              const TextField(decoration: InputDecoration(label: Text("Cardholders name"))),
+              const CardNumber(),
               Row(
                 children: [
-                  ExpiryDateYear(),
-                  CardExpiryMonth(),
+                  Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    child: const Row(
+                      children: [
+                        ExpiryDateYear(),
+                        CardExpiryMonth(),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 64),
+                  const CardCvv(),
                 ],
               ),
-              Text("CVS"),
-              CardCvv(),
            ],
         ),
       ),

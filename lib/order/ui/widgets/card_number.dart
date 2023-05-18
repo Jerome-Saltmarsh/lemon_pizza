@@ -26,6 +26,7 @@ class CardNumber extends StatelessWidget {
                    .emitPaymentDetails(cardNumber: int.tryParse(value));
              },
              decoration: InputDecoration(
+                label: const Text("Card Number"),
                 errorText:
                     orderState.validate &&
                     !orderState.paymentDetails.cardNumberValid

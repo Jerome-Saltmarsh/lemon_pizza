@@ -19,7 +19,7 @@ class App extends StatelessWidget {
               OrderBloc(
                 OrderState(
                   orderItems: [],
-                  orderStatus: OrderStatus.createOrder,
+                  orderStatus: OrderStatus.paymentDetails,
                   validate: false,
                   customerDetails: CustomerDetails(
                     name: '',

@@ -81,10 +81,9 @@ packages:
   flutter_bloc:
     dependency: "direct main"
     description:
-      name: flutter_bloc
-      sha256: "434951eea948dbe87f737b674281465f610b8259c16c097b8163ce138749a775"
-      url: "https://pub.dev"
-    source: hosted
+      path: "C:\\Users\\Jerome\\github\\dart\\bloc-master\\packages\\flutter_bloc"
+      relative: false
+    source: path
     version: "8.1.2"
   flutter_lints:
     dependency: "direct dev"

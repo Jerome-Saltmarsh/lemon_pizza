@@ -14,6 +14,7 @@ class CardExpiryMonth extends StatelessWidget {
         previous.paymentDetails.expiryMonth != current.paymentDetails.expiryMonth,
         builder: (context, orderState){
           return DropdownButton<int>(
+            hint: const Text("Month"),
             value: orderState.paymentDetails.expiryMonth,
             items: List.generate(12, (month) => DropdownMenuItem(
                 value: month + 1,

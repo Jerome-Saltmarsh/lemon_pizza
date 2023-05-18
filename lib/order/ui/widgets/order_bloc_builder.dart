@@ -14,9 +14,7 @@ class OrderBlocBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<OrderBloc, OrderState>(
-        bloc: context.read<OrderBloc>(),
         buildWhen: buildWhen,
         builder: builder,
     );
-
 }
