@@ -1,3 +1,5 @@
+
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
@@ -25,6 +27,7 @@ class CardNumber extends StatelessWidget {
                    .read<OrderBloc>()
                    .emitPaymentDetails(cardNumber: int.tryParse(value));
              },
+             inputFormatters: [CreditCardNumberFormatter()],
              decoration: InputDecoration(
                 label: const Text("Card Number"),
                 errorText:
@@ -35,5 +38,34 @@ class CardNumber extends StatelessWidget {
          );
     });
   }
+}
 
+class CreditCardNumberFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    final originalText = newValue.text.replaceAll(" ", "");
+    var text = "";
+
+    for (var i = 0; i < originalText.length; i++) {
+      if (i > 0 && i % 4 == 0) {
+        text += " ";
+      }
+      text += originalText.characters.elementAt(i);
+    }
+    var offset = oldValue.selection.end + 1;
+
+    if (oldValue.selection.end == 04 ||
+        oldValue.selection.end == 09 ||
+        oldValue.selection.end == 14 ||
+        oldValue.selection.end == 19) {
+      offset++;
+    }
+    return TextEditingValue(
+      text: text,
+      selection: TextSelection.collapsed(offset: offset),
+    );
+  }
 }

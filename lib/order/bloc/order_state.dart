@@ -76,11 +76,12 @@ class PaymentDetails {
 
   bool get cvvValid =>
       cvv != null &&
-      cvv.toString().length != 3;
+      cvv.toString().length == 3;
 
   bool get cardNumberValid =>
       cardNumber != null &&
-      cardNumber.toString().length >= 16;
+      cardNumber.toString().length >= 16 &&
+      cardNumber.toString().length <= 19;
 }
 
 class CustomerDetails {
