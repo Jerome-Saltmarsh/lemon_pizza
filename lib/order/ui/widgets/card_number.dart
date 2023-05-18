@@ -25,7 +25,7 @@ class CardNumber extends StatelessWidget {
              onChanged: (value){
                context
                    .read<OrderBloc>()
-                   .emitPaymentDetails(cardNumber: int.tryParse(value));
+                   .emitPaymentDetails(cardNumber: value);
              },
              inputFormatters: [CreditCardNumberFormatter()],
              decoration: InputDecoration(
@@ -48,7 +48,6 @@ class CreditCardNumberFormatter extends TextInputFormatter {
   ) {
     final originalText = newValue.text.replaceAll(" ", "");
     var text = "";
-
     for (var i = 0; i < originalText.length; i++) {
       if (i > 0 && i % 4 == 0) {
         text += " ";

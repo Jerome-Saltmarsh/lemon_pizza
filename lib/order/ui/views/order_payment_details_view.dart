@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lemon_pizza/order/ui/widgets/card_cvv.dart';
 import 'package:lemon_pizza/order/ui/widgets/card_expiry_date_year.dart';
 import 'package:lemon_pizza/order/ui/widgets/card_expiry_month.dart';
+import 'package:lemon_pizza/order/ui/widgets/card_holder_name.dart';
 import 'package:lemon_pizza/order/ui/widgets/card_number.dart';
 
 class PaymentDetailsView extends StatelessWidget {
@@ -28,7 +29,7 @@ class PaymentDetailsView extends StatelessWidget {
                  height: 40,
                  color: Colors.black54,
               ),
-              const TextField(decoration: InputDecoration(label: Text("Cardholders name"))),
+              const CardHolderName(),
               const CardNumber(),
               Row(
                 children: [
