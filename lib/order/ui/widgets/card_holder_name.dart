@@ -12,7 +12,7 @@ class CardHolderName extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final controller = TextEditingController(
-        text: context.read<OrderBloc>().state.paymentDetails.cardHolderName?.toString()
+        text: context.read<OrderBloc>().state.paymentDetails.cardHolderName
     );
 
     return OrderBlocBuilder(

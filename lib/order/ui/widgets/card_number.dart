@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
+import 'package:lemon_pizza/order/ui/constants/numbers_only_formatter.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_bloc_builder.dart';
 
 class CardNumber extends StatelessWidget {
@@ -12,28 +13,28 @@ class CardNumber extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final controller = TextEditingController(
-        text: context.read<OrderBloc>().state.paymentDetails.cardNumber?.toString()
+        text: context.read<OrderBloc>().state.paymentDetails.cardNumber
     );
 
     return OrderBlocBuilder(
         buildWhen: (previous, current) =>
             previous.paymentDetails.cardNumber != current.paymentDetails.cardNumber ||
             previous.validate != current.validate,
-        builder: (context, orderState){
+        builder: (context, orderState) {
          return TextField(
              controller: controller,
-             onChanged: (value){
+             onChanged: (value) {
                context
                    .read<OrderBloc>()
                    .emitPaymentDetails(cardNumber: value);
              },
-             inputFormatters: [CreditCardNumberFormatter()],
+             inputFormatters: [CreditCardNumberFormatter(), numbersAndSpaceFormatter],
              decoration: InputDecoration(
                 label: const Text("Card Number"),
                 errorText:
-                    orderState.validate &&
-                    !orderState.paymentDetails.cardNumberValid
-                        ? 'invalid' : null
+                    orderState.validate
+                        ? orderState.paymentDetails.cardNumberInvalidReason
+                        : null
              ),
          );
     });

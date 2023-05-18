@@ -6,7 +6,7 @@ class PaymentInProgressView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text("PAYMENT IN PROGRESS");
+    return const Center(child: Text("PAYMENT IN PROGRESS"));
   }
 
 }

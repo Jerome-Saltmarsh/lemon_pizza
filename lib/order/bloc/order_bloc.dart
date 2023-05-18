@@ -135,6 +135,21 @@ class OrderBloc extends Cubit<OrderState> {
           emitOrderState(validate: true);
           return;
         }
+        if (!state.orderCompleted){
+          emitOrderState(
+              orderStatus: OrderStatus.createOrder,
+              validate: true,
+          );
+          return;
+        }
+        if (!state.customerDetails.valid){
+          emitOrderState(
+            orderStatus: OrderStatus.customerDetails,
+            validate: true,
+          );
+          return;
+        }
+
         emitOrderState(
             orderStatus: OrderStatus.paymentInProgress,
             validate: false,

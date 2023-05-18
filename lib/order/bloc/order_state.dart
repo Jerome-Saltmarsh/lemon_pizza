@@ -1,4 +1,6 @@
 
+import 'package:lemon_pizza/order/ui/extensions/string_extensions.dart';
+
 enum PizzaType {
   margherita,
   godFather,
@@ -29,6 +31,8 @@ class OrderState {
   final PaymentDetails paymentDetails;
   final bool validate;
 
+  bool get orderCompleted => orderItems.isNotEmpty;
+
   OrderState({
     required this.orderItems,
     required this.orderStatus,
@@ -56,15 +60,15 @@ class OrderState {
 }
 
 class PaymentDetails {
-  final String? cardHolderName;
-  final String? cardNumber;
+  final String cardHolderName;
+  final String cardNumber;
   final int? expiryYear;
   final int? expiryMonth;
   final int? cvv;
 
   PaymentDetails({
-    this.cardHolderName,
-    this.cardNumber,
+    this.cardHolderName = '',
+    this.cardNumber = '',
     this.expiryYear,
     this.expiryMonth,
     this.cvv,
@@ -81,12 +85,21 @@ class PaymentDetails {
       cvv != null &&
       cvv.toString().length == 3;
 
-  bool get cardHolderNameValid => cardHolderName != null && cardHolderName!.isNotEmpty;
+  bool get cardHolderNameValid =>
+      cardHolderName.isNotEmpty;
 
   bool get cardNumberValid =>
-      cardNumber != null &&
-      cardNumber.toString().length >= 16 &&
-      cardNumber.toString().length <= 19;
+      cardNumber.removeEmptySpace.length >= 16 &&
+      cardNumber.removeEmptySpace.length <= 19;
+
+  String? get cardNumberInvalidReason {
+    if (cardNumber.removeEmptySpace.length < 16){
+      return 'too short';
+    }
+    if (cardNumber.removeEmptySpace.length > 19){
+      return 'too long';
+    }
+  }
 }
 
 class CustomerDetails {

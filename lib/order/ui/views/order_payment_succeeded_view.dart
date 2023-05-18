@@ -8,11 +8,13 @@ class PaymentSucceededView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Text("PAYMENT SUCCEEDED"),
-        TextButton(onPressed: context.read<OrderBloc>().restart,child: const Text("RESTART"))
-      ],
+    return Center(
+      child: Column(
+        children: [
+          const Text("PAYMENT SUCCEEDED"),
+          TextButton(onPressed: context.read<OrderBloc>().restart,child: const Text("RESTART"))
+        ],
+      ),
     );
   }
 }
