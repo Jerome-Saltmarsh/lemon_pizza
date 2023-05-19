@@ -7,6 +7,8 @@ class OrderItem {
    final PizzaType pizzaType;
    final PizzaSize pizzaSize;
    OrderItem({required this.pizzaType, required this.pizzaSize});
+
+   double get price => pizzaType.getPriceForSize(pizzaSize);
 }
 
 class OrderState {
@@ -19,6 +21,9 @@ class OrderState {
   final PizzaSize selectedPizzaSize;
 
   bool get orderCompleted => orderItems.isNotEmpty;
+
+  double get totalOrderCost =>
+      orderItems.fold(0, (total, orderItem) => total + orderItem.price);
 
   OrderState({
     required this.orderItems,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_state.dart';
+import 'package:lemon_pizza/utils/format_dollars.dart';
 
 class OrdersColumnItem extends StatelessWidget {
 
@@ -20,6 +21,7 @@ class OrdersColumnItem extends StatelessWidget {
           children: [
             Text(orderItem.pizzaType.name),
             Text(orderItem.pizzaSize.name),
+            Text(formatDollars(orderItem.price)),
           ],
         ),
         TextButton(child: const Text("remove"), onPressed: ()  {

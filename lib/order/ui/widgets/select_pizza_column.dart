@@ -11,7 +11,6 @@ class SelectPizzaColumn extends StatelessWidget {
   Widget build(BuildContext context) {
      return SizedBox(
        width: 400,
-       // height: 500,
        child: GridView.count(
          crossAxisCount: 2,
          children: PizzaType.values.map((pizzaType) => SelectPizzaTile(pizzaType)).toList()

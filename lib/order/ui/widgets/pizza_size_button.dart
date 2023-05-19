@@ -35,13 +35,17 @@ class PizzaSizeButton extends StatelessWidget {
             },
             child: Container(
                 width: 100,
-                height: 100,
+                // height: 100,
                 alignment: Alignment.center,
                 color: orderState.selectedPizzaSize == pizzaSize ? Colors.green : Colors.yellow,
                 child: Column(
                   children: [
                     Text(pizzaSize.name),
-                    Icon(Icons.donut_small, size: iconSize),
+                    Container(
+                        width: 80,
+                        height: 80,
+                        alignment: Alignment.center,
+                        child: Icon(Icons.donut_small, size: iconSize)),
                     Text(formatDollars(selectedPizzaType.getPriceForSize(pizzaSize))),
                   ],
                 )),
@@ -53,11 +57,11 @@ class PizzaSizeButton extends StatelessWidget {
   double get iconSize {
      switch(pizzaSize){
        case PizzaSize.small:
-         return 15.0;
+         return 30.0;
        case PizzaSize.medium:
-         return 20.0;
+         return 40.0;
        case PizzaSize.large:
-         return 25.0;
+         return 50.0;
      }
   }
 }

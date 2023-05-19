@@ -20,16 +20,14 @@ class CreateOrderView extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Container(
-          margin: const EdgeInsets.symmetric(horizontal: 16),
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SelectPizzaColumn(),
-              OrdersColumn(),
-            ],
-          ),
+            width: double.infinity,
+            alignment: Alignment.topCenter,
+            child: const SelectPizzaColumn(),
         ),
+        const Positioned(
+            top: 16,
+            right: 16,
+            child: OrdersColumn()),
         const SelectPizzaSizeDialog(),
         if (orderBloc.state.validate && orderBloc.state.orderItems.isEmpty)
           Container(

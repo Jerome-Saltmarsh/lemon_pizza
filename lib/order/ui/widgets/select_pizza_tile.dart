@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_enums.dart';
+import 'package:lemon_pizza/order/ui/widgets/on_pressed.dart';
 
 class SelectPizzaTile extends StatelessWidget {
 
@@ -25,15 +26,10 @@ class SelectPizzaTile extends StatelessWidget {
           ),
           Text("\$${pizzaType.priceMedium.toStringAsFixed(2)}"),
           const SizedBox(height: 12),
-          GestureDetector(
-            onTap: (){
-              context.read<OrderBloc>().emitOrderState(
+          OnPressed(
+            action: () => context.read<OrderBloc>().emitOrderState(
                   selectPizzaType: pizzaType
-              );
-              // context.read<OrderBloc>().addOrderItem(
-              //     OrderItem(pizzaType: pizzaType, pizzaSize: PizzaSize.regular)
-              // );
-            },
+            ),
             child: Container(
                 margin: const EdgeInsets.only(bottom: 12),
                 padding: const EdgeInsets.all(6),
