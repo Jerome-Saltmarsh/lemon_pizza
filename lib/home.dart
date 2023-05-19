@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lemon_pizza/order/ui/widgets/checkout_icon.dart';
 
 import 'order/ui/views/order_status_view.dart';
 import 'order/ui/widgets/order_back_button.dart';
@@ -14,6 +15,12 @@ class Home extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: const Text("PIZZA STORE"),
           leading: const OrderBackButton(),
+          actions: [
+            Container(
+                margin: const EdgeInsets.only(right: 16),
+                child: const CheckoutIcon(),
+            )
+          ],
         ),
         body: const OrderStatusView(),
         floatingActionButton: const OrderStatusFloatingActionButton(),

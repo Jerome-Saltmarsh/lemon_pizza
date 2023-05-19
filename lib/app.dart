@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/home.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
+import 'package:lemon_pizza/order/bloc/order_enums.dart';
 import 'package:lemon_pizza/order/bloc/order_state.dart';
 import 'package:lemon_pizza/order/data/repositories/order_repository.dart';
 
@@ -19,7 +20,7 @@ class App extends StatelessWidget {
               OrderBloc(
                 OrderState(
                   orderItems: [],
-                  orderStatus: OrderStatus.paymentDetails,
+                  orderStatus: OrderStatus.createOrder,
                   validate: false,
                   customerDetails: CustomerDetails(
                     name: '',

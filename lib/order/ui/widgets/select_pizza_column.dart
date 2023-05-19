@@ -1,8 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/order/bloc/order_bloc.dart';
-import 'package:lemon_pizza/order/bloc/order_state.dart';
+import 'package:lemon_pizza/order/bloc/order_enums.dart';
+import 'package:lemon_pizza/order/ui/widgets/select_pizza_tile.dart';
 
 class SelectPizzaColumn extends StatelessWidget {
 
@@ -10,17 +9,13 @@ class SelectPizzaColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return Center(
-        child: Column(
-          children: PizzaType.values.map((pizzaType){
-            return TextButton(
-              child: Text(pizzaType.name),
-              onPressed: () {
-                context.read<OrderBloc>().addOrderItem(OrderItem(pizzaType));
-              },
-            );
-          }).toList()
-        ),
+     return SizedBox(
+       width: 400,
+       // height: 500,
+       child: GridView.count(
+         crossAxisCount: 2,
+         children: PizzaType.values.map((pizzaType) => SelectPizzaTile(pizzaType)).toList()
+       ),
      );
   }
 }

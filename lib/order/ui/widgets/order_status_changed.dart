@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
+import 'package:lemon_pizza/order/bloc/order_enums.dart';
 import 'package:lemon_pizza/order/bloc/order_state.dart';
 
 class OrderStatusChanged extends StatelessWidget {

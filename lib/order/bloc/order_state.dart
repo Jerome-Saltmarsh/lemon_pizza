@@ -1,27 +1,12 @@
 
 import 'package:lemon_pizza/order/ui/extensions/string_extensions.dart';
 
-enum PizzaType {
-  margherita,
-  godFather,
-  vegetarian,
-  mexican,
-  seafood,
-  salami,
-}
-
-enum OrderStatus {
-  createOrder,
-  customerDetails,
-  paymentDetails,
-  paymentInProgress,
-  paymentSucceeded,
-  paymentFailed,
-}
+import 'order_enums.dart';
 
 class OrderItem {
    final PizzaType pizzaType;
-   OrderItem(this.pizzaType);
+   final PizzaSize pizzaSize;
+   OrderItem({required this.pizzaType, required this.pizzaSize});
 }
 
 class OrderState {
@@ -30,6 +15,8 @@ class OrderState {
   final CustomerDetails customerDetails;
   final PaymentDetails paymentDetails;
   final bool validate;
+  final PizzaType? selectedPizzaType;
+  final PizzaSize selectedPizzaSize;
 
   bool get orderCompleted => orderItems.isNotEmpty;
 
@@ -39,6 +26,8 @@ class OrderState {
     required this.validate,
     required this.customerDetails,
     required this.paymentDetails,
+    this.selectedPizzaType,
+    this.selectedPizzaSize = PizzaSize.medium,
   });
 
   OrderStatus get nextOrderStatus {
@@ -99,6 +88,7 @@ class PaymentDetails {
     if (cardNumber.removeEmptySpace.length > 19){
       return 'too long';
     }
+    return null;
   }
 }
 

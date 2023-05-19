@@ -4,6 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_state.dart';
 import 'package:lemon_pizza/order/data/repositories/order_repository.dart';
 
+import 'order_enums.dart';
+
 class OrderBloc extends Cubit<OrderState> {
 
   final OrderRepository orderRepository;
@@ -31,6 +33,17 @@ class OrderBloc extends Cubit<OrderState> {
     emitOrderState(
         orderItems: [...state.orderItems, orderItem]
     );
+  }
+
+  void addSelectedPizza(){
+    final selectedPizzaType = state.selectedPizzaType;
+     if (selectedPizzaType == null) {
+       throw Exception('selectPizzaType is null');
+     }
+     addOrderItem(
+       OrderItem(pizzaType: selectedPizzaType, pizzaSize: state.selectedPizzaSize)
+     );
+     cancelSelectPizza();
   }
 
   void setCustomerDetails({
@@ -66,12 +79,25 @@ class OrderBloc extends Cubit<OrderState> {
     );
   }
 
+  void cancelSelectPizza(){
+    emit(OrderState(
+      orderItems: state.orderItems,
+      orderStatus: state.orderStatus,
+      customerDetails: state.customerDetails,
+      paymentDetails: state.paymentDetails,
+      validate: state.validate,
+      selectedPizzaType: null,
+    ));
+  }
+
   void emitOrderState({
     List<OrderItem>? orderItems,
     OrderStatus? orderStatus,
     CustomerDetails? customerDetails,
     PaymentDetails? paymentDetails,
     bool? validate,
+    PizzaType? selectPizzaType,
+    PizzaSize? selectPizzaSize,
   }){
     emit(OrderState(
       orderItems: orderItems ?? state.orderItems,
@@ -79,6 +105,8 @@ class OrderBloc extends Cubit<OrderState> {
       customerDetails: customerDetails ?? state.customerDetails,
       paymentDetails: paymentDetails ?? state.paymentDetails,
       validate: validate ?? state.validate,
+      selectedPizzaType: selectPizzaType ?? state.selectedPizzaType,
+      selectedPizzaSize: selectPizzaSize ?? state.selectedPizzaSize,
     ));
   }
 
