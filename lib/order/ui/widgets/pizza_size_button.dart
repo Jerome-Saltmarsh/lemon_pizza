@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:golden_ratio/constants.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_enums.dart';
-import 'package:lemon_pizza/order/ui/widgets/on_pressed.dart';
+import 'package:lemon_pizza/widgets/on_pressed.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_bloc_builder.dart';
 import 'package:lemon_pizza/utils/format_dollars.dart';
 
@@ -27,6 +28,9 @@ class PizzaSizeButton extends StatelessWidget {
           if (selectedPizzaType == null) {
             throw Exception('selectedPizzaType == null');
           }
+
+
+          const width = 135.0;
           return OnPressed(
             action: (){
               context
@@ -34,10 +38,16 @@ class PizzaSizeButton extends StatelessWidget {
                   .emitOrderState(selectPizzaSize: pizzaSize);
             },
             child: Container(
-                width: 100,
-                // height: 100,
+              padding: const EdgeInsets.all(4),
+            decoration: BoxDecoration(
+              color: orderState.selectedPizzaSize == pizzaSize
+                  ? Colors.green
+                  : Colors.black12,
+              borderRadius: BorderRadius.circular(4),
+            ),
+            height: width ,
+            width: width * goldenRatio_0618,
                 alignment: Alignment.center,
-                color: orderState.selectedPizzaSize == pizzaSize ? Colors.green : Colors.yellow,
                 child: Column(
                   children: [
                     Text(pizzaSize.name),

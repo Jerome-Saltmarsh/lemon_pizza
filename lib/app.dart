@@ -27,7 +27,8 @@ class App extends StatelessWidget {
                     address: '',
                     phone: ''
                   ),
-                  paymentDetails: PaymentDetails()
+                  paymentDetails: PaymentDetails(),
+                  ordersPlacedVisible: false,
                 ),
                 orderRepository: orderRepository
               )

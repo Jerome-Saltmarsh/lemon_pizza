@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_enums.dart';
-import 'package:lemon_pizza/order/ui/widgets/on_pressed.dart';
+import 'package:lemon_pizza/widgets/on_pressed.dart';
 
 class SelectPizzaTile extends StatelessWidget {
 

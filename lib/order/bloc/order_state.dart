@@ -19,6 +19,7 @@ class OrderState {
   final bool validate;
   final PizzaType? selectedPizzaType;
   final PizzaSize selectedPizzaSize;
+  final bool ordersPlacedVisible;
 
   bool get orderCompleted => orderItems.isNotEmpty;
 
@@ -31,6 +32,7 @@ class OrderState {
     required this.validate,
     required this.customerDetails,
     required this.paymentDetails,
+    required this.ordersPlacedVisible,
     this.selectedPizzaType,
     this.selectedPizzaSize = PizzaSize.medium,
   });

@@ -20,10 +20,12 @@ class CreateOrderView extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Container(
+            margin: const EdgeInsets.only(top: 16),
             width: double.infinity,
             alignment: Alignment.topCenter,
             child: const SelectPizzaColumn(),
         ),
+        if (orderBloc.state.ordersPlacedVisible)
         const Positioned(
             top: 16,
             right: 16,

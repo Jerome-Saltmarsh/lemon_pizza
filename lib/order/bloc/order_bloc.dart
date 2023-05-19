@@ -87,7 +87,14 @@ class OrderBloc extends Cubit<OrderState> {
       paymentDetails: state.paymentDetails,
       validate: state.validate,
       selectedPizzaType: null,
+      ordersPlacedVisible: state.ordersPlacedVisible,
     ));
+  }
+
+  void toggleOrdersVisible(){
+    emitOrderState(
+       ordersPlacedVisible: !state.ordersPlacedVisible
+    );
   }
 
   void emitOrderState({
@@ -98,6 +105,7 @@ class OrderBloc extends Cubit<OrderState> {
     bool? validate,
     PizzaType? selectPizzaType,
     PizzaSize? selectPizzaSize,
+    bool? ordersPlacedVisible,
   }){
     emit(OrderState(
       orderItems: orderItems ?? state.orderItems,
@@ -107,6 +115,7 @@ class OrderBloc extends Cubit<OrderState> {
       validate: validate ?? state.validate,
       selectedPizzaType: selectPizzaType ?? state.selectedPizzaType,
       selectedPizzaSize: selectPizzaSize ?? state.selectedPizzaSize,
+      ordersPlacedVisible: ordersPlacedVisible ?? state.ordersPlacedVisible,
     ));
   }
 

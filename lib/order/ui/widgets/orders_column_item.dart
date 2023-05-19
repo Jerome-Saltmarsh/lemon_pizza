@@ -13,21 +13,33 @@ class OrdersColumnItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(orderItem.pizzaType.name),
-            Text(orderItem.pizzaSize.name),
-            Text(formatDollars(orderItem.price)),
-          ],
+    return Container(
+      margin: const EdgeInsets.only(top: 8),
+      padding: const EdgeInsets.only(top: 8),
+      decoration: const BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: Colors.black54,
+            width: 1.0,
+          ),
         ),
-        TextButton(child: const Text("remove"), onPressed: ()  {
-          context.read<OrderBloc>().removeOrderItem(orderItem);
-        },),
-      ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(orderItem.pizzaType.name),
+              Text(orderItem.pizzaSize.name),
+              Text(formatDollars(orderItem.price)),
+            ],
+          ),
+          TextButton(child: const Text("remove"), onPressed: ()  {
+            context.read<OrderBloc>().removeOrderItem(orderItem);
+          },),
+        ],
+      ),
     );
   }
 
