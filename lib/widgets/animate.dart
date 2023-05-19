@@ -2,20 +2,18 @@
 
 import 'package:flutter/material.dart';
 
-/// Flutter code sample for [AnimatedBuilder].
-
 class Animate extends StatefulWidget {
 
   final Widget? child;
   final Duration duration;
-  final Curve curve;
   final Widget Function(BuildContext context, Widget? child, double value) builder;
+  final Animation<double> Function(AnimationController controller) buildAnimation;
 
   const Animate({
     super.key,
     required this.builder,
+    required this.buildAnimation,
     this.child,
-    this.curve = Curves.easeInOutQuad,
     this.duration = const Duration(milliseconds: 300),
   });
 
@@ -28,20 +26,17 @@ class Animate extends StatefulWidget {
 class _AnimateState extends State<Animate>
     with TickerProviderStateMixin {
 
-  late Animation<double> _animation;
-
-  late final _controller = AnimationController(
-    duration: widget.duration,
-    vsync: this,
-  );
+  late final Animation<double> _animation;
+  late final AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    _animation = CurvedAnimation(
-      parent: _controller,
-      curve: widget.curve,
+    _controller = AnimationController(
+      duration: widget.duration,
+      vsync: this,
     );
+    _animation = widget.buildAnimation(_controller);
     _controller.forward(from: 0);
   }
 
