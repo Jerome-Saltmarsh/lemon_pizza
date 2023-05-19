@@ -5,8 +5,8 @@ import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_enums.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_bloc_builder.dart';
 import 'package:lemon_pizza/order/ui/widgets/pizza_size_button.dart';
-import 'package:lemon_pizza/widgets/animated_transition_slide_down.dart';
 import 'package:lemon_pizza/widgets/on_pressed.dart';
+import 'package:lemon_pizza/widgets/slide_down.dart';
 
 class SelectPizzaSizeDialog extends StatelessWidget {
   const SelectPizzaSizeDialog({super.key});
@@ -24,7 +24,7 @@ class SelectPizzaSizeDialog extends StatelessWidget {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              AnimatedTransitionSlideDown(
+              SlideDown(
                 child: Container(
                   width: width,
                   height: width * goldenRatio_0618,

@@ -8,12 +8,14 @@ class Animate extends StatefulWidget {
 
   final Widget? child;
   final Duration duration;
+  final Curve curve;
   final Widget Function(BuildContext context, Widget? child, double value) builder;
 
   const Animate({
     super.key,
     required this.builder,
     this.child,
+    this.curve = Curves.easeInOutQuad,
     this.duration = const Duration(milliseconds: 300),
   });
 
@@ -26,6 +28,8 @@ class Animate extends StatefulWidget {
 class _AnimateState extends State<Animate>
     with TickerProviderStateMixin {
 
+  late Animation<double> _animation;
+
   late final _controller = AnimationController(
     duration: widget.duration,
     vsync: this,
@@ -34,6 +38,10 @@ class _AnimateState extends State<Animate>
   @override
   void initState() {
     super.initState();
+    _animation = CurvedAnimation(
+      parent: _controller,
+      curve: widget.curve,
+    );
     _controller.forward(from: 0);
   }
 
@@ -45,9 +53,9 @@ class _AnimateState extends State<Animate>
 
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
-      animation: _controller,
+      animation: _animation,
       child: widget.child,
       builder: (BuildContext context, Widget? child) =>
-          widget.builder(context, child, _controller.value),
+          widget.builder(context, child, _animation.value),
     );
 }
