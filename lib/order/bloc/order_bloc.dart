@@ -40,8 +40,16 @@ class OrderBloc extends Cubit<OrderState> {
      if (selectedPizzaType == null) {
        throw Exception('selectPizzaType is null');
      }
+     final pizzaSize = state.selectedPizzaSize;
      addOrderItem(
-       OrderItem(pizzaType: selectedPizzaType, pizzaSize: state.selectedPizzaSize)
+       OrderItem(
+           pizzaType: selectedPizzaType,
+           pizzaSize: state.selectedPizzaSize,
+           quantity: 1,
+           pricePerPizza: orderRepository.getPizzaPrice(
+               pizzaType: selectedPizzaType, pizzaSize: pizzaSize
+           ),
+       )
      );
      cancelSelectPizza();
   }

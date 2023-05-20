@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_enums.dart';
-import 'package:lemon_pizza/widgets/animate.dart';
-import 'package:lemon_pizza/widgets/on_pressed.dart';
+import 'package:lemon_pizza/order/data/repositories/order_repository.dart';
+import 'package:lemon_pizza/utils/format_dollars.dart';
+import 'package:lemon_widgets/lemon_widgets.dart';
 
 class SelectPizzaTile extends StatelessWidget {
 
@@ -14,6 +15,10 @@ class SelectPizzaTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final orderRepository = RepositoryProvider.of<OrderRepository>(context);
+    final pizzaPrice = orderRepository.getPizzaPrice(pizzaType: pizzaType, pizzaSize: PizzaSize.medium);
+
     return SizedBox(
       width: 150,
       height: 100,
@@ -25,7 +30,7 @@ class SelectPizzaTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: pizzaType.ingredients.map((e) => Container(margin: const EdgeInsets.only(right: 4),child: Text(e.name),)).toList(),
           ),
-          Text("\$${pizzaType.priceMedium.toStringAsFixed(2)}"),
+          Text(formatDollars(pizzaPrice)),
           const SizedBox(height: 12),
           OnPressed(
             action: () => context.read<OrderBloc>().emitOrderState(

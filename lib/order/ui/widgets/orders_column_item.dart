@@ -32,7 +32,7 @@ class OrdersColumnItem extends StatelessWidget {
             children: [
               Text(orderItem.pizzaType.name),
               Text(orderItem.pizzaSize.name),
-              Text(formatDollars(orderItem.price)),
+              Text(formatDollars(orderItem.totalCost)),
             ],
           ),
           TextButton(child: const Text("remove"), onPressed: ()  {

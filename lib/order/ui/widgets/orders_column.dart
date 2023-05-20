@@ -2,10 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
-import 'package:lemon_pizza/widgets/fade_in.dart';
-import 'package:lemon_pizza/widgets/on_pressed.dart';
 import 'package:lemon_pizza/order/ui/widgets/orders_column_item.dart';
 import 'package:lemon_pizza/utils/format_dollars.dart';
+import 'package:lemon_widgets/lemon_widgets.dart';
 
 class OrdersColumn extends StatelessWidget {
 
@@ -51,12 +50,13 @@ class OrdersColumn extends StatelessWidget {
               ),
             ),
             OnPressed(
-              action: context.read<OrderBloc>().next,
-              child: Container(
+              action: orderItems.isEmpty ? null : context.read<OrderBloc>().next,
+              child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
                   alignment: Alignment.center,
                   width: double.infinity,
                   height: 40,
-                  color: Colors.red,
+                  color: orderItems.isEmpty ? Colors.grey : Colors.red,
                   child: Text("CHECKOUT ${formatDollars(orderState.totalOrderCost)}")),
             ),
           ],

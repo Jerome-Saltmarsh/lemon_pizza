@@ -6,9 +6,17 @@ import 'order_enums.dart';
 class OrderItem {
    final PizzaType pizzaType;
    final PizzaSize pizzaSize;
-   OrderItem({required this.pizzaType, required this.pizzaSize});
+   final int quantity;
+   final double pricePerPizza;
 
-   double get price => pizzaType.getPriceForSize(pizzaSize);
+   OrderItem({
+     required this.pizzaType,
+     required this.pizzaSize,
+     required this.quantity,
+     required this.pricePerPizza,
+   });
+
+   double get totalCost => pricePerPizza * quantity;
 }
 
 class OrderState {
@@ -24,7 +32,7 @@ class OrderState {
   bool get orderCompleted => orderItems.isNotEmpty;
 
   double get totalOrderCost =>
-      orderItems.fold(0, (total, orderItem) => total + orderItem.price);
+      orderItems.fold(0, (total, orderItem) => total + orderItem.totalCost);
 
   OrderState({
     required this.orderItems,
