@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:lemon_pizza/order/bloc/order_enums.dart';
+import 'package:lemon_pizza/order/ui/views/order_type_view.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_status_changed.dart';
 
 import 'order_create_view.dart';
@@ -21,6 +22,8 @@ class OrderStatusView extends StatelessWidget {
         switch (orderStatus) {
           case OrderStatus.createOrder:
             return const CreateOrderView();
+          case OrderStatus.orderType:
+            return const OrderTypeView();
           case OrderStatus.customerDetails:
             return CustomerDetailsView();
           case OrderStatus.paymentDetails:

@@ -18,6 +18,8 @@ class SelectPizzaTile extends StatelessWidget {
 
     final orderRepository = RepositoryProvider.of<OrderRepository>(context);
     final pizzaPrice = orderRepository.getPizzaPrice(pizzaType: pizzaType, pizzaSize: PizzaSize.medium);
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
 
     return SizedBox(
       width: 150,
@@ -25,12 +27,18 @@ class SelectPizzaTile extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(pizzaType.name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+          Text(pizzaType.name, style: textTheme.titleLarge),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: pizzaType.ingredients.map((e) => Container(margin: const EdgeInsets.only(right: 4),child: Text(e.name),)).toList(),
+            children: pizzaType.ingredients
+                .map((ingredient) => Container(
+                    margin: const EdgeInsets.only(right: 4),
+                    child: Text(ingredient.name,
+                        style: textTheme.titleSmall,
+                    )))
+                .toList(),
           ),
-          Text(formatDollars(pizzaPrice)),
+          Text(formatDollars(pizzaPrice), style: textTheme.labelMedium,),
           const SizedBox(height: 12),
           OnPressed(
             action: () => context.read<OrderBloc>().emitOrderState(
@@ -44,7 +52,7 @@ class SelectPizzaTile extends StatelessWidget {
                     width: 1, //                   <--- border width here
                   ),
                 ),
-                child: const Text("SELECT")),
+                child: Text("SELECT", style: textTheme.titleLarge,)),
           )
         ],
       ),

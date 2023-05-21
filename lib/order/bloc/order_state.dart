@@ -28,6 +28,7 @@ class OrderState {
   final PizzaType? selectedPizzaType;
   final PizzaSize selectedPizzaSize;
   final bool ordersPlacedVisible;
+  final OrderType orderType;
 
   bool get orderCompleted => orderItems.isNotEmpty;
 
@@ -41,26 +42,10 @@ class OrderState {
     required this.customerDetails,
     required this.paymentDetails,
     required this.ordersPlacedVisible,
+    this.orderType = OrderType.pickup,
     this.selectedPizzaType,
     this.selectedPizzaSize = PizzaSize.medium,
   });
-
-  OrderStatus get nextOrderStatus {
-     switch (orderStatus){
-       case OrderStatus.createOrder:
-         return OrderStatus.customerDetails;
-       case OrderStatus.customerDetails:
-         return OrderStatus.paymentDetails;
-       case OrderStatus.paymentDetails:
-         return OrderStatus.paymentInProgress;
-       case OrderStatus.paymentFailed:
-         return OrderStatus.paymentDetails;
-       case OrderStatus.paymentSucceeded:
-         return OrderStatus.createOrder;
-       case OrderStatus.paymentInProgress:
-         return OrderStatus.paymentInProgress;
-     }
-  }
 }
 
 class PaymentDetails {

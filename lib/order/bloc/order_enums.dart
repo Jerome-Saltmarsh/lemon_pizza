@@ -11,6 +11,11 @@ enum Ingredient {
   pesto,
 }
 
+enum OrderType {
+  pickup,
+  delivery,
+}
+
 enum PizzaSize {
   small, medium, large,
 }
@@ -47,6 +52,7 @@ enum PizzaType {
 
 enum OrderStatus {
   createOrder,
+  orderType,
   customerDetails,
   paymentDetails,
   paymentInProgress,

@@ -35,7 +35,7 @@ class OrdersColumnItem extends StatelessWidget {
               Text(formatDollars(orderItem.totalCost)),
             ],
           ),
-          TextButton(child: const Text("remove"), onPressed: ()  {
+          TextButton(child: Text("remove", style: TextStyle(color: Theme.of(context).colorScheme.error),), onPressed: ()  {
             context.read<OrderBloc>().removeOrderItem(orderItem);
           },),
         ],

@@ -31,7 +31,8 @@ class OrderBloc extends Cubit<OrderState> {
       throw Exception('cannot modify order in state ${state.orderStatus}');
     }
     emitOrderState(
-        orderItems: [...state.orderItems, orderItem]
+        orderItems: [...state.orderItems, orderItem],
+        ordersPlacedVisible: true,
     );
   }
 
@@ -215,4 +216,24 @@ class OrderBloc extends Cubit<OrderState> {
         break;
     }
   }
+
+  OrderStatus get nextOrderStatus {
+    switch (state.orderStatus) {
+      case OrderStatus.createOrder:
+        return OrderStatus.orderType;
+      case OrderStatus.orderType:
+        return OrderStatus.customerDetails;
+      case OrderStatus.customerDetails:
+        return OrderStatus.paymentDetails;
+      case OrderStatus.paymentDetails:
+        return OrderStatus.paymentInProgress;
+      case OrderStatus.paymentFailed:
+        return OrderStatus.paymentDetails;
+      case OrderStatus.paymentSucceeded:
+        return OrderStatus.createOrder;
+      case OrderStatus.paymentInProgress:
+        return OrderStatus.paymentInProgress;
+    }
+  }
+
 }

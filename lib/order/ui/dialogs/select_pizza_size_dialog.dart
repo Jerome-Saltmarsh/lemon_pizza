@@ -49,7 +49,7 @@ class SelectPizzaSizeDialog extends StatelessWidget {
                           Container(
                               margin: const EdgeInsets.only(left: 16),
                               padding: const EdgeInsets.all(5),
-                              child: const Text("SELECT SIZE", style: TextStyle(fontSize: 25),)
+                              child: const Text("Select a size", style: TextStyle(fontSize: 25),)
                           ),
                           IconButton(
                               onPressed: context.read<OrderBloc>().cancelSelectPizza,
