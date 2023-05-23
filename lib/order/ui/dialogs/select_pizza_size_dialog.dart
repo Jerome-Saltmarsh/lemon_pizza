@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:golden_ratio/constants.dart';
@@ -16,10 +18,9 @@ class SelectPizzaSizeDialog extends StatelessWidget {
         final selectedPizzaType = orderState.selectedPizzaType;
         if (selectedPizzaType == null) return const SizedBox();
         const width = 400.0;
-        return Container(
-          width: double.infinity,
-          height: double.infinity,
-          color: Colors.white70,
+        const blur = 4.0;
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
           child: Stack(
             alignment: Alignment.center,
             children: [
@@ -34,7 +35,7 @@ class SelectPizzaSizeDialog extends StatelessWidget {
                   height: width * goldenRatio_0618,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: context.theme.dialogBackgroundColor,
                     border: Border.all(
                       color: Colors.black38,
                     ),
@@ -46,14 +47,19 @@ class SelectPizzaSizeDialog extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          const SizedBox(width: 32),
                           Container(
                               margin: const EdgeInsets.only(left: 16),
                               padding: const EdgeInsets.all(5),
                               child: const Text("Select a size", style: TextStyle(fontSize: 25),)
                           ),
-                          IconButton(
-                              onPressed: context.read<OrderBloc>().cancelSelectPizza,
-                              icon: const Icon(Icons.cancel)
+                          Container(
+                            width: 32,
+                            margin: const EdgeInsets.only(right: 8),
+                            child: IconButton(
+                                onPressed: context.read<OrderBloc>().cancelSelectPizza,
+                                icon: const Icon(Icons.cancel)
+                            ),
                           ),
                         ],
                       ),

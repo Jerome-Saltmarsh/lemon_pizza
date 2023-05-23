@@ -38,7 +38,7 @@ class SelectPizzaTile extends StatelessWidget {
                     )))
                 .toList(),
           ),
-          Text(formatDollars(pizzaPrice), style: textTheme.labelMedium,),
+          Text(formatDollars(pizzaPrice), style: textTheme.titleSmall,),
           const SizedBox(height: 12),
           OnPressed(
             action: () => context.read<OrderBloc>().emitOrderState(
@@ -50,6 +50,7 @@ class SelectPizzaTile extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 1, //                   <--- border width here
+                    color: textTheme.titleLarge?.color ?? Colors.black
                   ),
                 ),
                 child: Text("SELECT", style: textTheme.titleLarge,)),

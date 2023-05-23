@@ -17,13 +17,13 @@ class CheckoutIcon extends StatelessWidget {
          return Stack(
            children: [
              IconButton(
-               icon: const Icon(Icons.shopping_cart, size: 40),
+               icon: const Icon(Icons.shopping_cart, size: 35),
                onPressed: context.read<OrderBloc>().toggleOrdersVisible,
              ),
              if (orderState.orderItems.isNotEmpty)
                Positioned(
-                 top: 0,
-                 right: 0,
+                 top: 2,
+                 right: 2,
                  child: Container(
                      width: 25,
                      height: 25,
@@ -33,7 +33,7 @@ class CheckoutIcon extends StatelessWidget {
                        color: Colors.red,
                      ),
                      child: Text(orderState.orderItems.length.toString(),
-                         style: const TextStyle(color: Colors.white)
+                         style: const TextStyle(color: Colors.white, fontSize: 12)
                      )
                  ),
                ),

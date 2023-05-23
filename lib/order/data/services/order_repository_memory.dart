@@ -30,7 +30,13 @@ class OrderRepositoryMemory implements OrderRepository {
            PizzaSize.medium => 7.0,
            PizzaSize.large => 8.0,
         },
-      PizzaType.godFather =>
+      PizzaType.vegetarian =>
+          switch (pizzaSize) {
+           PizzaSize.small => 7.0,
+           PizzaSize.medium => 8.0,
+           PizzaSize.large => 9.0,
+        },
+      PizzaType.godfather =>
           switch (pizzaSize) {
            PizzaSize.small => 8.0,
            PizzaSize.medium => 9.0,
@@ -41,8 +47,7 @@ class OrderRepositoryMemory implements OrderRepository {
            PizzaSize.small => 11.0,
            PizzaSize.medium => 13.0,
            PizzaSize.large => 15.0,
-        },
-       _ => 0.0,
+        }
     };
   }
 }

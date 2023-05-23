@@ -16,5 +16,5 @@ class ThemeBloc extends Cubit<ThemeMode> {
 
   bool get isLight => !isDark;
 
-  void setLight(bool value)=> emit(value ? ThemeMode.light : ThemeMode.dark);
+  void setDarkMode(bool value) => emit(value ? ThemeMode.dark : ThemeMode.light);
 }

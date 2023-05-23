@@ -25,7 +25,7 @@ enum PizzaType {
     ingredients: [Ingredient.cheese],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZyBW_qmYUCcGWkqMrXudZh3umjob0Qjz92g&usqp=CAU',
   ),
-  godFather(
+  godfather(
     ingredients: [Ingredient.garlic, Ingredient.pesto],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZyBW_qmYUCcGWkqMrXudZh3umjob0Qjz92g&usqp=CAU',
   ),
