@@ -4,6 +4,8 @@ import 'package:golden_ratio/constants.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_enums.dart';
 import 'package:lemon_pizza/order/data/repositories/order_repository.dart';
+import 'package:lemon_pizza/order/ui/extensions/string_extensions.dart';
+import 'package:lemon_pizza/order/ui/widgets/images/pizza_image.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_bloc_builder.dart';
 import 'package:lemon_pizza/utils/format_dollars.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
@@ -25,7 +27,7 @@ class PizzaSizeButton extends StatelessWidget {
         throw Exception('selectedPizzaType == null');
       }
 
-      const height = 135.0;
+      const height = 145.0;
 
       return OnPressed(
         action: () {
@@ -44,21 +46,21 @@ class PizzaSizeButton extends StatelessWidget {
               ),
               alignment: Alignment.center,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(pizzaSize.name),
-                  Container(
-                      width: 80,
-                      height: 80,
-                      alignment: Alignment.center,
-                      child: Icon(Icons.donut_small, size: iconSize)),
+                  Text(pizzaSize.name.capitalizeFirstLetter, style: context.theme.textTheme.titleMedium),
+                  SizedBox(
+                      width: 225.0 * iconSize * 0.2,
+                      child: const PizzaImage()
+                  ),
                   Text(formatDollars(
                       RepositoryProvider.of<OrderRepository>(context)
                           .getPizzaPrice(
                             pizzaType: selectedPizzaType,
                             pizzaSize: pizzaSize,
                       )
-                  )
+                  ),
+                      style: context.theme.textTheme.labelMedium
                   ),
                 ],
               )),
@@ -70,11 +72,11 @@ class PizzaSizeButton extends StatelessWidget {
   double get iconSize {
     switch (pizzaSize) {
       case PizzaSize.small:
-        return 30.0;
+        return 1.0;
       case PizzaSize.medium:
-        return 40.0;
+        return goldenRatio_1381;
       case PizzaSize.large:
-        return 50.0;
+        return goldenRatio_1618;
     }
   }
 }
