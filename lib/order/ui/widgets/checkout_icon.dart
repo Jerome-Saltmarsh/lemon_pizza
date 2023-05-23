@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_bloc_builder.dart';
+import 'package:lemon_widgets/lemon_widgets.dart';
 
 class CheckoutIcon extends StatelessWidget {
   const CheckoutIcon({super.key});
@@ -28,9 +29,9 @@ class CheckoutIcon extends StatelessWidget {
                      width: 25,
                      height: 25,
                      alignment: Alignment.center,
-                     decoration: const BoxDecoration(
+                     decoration: BoxDecoration(
                        shape: BoxShape.circle,
-                       color: Colors.red,
+                       color: context.theme.colorScheme.error,
                      ),
                      child: Text(orderState.orderItems.length.toString(),
                          style: const TextStyle(color: Colors.white, fontSize: 12)

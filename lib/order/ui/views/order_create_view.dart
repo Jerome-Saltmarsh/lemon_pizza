@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
+import 'package:lemon_pizza/order/ui/dialogs/orders_dialog.dart';
 import 'package:lemon_pizza/order/ui/dialogs/select_pizza_size_dialog.dart';
 
-import '../widgets/orders_column.dart';
 import '../widgets/select_pizza_column.dart';
 
 class CreateOrderView extends StatelessWidget {
@@ -29,7 +29,7 @@ class CreateOrderView extends StatelessWidget {
         const Positioned(
             top: 16,
             right: 16,
-            child: OrdersColumn()),
+            child: OrdersDialog()),
         const SelectPizzaSizeDialog(),
         if (orderBloc.state.validate && orderBloc.state.orderItems.isEmpty)
           Container(

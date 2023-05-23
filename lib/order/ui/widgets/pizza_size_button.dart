@@ -38,7 +38,7 @@ class PizzaSizeButton extends StatelessWidget {
           curve: Curves.easeInOut,
           height: height,
           width:  height * goldenRatio_0618,
-          color: isSelected ? Colors.green : Colors.black12,
+          color: isSelected ? context.theme.colorScheme.onSecondaryContainer : context.theme.colorScheme.secondary,
           child: Container(
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
@@ -48,7 +48,7 @@ class PizzaSizeButton extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(pizzaSize.name.capitalizeFirstLetter, style: context.theme.textTheme.titleMedium),
+                  Text(pizzaSize.name.capitalizeFirstLetter, style: context.textTheme.titleMedium),
                   SizedBox(
                       width: 225.0 * iconSize * 0.2,
                       child: const PizzaImage()
@@ -60,7 +60,7 @@ class PizzaSizeButton extends StatelessWidget {
                             pizzaSize: pizzaSize,
                       )
                   ),
-                      style: context.theme.textTheme.labelMedium
+                      style: context.textTheme.labelMedium
                   ),
                 ],
               )),

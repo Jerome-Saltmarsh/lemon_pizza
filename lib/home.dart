@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lemon_pizza/order/ui/widgets/buttons/checkout_button.dart';
 import 'package:lemon_pizza/order/ui/widgets/checkout_icon.dart';
 import 'package:lemon_pizza/theme/ui/theme_mode_toggle.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';

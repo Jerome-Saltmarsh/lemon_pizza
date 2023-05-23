@@ -5,11 +5,11 @@ import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/ui/widgets/orders_column_item.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
-import 'buttons/checkout_button.dart';
+import '../widgets/buttons/checkout_button.dart';
 
-class OrdersColumn extends StatelessWidget {
+class OrdersDialog extends StatelessWidget {
 
-  const OrdersColumn({super.key});
+  const OrdersDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class OrdersColumn extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         constraints: const BoxConstraints(maxHeight: 400),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: context.colorScheme.secondary,
           border: Border.all(
             color: Colors.black,
             width: 1.0,

@@ -36,9 +36,9 @@ class SelectPizzaSizeDialog extends StatelessWidget {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: context.theme.dialogBackgroundColor,
-                    border: Border.all(
-                      color: Colors.black38,
-                    ),
+                    // border: Border.all(
+                    //   color: Colors.black38,
+                    // ),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Column(
@@ -51,7 +51,7 @@ class SelectPizzaSizeDialog extends StatelessWidget {
                           Container(
                               margin: const EdgeInsets.only(left: 16),
                               padding: const EdgeInsets.all(5),
-                              child: const Text("Select a size", style: TextStyle(fontSize: 25),)
+                              child: Text("Select a size", style: context.textTheme.titleLarge)
                           ),
                           Container(
                             width: 32,
@@ -81,15 +81,15 @@ class SelectPizzaSizeDialog extends StatelessWidget {
                               margin: const EdgeInsets.symmetric(horizontal: 16),
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                color: Colors.green,
+                                color: context.colorScheme.primary,
                                 borderRadius: BorderRadius.circular(4),
                               ),
-                              child: const Row(
+                              child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text("ADD"),
-                                  Icon(Icons.thumb_up),
+                                  Text("ADD", style: context.theme.textTheme.bodyMedium,),
+                                  const Icon(Icons.thumb_up),
                                 ],
                               ),
                             ),

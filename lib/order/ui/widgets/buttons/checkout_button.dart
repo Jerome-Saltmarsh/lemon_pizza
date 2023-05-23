@@ -24,7 +24,7 @@ class CheckoutButton extends StatelessWidget {
               maxWidth: 150,
             ),
             height: 40,
-            color: orderItems.isEmpty ? theme.colorScheme.tertiary : theme.colorScheme.error,
+            color: theme.colorScheme.error.withOpacity(orderItems.isEmpty ? 0.5 : 1.0),
             child: Text("CHECKOUT ${formatDollars(orderState.totalOrderCost)}", style: const TextStyle(color: Colors.white),)),
       );
     });
