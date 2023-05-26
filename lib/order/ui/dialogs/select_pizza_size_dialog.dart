@@ -7,6 +7,7 @@ import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_enums.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_bloc_builder.dart';
 import 'package:lemon_pizza/order/ui/widgets/pizza_size_button.dart';
+import 'package:lemon_pizza/style.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class SelectPizzaSizeDialog extends StatelessWidget {
@@ -36,33 +37,34 @@ class SelectPizzaSizeDialog extends StatelessWidget {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: context.theme.dialogBackgroundColor,
-                    // border: Border.all(
-                    //   color: Colors.black38,
-                    // ),
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: Style.dialogBorderRadius,
+                    border: Border.all(
+                      color: context.theme.highlightColor
+                    ),
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const SizedBox(width: 32),
-                          Container(
-                              margin: const EdgeInsets.only(left: 16),
-                              padding: const EdgeInsets.all(5),
-                              child: Text("Select a size", style: context.textTheme.titleLarge)
-                          ),
-                          Container(
-                            width: 32,
-                            margin: const EdgeInsets.only(right: 8),
-                            child: IconButton(
-                                onPressed: context.read<OrderBloc>().cancelSelectPizza,
-                                icon: const Icon(Icons.cancel)
-                            ),
-                          ),
-                        ],
-                      ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.end,
+                      //   children: [
+                      //     // const SizedBox(width: 32),
+                      //     // Container(
+                      //     //     margin: const EdgeInsets.only(left: 16),
+                      //     //     padding: const EdgeInsets.all(5),
+                      //     //     child: Text("Select a size", style: context.textTheme.titleLarge)
+                      //     // ),
+                      //     Container(
+                      //       width: 32,
+                      //       margin: const EdgeInsets.only(right: 8),
+                      //       child: IconButton(
+                      //           onPressed: context.read<OrderBloc>().cancelSelectPizza,
+                      //           icon: const Icon(Icons.cancel)
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                      const SizedBox(height: 16),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: PizzaSize.values
@@ -71,28 +73,15 @@ class SelectPizzaSizeDialog extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          const Expanded(child: SizedBox()),
-                          OnPressed(
-                            action: context.read<OrderBloc>().addSelectedPizza,
-                            child: Container(
-                              width: 100,
-                              height: 100 * goldenRatio_0381,
-                              margin: const EdgeInsets.symmetric(horizontal: 16),
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                color: context.colorScheme.primary,
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text("ADD", style: context.theme.textTheme.bodyMedium,),
-                                  const Icon(Icons.thumb_up),
-                                ],
-                              ),
-                            ),
+                          TextButton(
+                              onPressed: context.read<OrderBloc>().cancelSelectPizza,
+                              child: const Text("Cancel")
+                          ),
+                          TextButton(
+                            onPressed: context.read<OrderBloc>().addSelectedPizza,
+                            child: const Text("CONFIRM")
                           ),
                         ],
                       )

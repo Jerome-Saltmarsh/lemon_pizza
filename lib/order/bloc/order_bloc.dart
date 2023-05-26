@@ -115,6 +115,7 @@ class OrderBloc extends Cubit<OrderState> {
     PizzaType? selectPizzaType,
     PizzaSize? selectPizzaSize,
     bool? ordersPlacedVisible,
+    OrderType? orderType,
   }){
     emit(OrderState(
       orderItems: orderItems ?? state.orderItems,
@@ -125,6 +126,7 @@ class OrderBloc extends Cubit<OrderState> {
       selectedPizzaType: selectPizzaType ?? state.selectedPizzaType,
       selectedPizzaSize: selectPizzaSize ?? state.selectedPizzaSize,
       ordersPlacedVisible: ordersPlacedVisible ?? state.ordersPlacedVisible,
+      orderType: orderType ?? state.orderType,
     ));
   }
 
@@ -161,7 +163,7 @@ class OrderBloc extends Cubit<OrderState> {
           return;
         }
         emitOrderState(
-          orderStatus: OrderStatus.customerDetails,
+          orderStatus: OrderStatus.orderType,
           validate: false,
         );
         break;

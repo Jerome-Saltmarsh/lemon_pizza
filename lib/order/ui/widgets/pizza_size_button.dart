@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:golden_ratio/constants.dart';
-import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_enums.dart';
-import 'package:lemon_pizza/order/data/repositories/order_repository.dart';
+import 'package:lemon_pizza/order/ui/extensions/build_context_extensions.dart';
 import 'package:lemon_pizza/order/ui/extensions/string_extensions.dart';
 import 'package:lemon_pizza/order/ui/widgets/images/pizza_image.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_bloc_builder.dart';
@@ -30,15 +28,13 @@ class PizzaSizeButton extends StatelessWidget {
       const height = 145.0;
 
       return OnPressed(
-        action: () {
-          context.read<OrderBloc>().emitOrderState(selectPizzaSize: pizzaSize);
-        },
+        action: () => context.selectPizzaSize(pizzaSize),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
           height: height,
           width:  height * goldenRatio_0618,
-          color: isSelected ? context.theme.colorScheme.onSecondaryContainer : context.theme.colorScheme.secondary,
+          color: isSelected ? context.theme.focusColor : context.theme.disabledColor,
           child: Container(
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
@@ -54,10 +50,9 @@ class PizzaSizeButton extends StatelessWidget {
                       child: const PizzaImage()
                   ),
                   Text(formatDollars(
-                      RepositoryProvider.of<OrderRepository>(context)
-                          .getPizzaPrice(
-                            pizzaType: selectedPizzaType,
-                            pizzaSize: pizzaSize,
+                      context.orderRepository.getPizzaPrice(
+                        pizzaType: selectedPizzaType,
+                        pizzaSize: pizzaSize,
                       )
                   ),
                       style: context.textTheme.labelMedium

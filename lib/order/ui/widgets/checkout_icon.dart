@@ -16,6 +16,8 @@ class CheckoutIcon extends StatelessWidget {
        },
        builder: (context, orderState){
          return Stack(
+           clipBehavior: Clip.none,
+           alignment: Alignment.center,
            children: [
              IconButton(
                icon: const Icon(Icons.shopping_cart, size: 35),
@@ -23,19 +25,21 @@ class CheckoutIcon extends StatelessWidget {
              ),
              if (orderState.orderItems.isNotEmpty)
                Positioned(
-                 top: 2,
-                 right: 2,
-                 child: Container(
-                     width: 25,
-                     height: 25,
-                     alignment: Alignment.center,
-                     decoration: BoxDecoration(
-                       shape: BoxShape.circle,
-                       color: context.theme.colorScheme.error,
-                     ),
-                     child: Text(orderState.orderItems.length.toString(),
-                         style: const TextStyle(color: Colors.white, fontSize: 12)
-                     )
+                 top: -5,
+                 right: -10,
+                 child: IgnorePointer(
+                   child: Container(
+                       width: 25,
+                       height: 25,
+                       alignment: Alignment.center,
+                       decoration: BoxDecoration(
+                         shape: BoxShape.circle,
+                         color: context.theme.colorScheme.error,
+                       ),
+                       child: Text(orderState.orderItems.length.toString(),
+                           style: const TextStyle(color: Colors.white, fontSize: 12)
+                       )
+                   ),
                  ),
                ),
            ],

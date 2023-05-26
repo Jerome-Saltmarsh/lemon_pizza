@@ -12,6 +12,7 @@ class SelectPizzaColumn extends StatelessWidget {
      return SizedBox(
        width: 400,
        child: GridView.count(
+         physics: const NeverScrollableScrollPhysics(),
          crossAxisCount: 2,
          children: PizzaType.values.map((pizzaType) => SelectPizzaTile(pizzaType)).toList()
        ),

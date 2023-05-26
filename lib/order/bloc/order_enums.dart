@@ -13,7 +13,7 @@ enum Ingredient {
 
 enum OrderType {
   pickup,
-  delivery,
+  deliver,
 }
 
 enum PizzaSize {

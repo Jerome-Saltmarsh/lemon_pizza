@@ -23,7 +23,7 @@ class Home extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text("PIZZA STORE"),
+                const Text("PIZZA NOW"),
                 Container(
                   margin: const EdgeInsets.only(right: 16),
                   child: const CheckoutIcon(),

@@ -6,8 +6,9 @@ import 'package:lemon_pizza/order/bloc/order_enums.dart';
 import 'package:lemon_pizza/order/bloc/order_state.dart';
 import 'package:lemon_pizza/order/data/repositories/order_repository.dart';
 import 'package:lemon_pizza/order/data/services/order_repository_memory.dart';
-import 'package:lemon_pizza/style.dart';
 import 'package:lemon_pizza/theme/bloc/theme_bloc.dart';
+
+import 'style.dart';
 
 class App extends StatelessWidget {
 
@@ -24,7 +25,7 @@ class App extends StatelessWidget {
                 OrderBloc(
                     OrderState(
                       orderItems: [],
-                      orderStatus: OrderStatus.createOrder,
+                      orderStatus: OrderStatus.orderType,
                       validate: false,
                       customerDetails: CustomerDetails(
                           name: '',
@@ -46,6 +47,7 @@ class App extends StatelessWidget {
                 themeMode: context.watch<ThemeBloc>().state,
                 darkTheme: Style.themeDataDark,
                 theme: Style.themeDataLight,
+
                 home: const Home(),
               );
             }
