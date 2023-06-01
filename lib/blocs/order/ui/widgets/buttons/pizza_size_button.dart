@@ -7,7 +7,7 @@ import 'package:lemon_pizza/blocs/order/ui/utils/format_dollars.dart';
 import 'package:lemon_pizza/blocs/order/ui/widgets/images/pizza_image.dart';
 import 'package:lemon_pizza/blocs/order/ui/widgets/order_bloc_builder.dart';
 import 'package:lemon_pizza/blocs/theme/bloc/theme_bloc.dart';
-import 'package:lemon_pizza/style.dart';
+import 'package:lemon_pizza/ui/style.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class PizzaSizeButton extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/ui/mobile/scaffold_mobile.dart';
 
-import 'ui/desktop/scaffold_desktop.dart';
+import 'desktop/scaffold_desktop.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
