@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:golden_ratio/constants.dart';
 import 'package:lemon_pizza/order/bloc/order_enums.dart';
 import 'package:lemon_pizza/order/ui/extensions/build_context_extensions.dart';
-import 'package:lemon_pizza/order/ui/extensions/string_extensions.dart';
 import 'package:lemon_pizza/order/ui/widgets/images/pizza_image.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_bloc_builder.dart';
+import 'package:lemon_pizza/style.dart';
 import 'package:lemon_pizza/utils/format_dollars.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
@@ -15,6 +15,9 @@ class PizzaSizeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final colorScheme = context.colorScheme;
+
     return OrderBlocBuilder(buildWhen: (previous, current) {
       return previous.selectedPizzaSize != current.selectedPizzaSize ||
           previous.selectedPizzaType != current.selectedPizzaType;
@@ -25,7 +28,7 @@ class PizzaSizeButton extends StatelessWidget {
         throw Exception('selectedPizzaType == null');
       }
 
-      const height = 145.0;
+      const height = 155.0;
 
       return OnPressed(
         action: () => context.selectPizzaSize(pizzaSize),
@@ -34,31 +37,39 @@ class PizzaSizeButton extends StatelessWidget {
           curve: Curves.easeInOut,
           height: height,
           width:  height * goldenRatio_0618,
-          color: isSelected ? context.theme.focusColor : context.theme.disabledColor,
-          child: Container(
-              padding: const EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-              ),
-              alignment: Alignment.center,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(pizzaSize.name.capitalizeFirstLetter, style: context.textTheme.titleMedium),
-                  SizedBox(
-                      width: 225.0 * iconSize * 0.2,
-                      child: const PizzaImage()
-                  ),
-                  Text(formatDollars(
-                      context.orderRepository.getPizzaPrice(
-                        pizzaType: selectedPizzaType,
-                        pizzaSize: pizzaSize,
-                      )
-                  ),
-                      style: context.textTheme.labelMedium
-                  ),
-                ],
+          decoration: BoxDecoration(
+            borderRadius: Style.dialogBorderRadius,
+            color: isSelected ? colorScheme.primary : colorScheme.background,
+          ),
+          padding: Style.dialogPadding,
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(pizzaSize.name.toUpperCase(), style: TextStyle(
+                fontSize: FontSize.titleMedium,
+                color: isSelected ? colorScheme.onPrimary : colorScheme.onBackground
               )),
+              Text(
+                  formatDollars(context.orderRepository.getPizzaPrice(
+                    pizzaType: selectedPizzaType,
+                    pizzaSize: pizzaSize,
+                  )),
+                  style: TextStyle(
+                      fontSize: FontSize.labelLarge,
+                      color: isSelected ? colorScheme.onPrimary : colorScheme.onBackground
+                  )
+              ),
+              const SizedBox(height: 8,),
+              Container(
+                  height: 75,
+                  width: 225.0 * iconSize * 0.2,
+                  alignment: Alignment.center,
+                  child: const PizzaImage()
+              ),
+
+            ],
+          ),
         ),
       );
     });

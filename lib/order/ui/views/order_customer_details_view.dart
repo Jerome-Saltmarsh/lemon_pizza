@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_state.dart';
+import 'package:lemon_pizza/order/ui/extensions/build_context_extensions.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_invalid_builder.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
@@ -47,6 +48,7 @@ class CustomerDetailsView extends StatelessWidget {
                 return SizedBox(
                   width: 300,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       const Text("CUSTOMER DETAILS"),
                       BlocBuilder<OrderBloc, OrderState>(
@@ -88,6 +90,14 @@ class CustomerDetailsView extends StatelessWidget {
                         buildWhen: (previous, current) =>
                           previous.customerDetails.phone != current.customerDetails.phone,
                       ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      TextButton(onPressed: (){
+                        context.emitOrderState(
+                           customerDetails: customerDetails
+                        );
+                      }, child: const Text("NEXT"))
                     ],
                   ),
                 );

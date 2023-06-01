@@ -36,34 +36,16 @@ class SelectPizzaSizeDialog extends StatelessWidget {
                   height: width * goldenRatio_0618,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: context.theme.dialogBackgroundColor,
+                    color: context.colorScheme.background,
                     borderRadius: Style.dialogBorderRadius,
                     border: Border.all(
-                      color: context.theme.highlightColor
+                      color: context.colorScheme.primary,
+                      width: Style.dialogBorderWidth,
                     ),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.end,
-                      //   children: [
-                      //     // const SizedBox(width: 32),
-                      //     // Container(
-                      //     //     margin: const EdgeInsets.only(left: 16),
-                      //     //     padding: const EdgeInsets.all(5),
-                      //     //     child: Text("Select a size", style: context.textTheme.titleLarge)
-                      //     // ),
-                      //     Container(
-                      //       width: 32,
-                      //       margin: const EdgeInsets.only(right: 8),
-                      //       child: IconButton(
-                      //           onPressed: context.read<OrderBloc>().cancelSelectPizza,
-                      //           icon: const Icon(Icons.cancel)
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
                       const SizedBox(height: 16),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

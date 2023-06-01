@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_bloc_builder.dart';
+import 'package:lemon_pizza/style.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class CheckoutIcon extends StatelessWidget {
@@ -20,7 +21,7 @@ class CheckoutIcon extends StatelessWidget {
            alignment: Alignment.center,
            children: [
              IconButton(
-               icon: const Icon(Icons.shopping_cart, size: 35),
+               icon: Icon(Icons.shopping_cart, size: 35, color: context.colorScheme.onPrimary,),
                onPressed: context.read<OrderBloc>().toggleOrdersVisible,
              ),
              if (orderState.orderItems.isNotEmpty)
@@ -32,12 +33,12 @@ class CheckoutIcon extends StatelessWidget {
                        width: 25,
                        height: 25,
                        alignment: Alignment.center,
-                       decoration: BoxDecoration(
+                       decoration: const BoxDecoration(
                          shape: BoxShape.circle,
-                         color: context.theme.colorScheme.error,
+                         color: Colors.red,
                        ),
                        child: Text(orderState.orderItems.length.toString(),
-                           style: const TextStyle(color: Colors.white, fontSize: 12)
+                           style: const TextStyle(color: Colors.white, fontSize: FontSize.labelMedium)
                        )
                    ),
                  ),

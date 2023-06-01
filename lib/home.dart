@@ -5,25 +5,27 @@ import 'package:lemon_widgets/lemon_widgets.dart';
 
 import 'order/ui/views/order_status_view.dart';
 import 'order/ui/widgets/order_back_button.dart';
-import 'order/ui/widgets/order_floating_action_button.dart';
+import 'style.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
 
-
   @override
   Widget build(BuildContext context) =>
       Scaffold(
-        backgroundColor: context.theme.scaffoldBackgroundColor,
+        // backgroundColor: context.colorScheme.primary,
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: context.theme.appBarTheme.backgroundColor,
+          backgroundColor: context.colorScheme.primary,
           title: SizedBox(
             width: 600,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text("PIZZA NOW"),
+                Text("PIZZA NOW", style: TextStyle(
+                  color: context.colorScheme.onPrimary,
+                  fontSize: FontSize.titleLarge,
+                ),),
                 Container(
                   margin: const EdgeInsets.only(right: 16),
                   child: const CheckoutIcon(),
@@ -37,13 +39,12 @@ class Home extends StatelessWidget {
                 margin: const EdgeInsets.only(right: 8),
                 child: const ThemeModeToggle()
             ),
-            // Container(
-            //     margin: const EdgeInsets.only(right: 16),
-            //     child: const CheckoutIcon(),
-            // )
+            TextButton(onPressed: (){
+               Navigator.of(context).pushNamed('theme');
+            }, child: const Text("THEME"))
           ],
         ),
         body: const OrderStatusView(),
-        floatingActionButton: const OrderStatusFloatingActionButton(),
+        // floatingActionButton: const OrderStatusFloatingActionButton(),
       );
 }
