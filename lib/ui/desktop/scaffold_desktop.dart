@@ -43,6 +43,18 @@ class ScaffoldDesktop extends StatelessWidget {
         ),
         leading: const OrderBackButton(),
         actions: [
+
+        SizedBox(
+          width: 200,
+          child: ColorPickerSlider(
+              TrackType.hue,
+              HSVColor.fromColor(context.read<ThemeBloc>().state.color),
+              (HSVColor color) {
+                context.read<ThemeBloc>().setColor(color.toColor());
+             },
+             displayThumbColor: true,
+      ),
+        ),
           TextButton(
             onPressed: () {
               showDialog(
@@ -50,6 +62,8 @@ class ScaffoldDesktop extends StatelessWidget {
                   return AlertDialog(
                     title: const Text('Pick a color!'),
                     content: ColorPicker(
+                      paletteType: PaletteType.hslWithHue,
+                      enableAlpha: false,
                       pickerColor: context.read<ThemeBloc>().state.color,
                       onColorChanged: context.read<ThemeBloc>().setColor,
                     ),
