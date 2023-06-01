@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:lemon_pizza/blocs/order/ui/extensions/build_context_extensions.dart';
+import 'package:lemon_pizza/ui/ui/extensions/build_context_extensions.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class OrderTypeView extends StatelessWidget {

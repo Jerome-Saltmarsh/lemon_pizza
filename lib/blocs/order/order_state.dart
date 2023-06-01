@@ -1,6 +1,4 @@
 
-import 'package:lemon_pizza/blocs/order/ui/extensions/string_extensions.dart';
-
 import 'order_enums.dart';
 
 class OrderItem {
@@ -123,5 +121,16 @@ class CustomerDetails {
 
   bool get valid {
     return name.isNotEmpty && address.isNotEmpty && phone.isNotEmpty;
+  }
+}
+
+extension StringExtensions on String {
+  String get removeEmptySpace => replaceAll(" ", "");
+
+  String get capitalizeFirstLetter {
+    if (isEmpty) {
+      return this;
+    }
+    return this[0].toUpperCase() + substring(1);
   }
 }

@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_bloc.dart';
-import 'package:lemon_pizza/blocs/order/ui/widgets/dialogs/orders_dialog.dart';
-import 'package:lemon_pizza/blocs/order/ui/widgets/dialogs/select_pizza_size_dialog.dart';
-import 'package:lemon_pizza/blocs/order/ui/widgets/select_pizza_column.dart';
+import 'package:lemon_pizza/ui/ui/widgets/dialogs/orders_dialog.dart';
+import 'package:lemon_pizza/ui/ui/widgets/dialogs/select_pizza_size_dialog.dart';
+import 'package:lemon_pizza/ui/ui/widgets/select_pizza_column.dart';
 
 
 class CreateOrderView extends StatelessWidget {

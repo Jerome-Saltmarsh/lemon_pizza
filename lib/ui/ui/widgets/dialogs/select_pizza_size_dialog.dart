@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:golden_ratio/constants.dart';
 import 'package:lemon_pizza/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_enums.dart';
-import 'package:lemon_pizza/blocs/order/ui/widgets/buttons/pizza_size_button.dart';
-import 'package:lemon_pizza/blocs/order/ui/widgets/order_bloc_builder.dart';
 import 'package:lemon_pizza/ui/style.dart';
+import 'package:lemon_pizza/ui/ui/widgets/buttons/pizza_size_button.dart';
+import 'package:lemon_pizza/ui/ui/widgets/order_bloc_builder.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class SelectPizzaSizeDialog extends StatelessWidget {

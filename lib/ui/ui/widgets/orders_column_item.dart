@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_state.dart';
-import 'package:lemon_pizza/blocs/order/ui/utils/format_dollars.dart';
+import 'package:lemon_pizza/ui/ui/utils/format_dollars.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class OrdersColumnItem extends StatelessWidget {

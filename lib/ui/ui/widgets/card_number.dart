@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_bloc.dart';
-import 'package:lemon_pizza/blocs/order/ui/constants/numbers_only_formatter.dart';
+import 'package:lemon_pizza/ui/ui/constants/numbers_only_formatter.dart';
 
 import 'order_bloc_builder.dart';
 
