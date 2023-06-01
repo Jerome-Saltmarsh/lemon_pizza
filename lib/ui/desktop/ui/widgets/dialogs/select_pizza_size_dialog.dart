@@ -17,7 +17,7 @@ class SelectPizzaSizeDialog extends StatelessWidget {
   Widget build(BuildContext context) =>
       OrderBlocBuilder(builder: (context, orderState) {
         final colorScheme = context.colorScheme;
-        final themeState = context.themeState;
+        final themeState = context.readThemeState;
         final selectedPizzaType = orderState.selectedPizzaType;
         if (selectedPizzaType == null) return const SizedBox();
         const width = 400.0;

@@ -14,7 +14,7 @@ class OrdersDialog extends StatelessWidget {
     final orderState = context.watchOrderState;
     final orderItems = orderState.orderItems;
     final colorScheme = context.colorScheme;
-    final themeState = context.themeState;
+    final themeState = context.readThemeState;
     final fontSize = themeState.fontSize;
 
     return FadeIn(

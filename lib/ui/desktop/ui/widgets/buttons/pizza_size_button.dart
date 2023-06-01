@@ -15,7 +15,7 @@ class PizzaSizeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = context.colorScheme;
-    final theme = context.themeState;
+    final theme = context.readThemeState;
     final fontSize = theme.fontSize;
 
     return OrderBlocBuilder(buildWhen: (previous, current) {
@@ -23,7 +23,7 @@ class PizzaSizeButton extends StatelessWidget {
           previous.selectedPizzaType != current.selectedPizzaType;
     }, builder: (context, orderState) {
 
-      final themeState = context.themeState;
+      final themeState = context.readThemeState;
 
       final selectedPizzaType = orderState.selectedPizzaType;
       final isSelected = orderState.selectedPizzaSize == pizzaSize;

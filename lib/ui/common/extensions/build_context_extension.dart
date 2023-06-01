@@ -9,9 +9,8 @@ import 'package:lemon_pizza/blocs/theme/theme_bloc.dart';
 import 'package:lemon_pizza/blocs/theme/theme_state.dart';
 
 extension BuildContextExtension on BuildContext {
-   FontSize get fontSize => read<ThemeBloc>().state.fontSize;
-
-   ThemeState get themeState => read<ThemeBloc>().state;
+   FontSize get fontSize => readThemeState.fontSize;
+   ThemeState get readThemeState => read<ThemeBloc>().state;
    OrderBloc get readOrderBloc => read<OrderBloc>();
    OrderState get readOrderState => readOrderBloc.state;
    OrderBloc get watchOrderBloc => watch<OrderBloc>();

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:lemon_pizza/blocs/theme/theme_bloc.dart';
+import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/common/widgets/texts/text_on_primary.dart';
 import 'package:lemon_pizza/ui/desktop/theme/theme_mode_toggle.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
@@ -15,7 +16,7 @@ class ScaffoldDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fontSize = context.read<ThemeBloc>().state.fontSize;
+    final fontSize = context.fontSize;
 
     return Scaffold(
       appBar: AppBar(
