@@ -6,7 +6,7 @@ import 'package:golden_ratio/constants.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_enums.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_bloc_builder.dart';
-import 'package:lemon_pizza/order/ui/widgets/pizza_size_button.dart';
+import 'package:lemon_pizza/order/ui/widgets/buttons/pizza_size_button.dart';
 import 'package:lemon_pizza/style.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 

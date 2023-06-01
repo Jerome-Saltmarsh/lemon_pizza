@@ -20,6 +20,7 @@ class SelectPizzaTile extends StatelessWidget {
     final pizzaPrice = orderRepository.getPizzaPrice(pizzaType: pizzaType, pizzaSize: PizzaSize.medium);
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
+    final colorScheme = context.colorScheme;
 
     return SizedBox(
       width: 150,
@@ -48,12 +49,11 @@ class SelectPizzaTile extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 12),
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 1, //                   <--- border width here
-                    color: textTheme.titleLarge?.color ?? Colors.black
-                  ),
+                  color: colorScheme.tertiary
                 ),
-                child: Text("SELECT", style: textTheme.titleLarge,)),
+                child: Text("SELECT", style: TextStyle(
+                  color: colorScheme.onTertiary
+                ),)),
           )
         ],
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/order/ui/widgets/checkout_icon.dart';
 import 'package:lemon_pizza/theme/ui/theme_mode_toggle.dart';
+import 'package:lemon_pizza/widgets/texts/text_on_primary.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 import 'order/ui/views/order_status_view.dart';
@@ -39,9 +40,10 @@ class Home extends StatelessWidget {
                 margin: const EdgeInsets.only(right: 8),
                 child: const ThemeModeToggle()
             ),
-            TextButton(onPressed: (){
-               Navigator.of(context).pushNamed('theme');
-            }, child: const Text("THEME"))
+            TextButton(
+              onPressed: () => Navigator.of(context).pushNamed('theme'),
+              child: const TextOnPrimary("THEME", fontSize: FontSize.labelMedium),
+            )
           ],
         ),
         body: const OrderStatusView(),

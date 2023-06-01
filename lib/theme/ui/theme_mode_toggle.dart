@@ -9,15 +9,17 @@ class ThemeModeToggle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = context.colorScheme;
     final themeBloc = context.watch<ThemeBloc>();
     return Row(
       children: [
-        Text(themeBloc.isDark ? 'DARK' : "LIGHT"),
+        Text(
+          themeBloc.isDark ? 'DARK' : "LIGHT", style: TextStyle(color: colorScheme.onPrimary),),
         const SizedBox(width: 8),
         Switch(
-          activeColor: context.theme.primaryColor,
-          activeTrackColor: context.theme.secondaryHeaderColor,
-          inactiveThumbColor: context.theme.secondaryHeaderColor,
+          activeColor: colorScheme.secondary,
+          activeTrackColor: colorScheme.onSecondary,
+          inactiveThumbColor: colorScheme.tertiary,
           value: themeBloc.isDark,
           onChanged: themeBloc.setDarkMode,
         ),
