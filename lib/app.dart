@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/home.dart';
-import 'package:lemon_pizza/order/bloc/order_bloc.dart';
-import 'package:lemon_pizza/order/bloc/order_enums.dart';
-import 'package:lemon_pizza/order/bloc/order_state.dart';
-import 'package:lemon_pizza/order/data/repositories/order_repository.dart';
-import 'package:lemon_pizza/order/data/services/order_repository_memory.dart';
-import 'package:lemon_pizza/theme/bloc/theme_bloc.dart';
-import 'package:lemon_pizza/theme/bloc/theme_state.dart';
-import 'package:lemon_pizza/theme/ui/theme_page.dart';
+
+import 'blocs/order/bloc/order_bloc.dart';
+import 'blocs/order/bloc/order_enums.dart';
+import 'blocs/order/bloc/order_state.dart';
+import 'blocs/order/data/repositories/order_repository.dart';
+import 'blocs/order/data/services/order_repository_memory.dart';
+import 'blocs/theme/bloc/theme_bloc.dart';
+import 'blocs/theme/bloc/theme_state.dart';
+import 'blocs/theme/ui/theme_page.dart';
 
 class App extends StatelessWidget {
 
