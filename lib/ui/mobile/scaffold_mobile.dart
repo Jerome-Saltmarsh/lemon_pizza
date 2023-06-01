@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lemon_pizza/blocs/order/order_enums.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/desktop/theme/theme_mode_toggle.dart';
+import 'package:lemon_pizza/ui/desktop/ui/utils/format_dollars.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class ScaffoldMobile extends StatelessWidget {
@@ -12,6 +13,8 @@ class ScaffoldMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = context.colorScheme;
     final fontSize = context.fontSize;
+    final orderRepository = context.orderRepository;
+
     return Scaffold(
        appBar: AppBar(
          backgroundColor: colorScheme.primary,
@@ -29,8 +32,10 @@ class ScaffoldMobile extends StatelessWidget {
        body: SingleChildScrollView(
          child: Column(
            children: PizzaType.values.map((e){
+             final pizzaPrice = orderRepository.getPizzaPrice(pizzaType: e, pizzaSize: PizzaSize.medium);
              return ListTile(
                title: Text(e.name, style: TextStyle(fontSize: fontSize.regular, color: colorScheme.secondary),),
+               leading: Text(formatDollars(pizzaPrice)),
                subtitle: Text(e.ingredients.map((e) => e.name).reduce((previousValue, element) => '$previousValue, $element'),
                   style: TextStyle(
                     fontSize: fontSize.small,
