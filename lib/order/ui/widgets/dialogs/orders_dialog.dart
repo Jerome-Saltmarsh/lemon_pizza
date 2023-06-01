@@ -1,11 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/order/ui/extensions/build_context_extensions.dart';
+import 'package:lemon_pizza/order/ui/widgets/buttons/checkout_button.dart';
 import 'package:lemon_pizza/order/ui/widgets/orders_column_item.dart';
 import 'package:lemon_pizza/style.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
-
-import '../widgets/buttons/checkout_button.dart';
 
 class OrdersDialog extends StatelessWidget {
 

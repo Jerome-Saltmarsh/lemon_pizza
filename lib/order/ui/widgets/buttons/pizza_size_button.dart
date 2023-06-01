@@ -39,7 +39,7 @@ class PizzaSizeButton extends StatelessWidget {
           width:  height * goldenRatio_0618,
           decoration: BoxDecoration(
             borderRadius: Style.dialogBorderRadius,
-            color: isSelected ? colorScheme.primary : colorScheme.background,
+            color: isSelected ? colorScheme.primary : colorScheme.secondary,
           ),
           padding: Style.dialogPadding,
           alignment: Alignment.center,
@@ -48,7 +48,7 @@ class PizzaSizeButton extends StatelessWidget {
             children: [
               Text(pizzaSize.name.toUpperCase(), style: TextStyle(
                 fontSize: FontSize.large,
-                color: isSelected ? colorScheme.onPrimary : colorScheme.primary
+                color: isSelected ? colorScheme.onPrimary : colorScheme.onSecondary
               )),
               Text(
                   formatDollars(context.orderRepository.getPizzaPrice(
@@ -57,7 +57,7 @@ class PizzaSizeButton extends StatelessWidget {
                   )),
                   style: TextStyle(
                       fontSize: FontSize.regular,
-                      color: isSelected ? colorScheme.onPrimary : colorScheme.primary
+                      color: isSelected ? colorScheme.onPrimary : colorScheme.onSecondary
                   )
               ),
               const SizedBox(height: 8,),
