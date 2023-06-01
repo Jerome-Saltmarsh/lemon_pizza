@@ -5,6 +5,7 @@ import 'package:system_theme/system_theme.dart';
 
 import 'theme_state.dart';
 
+
 class ThemeBloc extends Cubit<ThemeState> {
 
   ThemeBloc(super.initialState);

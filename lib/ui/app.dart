@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_enums.dart';
 import 'package:lemon_pizza/blocs/order/order_state.dart';
+import 'package:lemon_pizza/blocs/theme/theme_state.dart';
 
 import '../blocs/order/order_bloc.dart';
 import '../blocs/order/order_repository.dart';
 import '../data/order_repository_memory.dart';
-import '../blocs/theme/bloc/theme_bloc.dart';
-import '../blocs/theme/bloc/theme_state.dart';
-import '../blocs/theme/ui/theme_page.dart';
+import '../blocs/theme/theme_bloc.dart';
 import 'desktop/scaffold_desktop.dart';
 import 'mobile/scaffold_mobile.dart';
+import 'theme/theme_page.dart';
 
 class App extends StatelessWidget {
 

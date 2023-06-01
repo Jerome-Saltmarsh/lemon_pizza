@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:lemon_pizza/blocs/theme/bloc/theme_bloc.dart';
-import 'package:lemon_pizza/blocs/theme/ui/theme_mode_toggle.dart';
+import 'package:lemon_pizza/blocs/theme/theme_bloc.dart';
+import 'package:lemon_pizza/ui/theme/theme_mode_toggle.dart';
 import 'package:lemon_pizza/ui/ui/views/order_status_view.dart';
 import 'package:lemon_pizza/ui/ui/widgets/checkout_icon.dart';
 import 'package:lemon_pizza/ui/ui/widgets/order_back_button.dart';

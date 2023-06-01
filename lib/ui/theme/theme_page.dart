@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
-import 'color_scheme_column.dart';
-import 'theme_mode_toggle.dart';
+import '../../../ui/theme/color_scheme_column.dart';
+import '../../../ui/theme/theme_mode_toggle.dart';
 
 class ThemePage extends StatelessWidget {
   const ThemePage({super.key});

@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/theme/bloc/theme_bloc.dart';
+import 'package:lemon_pizza/blocs/theme/theme_bloc.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class ThemeModeToggle extends StatelessWidget {
