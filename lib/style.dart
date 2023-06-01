@@ -13,7 +13,4 @@ class Style {
   static final dialogBorderRadius = BorderRadius.circular(4);
   static const dialogBorderWidth = 2.0;
   static const dialogPadding = EdgeInsets.all(4);
-  // static const themeColor = Colors.green;
-  // static final themeDataLight = ThemeData(colorSchemeSeed: themeColor, brightness: Brightness.light, useMaterial3: true);
-  // static final themeDataDark = ThemeData(colorSchemeSeed: themeColor, brightness: Brightness.dark, useMaterial3: true);
 }

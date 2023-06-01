@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_enums.dart';
 import 'package:lemon_pizza/order/data/repositories/order_repository.dart';
-import 'package:lemon_pizza/utils/format_dollars.dart';
+import 'package:lemon_pizza/order/ui/utils/format_dollars.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class SelectPizzaTile extends StatelessWidget {

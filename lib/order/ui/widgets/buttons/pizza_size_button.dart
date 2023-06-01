@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:golden_ratio/constants.dart';
 import 'package:lemon_pizza/order/bloc/order_enums.dart';
 import 'package:lemon_pizza/order/ui/extensions/build_context_extensions.dart';
+import 'package:lemon_pizza/order/ui/utils/format_dollars.dart';
 import 'package:lemon_pizza/order/ui/widgets/images/pizza_image.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_bloc_builder.dart';
 import 'package:lemon_pizza/style.dart';
-import 'package:lemon_pizza/utils/format_dollars.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class PizzaSizeButton extends StatelessWidget {
