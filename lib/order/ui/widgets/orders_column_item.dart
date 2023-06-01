@@ -22,7 +22,7 @@ class OrdersColumnItem extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(
-            color: colorScheme.onSecondary,
+            color: colorScheme.secondary,
             width: 1.0,
           ),
         ),
@@ -33,14 +33,24 @@ class OrdersColumnItem extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(orderItem.pizzaType.name, style: TextStyle(color: colorScheme.onSecondary),),
-              Text(orderItem.pizzaSize.name, style: TextStyle(color: colorScheme.onSecondary)),
-              Text(formatDollars(orderItem.totalCost), style: TextStyle(color: colorScheme.onSecondary)),
+              Text(orderItem.pizzaType.name, style: TextStyle(color: colorScheme.secondary),),
+              Text(orderItem.pizzaSize.name, style: TextStyle(color: colorScheme.secondary)),
+              Text(formatDollars(orderItem.totalCost), style: TextStyle(color: colorScheme.secondary)),
             ],
           ),
-          TextButton(child: Text("remove", style: TextStyle(color: colorScheme.error),), onPressed: ()  {
-            context.read<OrderBloc>().removeOrderItem(orderItem);
-          },),
+          TextButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                    return colorScheme.secondaryContainer; // Default color
+                  },
+                )
+            ),
+            child: Text("remove", style: TextStyle(color: colorScheme.onSecondaryContainer),),
+            onPressed: ()  {
+              context.read<OrderBloc>().removeOrderItem(orderItem);
+            },
+          ),
         ],
       ),
     );

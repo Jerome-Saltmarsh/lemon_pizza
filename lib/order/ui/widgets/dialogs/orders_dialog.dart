@@ -22,13 +22,13 @@ class OrdersDialog extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         constraints: const BoxConstraints(maxHeight: 400),
         decoration: BoxDecoration(
-          color: colorScheme.secondary,
+          color: colorScheme.surfaceVariant,
           borderRadius: Style.dialogBorderRadius,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text("ORDERS PLACED", style: TextStyle(color: colorScheme.onSecondary, fontSize: FontSize.large),),
+            Text("ORDERS PLACED", style: TextStyle(color: colorScheme.secondary, fontSize: FontSize.large),),
             Expanded(
               child: Container(
                 constraints: const BoxConstraints(maxHeight: 300),

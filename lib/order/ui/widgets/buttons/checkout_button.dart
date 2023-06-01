@@ -25,9 +25,9 @@ class CheckoutButton extends StatelessWidget {
               maxWidth: 150,
             ),
             height: 40,
-            color: colorScheme.secondaryContainer,
+            color: colorScheme.error,
             child: Text("CHECKOUT ${formatDollars(orderState.totalOrderCost)}",
-              style: TextStyle(color: colorScheme.onSecondaryContainer),)),
+              style: TextStyle(color: colorScheme.onError),)),
       );
     });
   }

@@ -7,9 +7,8 @@ import 'package:lemon_pizza/order/bloc/order_state.dart';
 import 'package:lemon_pizza/order/data/repositories/order_repository.dart';
 import 'package:lemon_pizza/order/data/services/order_repository_memory.dart';
 import 'package:lemon_pizza/theme/bloc/theme_bloc.dart';
+import 'package:lemon_pizza/theme/bloc/theme_state.dart';
 import 'package:lemon_pizza/theme/ui/theme_page.dart';
-
-import 'style.dart';
 
 class App extends StatelessWidget {
 
@@ -21,7 +20,12 @@ class App extends StatelessWidget {
         create: (context) => OrderRepositoryMemory(),
         child: MultiBlocProvider(
           providers: [
-            BlocProvider<ThemeBloc>(create: (context)=> ThemeBloc()),
+            BlocProvider<ThemeBloc>(create: (context)=> ThemeBloc(
+              ThemeState(
+                 themeMode: ThemeMode.system,
+                 color: Colors.green,
+              )
+            )),
             BlocProvider<OrderBloc>(create: (context) =>
                 OrderBloc(
                     OrderState(
@@ -42,12 +46,13 @@ class App extends StatelessWidget {
           ],
           child: Builder(
             builder: (context) {
+              final themeState = context.watch<ThemeBloc>().state;
               return MaterialApp(
                 title: 'PIZZA',
                 debugShowCheckedModeBanner: false,
-                themeMode: context.watch<ThemeBloc>().state,
-                darkTheme: Style.themeDataDark,
-                theme: Style.themeDataLight,
+                themeMode: themeState.themeMode,
+                darkTheme: themeState.themeDataDark,
+                theme: themeState.themeDataLight,
                 routes: {
                   "theme": (context){
                     return const ThemePage();
