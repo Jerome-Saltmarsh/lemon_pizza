@@ -20,14 +20,19 @@ class App extends StatelessWidget {
         create: (context) => OrderRepositoryMemory(),
         child: MultiBlocProvider(
           providers: [
-            BlocProvider<ThemeBloc>(create: (context)=> ThemeBloc(
-              ThemeState(
-                 themeMode: ThemeMode.system,
-                 color: Colors.green,
-              )
-            )),
-            BlocProvider<OrderBloc>(create: (context) =>
-                OrderBloc(
+            BlocProvider<ThemeBloc>(
+                create: (context) => ThemeBloc(ThemeState(
+                    themeMode: ThemeMode.system,
+                    color: Colors.green,
+                    fontSize: FontSize(
+                      extraLarge: 20,
+                      large: 18,
+                      regular: 16,
+                      small: 14,
+                      extraSmall: 12,
+                    )))),
+            BlocProvider<OrderBloc>(
+                create: (context) => OrderBloc(
                     OrderState(
                       orderItems: [],
                       orderStatus: OrderStatus.createOrder,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:golden_ratio/constants.dart';
 import 'package:lemon_pizza/order/bloc/order_enums.dart';
 import 'package:lemon_pizza/order/ui/extensions/build_context_extensions.dart';
@@ -6,6 +7,7 @@ import 'package:lemon_pizza/order/ui/utils/format_dollars.dart';
 import 'package:lemon_pizza/order/ui/widgets/images/pizza_image.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_bloc_builder.dart';
 import 'package:lemon_pizza/style.dart';
+import 'package:lemon_pizza/theme/bloc/theme_bloc.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class PizzaSizeButton extends StatelessWidget {
@@ -16,6 +18,7 @@ class PizzaSizeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final fontSize = context.read<ThemeBloc>().state.fontSize;
     final colorScheme = context.colorScheme;
 
     return OrderBlocBuilder(buildWhen: (previous, current) {
@@ -47,7 +50,7 @@ class PizzaSizeButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(pizzaSize.name.toUpperCase(), style: TextStyle(
-                fontSize: FontSize.large,
+                fontSize: fontSize.large,
                 color: isSelected ? colorScheme.onPrimary : colorScheme.onSecondary
               )),
               Text(
@@ -56,7 +59,7 @@ class PizzaSizeButton extends StatelessWidget {
                     pizzaSize: pizzaSize,
                   )),
                   style: TextStyle(
-                      fontSize: FontSize.regular,
+                      fontSize: fontSize.regular,
                       color: isSelected ? colorScheme.onPrimary : colorScheme.onSecondary
                   )
               ),

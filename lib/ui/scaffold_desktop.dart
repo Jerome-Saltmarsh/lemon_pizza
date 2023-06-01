@@ -4,7 +4,6 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:lemon_pizza/order/ui/views/order_status_view.dart';
 import 'package:lemon_pizza/order/ui/widgets/checkout_icon.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_back_button.dart';
-import 'package:lemon_pizza/style.dart';
 import 'package:lemon_pizza/theme/bloc/theme_bloc.dart';
 import 'package:lemon_pizza/theme/ui/theme_mode_toggle.dart';
 import 'package:lemon_pizza/widgets/texts/text_on_primary.dart';
@@ -15,6 +14,8 @@ class ScaffoldDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fontSize = context.read<ThemeBloc>().state.fontSize;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -28,7 +29,7 @@ class ScaffoldDesktop extends StatelessWidget {
                 "PIZZA NOW",
                 style: TextStyle(
                   color: context.colorScheme.onPrimary,
-                  fontSize: FontSize.extraLarge,
+                  fontSize: fontSize.extraLarge,
                 ),
               ),
               Container(
@@ -68,7 +69,7 @@ class ScaffoldDesktop extends StatelessWidget {
               child: const ThemeModeToggle()),
           TextButton(
             onPressed: () => Navigator.of(context).pushNamed('theme'),
-            child: const TextOnPrimary("THEME", fontSize: FontSize.regular),
+            child: TextOnPrimary("THEME", fontSize: fontSize.regular),
           )
         ],
       ),

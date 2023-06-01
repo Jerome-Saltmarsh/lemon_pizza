@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/order/bloc/order_bloc.dart';
 import 'package:lemon_pizza/order/ui/widgets/order_bloc_builder.dart';
-import 'package:lemon_pizza/style.dart';
+import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class CheckoutIcon extends StatelessWidget {
@@ -11,6 +11,8 @@ class CheckoutIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fontSize = context.fontSize;
+
     return OrderBlocBuilder(
        buildWhen: (previous, current){
          return previous.orderItems.length != current.orderItems.length;
@@ -38,7 +40,7 @@ class CheckoutIcon extends StatelessWidget {
                          color: Colors.red,
                        ),
                        child: Text(orderState.orderItems.length.toString(),
-                           style: const TextStyle(color: Colors.white, fontSize: FontSize.regular)
+                           style: TextStyle(color: Colors.white, fontSize: fontSize.regular)
                        )
                    ),
                  ),
