@@ -1,8 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/theme/bloc/theme_bloc.dart';
-import 'package:lemon_pizza/ui/style.dart';
 import 'package:lemon_pizza/ui/ui/extensions/build_context_extensions.dart';
 import 'package:lemon_pizza/ui/ui/widgets/buttons/checkout_button.dart';
 import 'package:lemon_pizza/ui/ui/widgets/orders_column_item.dart';
@@ -17,7 +14,8 @@ class OrdersDialog extends StatelessWidget {
     final orderState = context.watchOrderState;
     final orderItems = orderState.orderItems;
     final colorScheme = context.colorScheme;
-    final fontSize = context.read<ThemeBloc>().state.fontSize;
+    final themeState = context.themeState;
+    final fontSize = themeState.fontSize;
 
     return FadeIn(
       child: Container(
@@ -26,7 +24,7 @@ class OrdersDialog extends StatelessWidget {
         constraints: const BoxConstraints(maxHeight: 400),
         decoration: BoxDecoration(
           color: colorScheme.surfaceVariant,
-          borderRadius: Style.dialogBorderRadius,
+          borderRadius: themeState.dialogBorderRadius,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

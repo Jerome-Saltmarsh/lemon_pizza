@@ -9,10 +9,22 @@ class ThemeState {
   late final ThemeData themeDataLight;
   late final ThemeData themeDataDark;
 
+  final BorderRadius dialogBorderRadius;
+  final double dialogBorderWidth;
+  final EdgeInsets dialogPadding;
+
+
   bool get isLight => themeMode == ThemeMode.light;
   bool get isDark => themeMode == ThemeMode.dark;
 
-  ThemeState({required this.themeMode, required this.color, required this.fontSize}){
+  ThemeState({
+    required this.themeMode,
+    required this.color,
+    required this.fontSize,
+    required this.dialogBorderRadius,
+    required this.dialogBorderWidth,
+    required this.dialogPadding,
+  }){
     themeDataLight = ThemeData(colorSchemeSeed: color, brightness: Brightness.light, useMaterial3: true);
     themeDataDark = ThemeData(colorSchemeSeed: color, brightness: Brightness.dark, useMaterial3: true);
   }
@@ -21,10 +33,16 @@ class ThemeState {
      ThemeMode? themeMode,
      Color? color,
      FontSize? fontSize,
+     BorderRadius? dialogBorderRadius,
+     double? dialogBorderWidth,
+     EdgeInsets? dialogPadding,
   }) => ThemeState(
       themeMode: themeMode ?? this.themeMode,
       color: color ?? this.color,
       fontSize:  fontSize ?? this.fontSize,
+      dialogBorderRadius: dialogBorderRadius ?? this.dialogBorderRadius,
+      dialogBorderWidth: dialogBorderWidth ?? this.dialogBorderWidth,
+      dialogPadding: dialogPadding ?? this.dialogPadding,
   );
 }
 

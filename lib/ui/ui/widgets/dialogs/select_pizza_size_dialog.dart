@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:golden_ratio/constants.dart';
 import 'package:lemon_pizza/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_enums.dart';
-import 'package:lemon_pizza/ui/style.dart';
+import 'package:lemon_pizza/ui/ui/extensions/build_context_extensions.dart';
 import 'package:lemon_pizza/ui/ui/widgets/buttons/pizza_size_button.dart';
 import 'package:lemon_pizza/ui/ui/widgets/order_bloc_builder.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
@@ -17,6 +17,7 @@ class SelectPizzaSizeDialog extends StatelessWidget {
   Widget build(BuildContext context) =>
       OrderBlocBuilder(builder: (context, orderState) {
         final colorScheme = context.colorScheme;
+        final themeState = context.themeState;
         final selectedPizzaType = orderState.selectedPizzaType;
         if (selectedPizzaType == null) return const SizedBox();
         const width = 400.0;
@@ -38,9 +39,9 @@ class SelectPizzaSizeDialog extends StatelessWidget {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: context.colorScheme.surfaceVariant,
-                    borderRadius: Style.dialogBorderRadius,
+                    borderRadius: themeState.dialogBorderRadius,
                   ),
-                  padding: Style.dialogPadding,
+                  padding: themeState.dialogPadding,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [

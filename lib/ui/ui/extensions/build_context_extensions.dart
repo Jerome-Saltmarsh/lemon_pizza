@@ -5,8 +5,11 @@ import 'package:lemon_pizza/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_enums.dart';
 import 'package:lemon_pizza/blocs/order/order_repository.dart';
 import 'package:lemon_pizza/blocs/order/order_state.dart';
+import 'package:lemon_pizza/blocs/theme/bloc/theme_bloc.dart';
+import 'package:lemon_pizza/blocs/theme/bloc/theme_state.dart';
 
 extension OrderContextExtensions on BuildContext {
+    ThemeState get themeState => read<ThemeBloc>().state;
     OrderBloc get readOrderBloc => read<OrderBloc>();
     OrderState get readOrderState => readOrderBloc.state;
     OrderBloc get watchOrderBloc => watch<OrderBloc>();

@@ -9,7 +9,8 @@ import '../data/order_repository_memory.dart';
 import '../blocs/theme/bloc/theme_bloc.dart';
 import '../blocs/theme/bloc/theme_state.dart';
 import '../blocs/theme/ui/theme_page.dart';
-import 'home.dart';
+import 'desktop/scaffold_desktop.dart';
+import 'mobile/scaffold_mobile.dart';
 
 class App extends StatelessWidget {
 
@@ -25,6 +26,9 @@ class App extends StatelessWidget {
                 create: (context) => ThemeBloc(ThemeState(
                     themeMode: ThemeMode.system,
                     color: Colors.green,
+                    dialogBorderRadius: BorderRadius.circular(4),
+                    dialogBorderWidth: 2,
+                    dialogPadding: const EdgeInsets.all(8),
                     fontSize: FontSize(
                       extraLarge: 20,
                       large: 18,
@@ -64,7 +68,10 @@ class App extends StatelessWidget {
                     return const ThemePage();
                   }
                 },
-                home: const Home(),
+                home: LayoutBuilder(builder: (context, constraints) =>
+                constraints.maxWidth > 500
+                    ? const ScaffoldDesktop()
+                    : const ScaffoldMobile()),
               );
             }
           ),

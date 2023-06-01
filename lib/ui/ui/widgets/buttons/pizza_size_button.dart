@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:golden_ratio/constants.dart';
 import 'package:lemon_pizza/blocs/order/order_enums.dart';
-import 'package:lemon_pizza/blocs/theme/bloc/theme_bloc.dart';
-import 'package:lemon_pizza/ui/style.dart';
 import 'package:lemon_pizza/ui/ui/extensions/build_context_extensions.dart';
 import 'package:lemon_pizza/ui/ui/utils/format_dollars.dart';
 import 'package:lemon_pizza/ui/ui/widgets/images/pizza_image.dart';
@@ -17,14 +14,17 @@ class PizzaSizeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final fontSize = context.read<ThemeBloc>().state.fontSize;
     final colorScheme = context.colorScheme;
+    final theme = context.themeState;
+    final fontSize = theme.fontSize;
 
     return OrderBlocBuilder(buildWhen: (previous, current) {
       return previous.selectedPizzaSize != current.selectedPizzaSize ||
           previous.selectedPizzaType != current.selectedPizzaType;
     }, builder: (context, orderState) {
+
+      final themeState = context.themeState;
+
       final selectedPizzaType = orderState.selectedPizzaType;
       final isSelected = orderState.selectedPizzaSize == pizzaSize;
       if (selectedPizzaType == null) {
@@ -41,10 +41,10 @@ class PizzaSizeButton extends StatelessWidget {
           height: height,
           width:  height * goldenRatio_0618,
           decoration: BoxDecoration(
-            borderRadius: Style.dialogBorderRadius,
+            borderRadius: themeState.dialogBorderRadius,
             color: isSelected ? colorScheme.primary : colorScheme.secondary,
           ),
-          padding: Style.dialogPadding,
+          padding: themeState.dialogPadding,
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
