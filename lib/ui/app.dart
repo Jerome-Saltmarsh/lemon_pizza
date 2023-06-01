@@ -9,8 +9,8 @@ import '../blocs/order/order_repository.dart';
 import '../data/order_repository_memory.dart';
 import '../blocs/theme/theme_bloc.dart';
 import 'desktop/scaffold_desktop.dart';
+import 'desktop/theme/theme_page.dart';
 import 'mobile/scaffold_mobile.dart';
-import 'theme/theme_page.dart';
 
 class App extends StatelessWidget {
 

@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:lemon_pizza/blocs/order/order_enums.dart';
-import 'package:lemon_pizza/ui/ui/widgets/order_status_changed.dart';
+import 'package:lemon_pizza/ui/desktop/ui/widgets/order_status_changed.dart';
 
 import 'order_create_view.dart';
 import 'order_customer_details_view.dart';

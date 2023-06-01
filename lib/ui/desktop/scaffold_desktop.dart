@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:lemon_pizza/blocs/theme/theme_bloc.dart';
-import 'package:lemon_pizza/ui/theme/theme_mode_toggle.dart';
-import 'package:lemon_pizza/ui/ui/views/order_status_view.dart';
-import 'package:lemon_pizza/ui/ui/widgets/checkout_icon.dart';
-import 'package:lemon_pizza/ui/ui/widgets/order_back_button.dart';
-import 'package:lemon_pizza/ui/widgets/texts/text_on_primary.dart';
+import 'package:lemon_pizza/ui/common/widgets/texts/text_on_primary.dart';
+import 'package:lemon_pizza/ui/desktop/theme/theme_mode_toggle.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
+
+import 'ui/views/order_status_view.dart';
+import 'ui/widgets/checkout_icon.dart';
+import 'ui/widgets/order_back_button.dart';
 
 class ScaffoldDesktop extends StatelessWidget {
   const ScaffoldDesktop({super.key});
