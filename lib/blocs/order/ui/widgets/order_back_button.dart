@@ -3,8 +3,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/order/bloc/order_bloc.dart';
-import 'package:lemon_pizza/blocs/order/bloc/order_enums.dart';
+import 'package:lemon_pizza/blocs/order/order_bloc.dart';
+import 'package:lemon_pizza/blocs/order/order_enums.dart';
 import 'package:lemon_pizza/blocs/order/ui/widgets/order_status_changed.dart';
 
 class OrderBackButton extends StatelessWidget {

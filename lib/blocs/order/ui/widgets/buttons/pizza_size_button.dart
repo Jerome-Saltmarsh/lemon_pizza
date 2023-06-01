@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:golden_ratio/constants.dart';
-import 'package:lemon_pizza/blocs/order/bloc/order_enums.dart';
+import 'package:lemon_pizza/blocs/order/order_enums.dart';
 import 'package:lemon_pizza/blocs/order/ui/extensions/build_context_extensions.dart';
 import 'package:lemon_pizza/blocs/order/ui/utils/format_dollars.dart';
 import 'package:lemon_pizza/blocs/order/ui/widgets/images/pizza_image.dart';

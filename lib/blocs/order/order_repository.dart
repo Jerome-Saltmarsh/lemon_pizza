@@ -1,5 +1,5 @@
 
-import 'package:lemon_pizza/blocs/order/bloc/order_enums.dart';
+import 'order_enums.dart';
 
 abstract class OrderRepository {
   Future submitOrder();

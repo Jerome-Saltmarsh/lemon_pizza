@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/order/bloc/order_bloc.dart';
+import 'package:lemon_pizza/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 

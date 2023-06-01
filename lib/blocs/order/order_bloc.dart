@@ -1,10 +1,11 @@
 
 
 import 'package:bloc/bloc.dart';
-import 'package:lemon_pizza/blocs/order/data/repositories/order_repository.dart';
+import 'package:lemon_pizza/blocs/order/order_repository.dart';
 
 import 'order_enums.dart';
 import 'order_state.dart';
+
 
 class OrderBloc extends Cubit<OrderState> {
 
