@@ -2,12 +2,11 @@
 import 'package:flutter/material.dart';
 
 class FontSize {
-  static const titleLarge = 25.0;
-  static const titleMedium = 20.0;
-  static const titleSmall = 15.0;
-  static const labelLarge = 12.0;
-  static const labelMedium = 10.0;
-  static const labelSmall = 8.0;
+  static const extraLarge = 18.0;
+  static const large = 15.0;
+  static const regular = 12.0;
+  static const small = 10.0;
+  static const extraSmall = 8.0;
 }
 
 class Style {

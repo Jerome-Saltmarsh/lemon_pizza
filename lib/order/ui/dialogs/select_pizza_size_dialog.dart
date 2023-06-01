@@ -16,6 +16,7 @@ class SelectPizzaSizeDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       OrderBlocBuilder(builder: (context, orderState) {
+        final colorScheme = context.colorScheme;
         final selectedPizzaType = orderState.selectedPizzaType;
         if (selectedPizzaType == null) return const SizedBox();
         const width = 400.0;
@@ -36,13 +37,10 @@ class SelectPizzaSizeDialog extends StatelessWidget {
                   height: width * goldenRatio_0618,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: context.colorScheme.background,
+                    color: context.colorScheme.surfaceVariant,
                     borderRadius: Style.dialogBorderRadius,
-                    border: Border.all(
-                      color: context.colorScheme.primary,
-                      width: Style.dialogBorderWidth,
-                    ),
                   ),
+                  padding: Style.dialogPadding,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -59,11 +57,24 @@ class SelectPizzaSizeDialog extends StatelessWidget {
                         children: [
                           TextButton(
                               onPressed: context.read<OrderBloc>().cancelSelectPizza,
-                              child: const Text("Cancel")
+                              child: Text("Cancel", style: TextStyle(color: colorScheme.secondary),)
                           ),
                           TextButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                                    (Set<MaterialState> states) {
+                                  if (states.contains(MaterialState.disabled)) {
+                                    return Colors.grey; // Color when the button is disabled
+                                  }
+                                  if (states.contains(MaterialState.hovered)){
+                                    return colorScheme.inversePrimary;
+                                  }
+                                  return colorScheme.primary; // Default color
+                                },
+                              ),
+                            ),
                             onPressed: context.read<OrderBloc>().addSelectedPizza,
-                            child: const Text("CONFIRM")
+                            child: Text("CONFIRM", style: TextStyle(color: colorScheme.onPrimary),)
                           ),
                         ],
                       )

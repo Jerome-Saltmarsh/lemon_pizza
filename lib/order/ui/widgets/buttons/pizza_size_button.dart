@@ -40,10 +40,6 @@ class PizzaSizeButton extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: Style.dialogBorderRadius,
             color: isSelected ? colorScheme.primary : colorScheme.background,
-            border: Border.all(
-              color: colorScheme.primary,
-              width: 2,
-            ),
           ),
           padding: Style.dialogPadding,
           alignment: Alignment.center,
@@ -51,7 +47,7 @@ class PizzaSizeButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(pizzaSize.name.toUpperCase(), style: TextStyle(
-                fontSize: FontSize.titleMedium,
+                fontSize: FontSize.large,
                 color: isSelected ? colorScheme.onPrimary : colorScheme.primary
               )),
               Text(
@@ -60,7 +56,7 @@ class PizzaSizeButton extends StatelessWidget {
                     pizzaSize: pizzaSize,
                   )),
                   style: TextStyle(
-                      fontSize: FontSize.labelLarge,
+                      fontSize: FontSize.regular,
                       color: isSelected ? colorScheme.onPrimary : colorScheme.primary
                   )
               ),

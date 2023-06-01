@@ -17,9 +17,10 @@ class ThemeModeToggle extends StatelessWidget {
           themeBloc.isDark ? 'DARK' : "LIGHT", style: TextStyle(color: colorScheme.onPrimary),),
         const SizedBox(width: 8),
         Switch(
-          activeColor: colorScheme.secondary,
-          activeTrackColor: colorScheme.onSecondary,
-          inactiveThumbColor: colorScheme.tertiary,
+          activeColor: colorScheme.primary,
+          activeTrackColor: colorScheme.onPrimary,
+          inactiveThumbColor: colorScheme.primary,
+          inactiveTrackColor: colorScheme.onPrimary,
           value: themeBloc.isDark,
           onChanged: themeBloc.setDarkMode,
         ),

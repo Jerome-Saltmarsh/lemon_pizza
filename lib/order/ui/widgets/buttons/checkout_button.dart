@@ -11,7 +11,8 @@ class CheckoutButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final colorScheme = context.colorScheme;
+
     return OrderBlocBuilder(builder: (context, orderState){
       final orderItems = orderState.orderItems;
       return OnPressed(
@@ -24,8 +25,9 @@ class CheckoutButton extends StatelessWidget {
               maxWidth: 150,
             ),
             height: 40,
-            color: theme.colorScheme.error.withOpacity(orderItems.isEmpty ? 0.5 : 1.0),
-            child: Text("CHECKOUT ${formatDollars(orderState.totalOrderCost)}", style: const TextStyle(color: Colors.white),)),
+            color: colorScheme.secondaryContainer,
+            child: Text("CHECKOUT ${formatDollars(orderState.totalOrderCost)}",
+              style: TextStyle(color: colorScheme.onSecondaryContainer),)),
       );
     });
   }

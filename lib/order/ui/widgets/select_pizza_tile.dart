@@ -49,10 +49,10 @@ class SelectPizzaTile extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 12),
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: colorScheme.tertiary
+                  color: colorScheme.secondary
                 ),
                 child: Text("SELECT", style: TextStyle(
-                  color: colorScheme.onTertiary
+                  color: colorScheme.onSecondary
                 ),)),
           )
         ],

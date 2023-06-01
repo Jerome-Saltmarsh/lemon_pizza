@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/order/ui/extensions/build_context_extensions.dart';
 import 'package:lemon_pizza/order/ui/widgets/orders_column_item.dart';
+import 'package:lemon_pizza/style.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 import '../widgets/buttons/checkout_button.dart';
@@ -14,6 +15,7 @@ class OrdersDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final orderState = context.watchOrderState;
     final orderItems = orderState.orderItems;
+    final colorScheme = context.colorScheme;
 
     return FadeIn(
       child: Container(
@@ -21,17 +23,13 @@ class OrdersDialog extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         constraints: const BoxConstraints(maxHeight: 400),
         decoration: BoxDecoration(
-          color: context.theme.dialogBackgroundColor,
-          border: Border.all(
-            color: Colors.black,
-            width: 1.0,
-          ),
-          borderRadius: BorderRadius.circular(4),
+          color: colorScheme.secondary,
+          borderRadius: Style.dialogBorderRadius,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Text("ORDERS PLACED"),
+            Text("ORDERS PLACED", style: TextStyle(color: colorScheme.onSecondary, fontSize: FontSize.large),),
             Expanded(
               child: Container(
                 constraints: const BoxConstraints(maxHeight: 300),

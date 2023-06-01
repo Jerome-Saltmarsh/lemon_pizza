@@ -25,7 +25,7 @@ class Home extends StatelessWidget {
               children: [
                 Text("PIZZA NOW", style: TextStyle(
                   color: context.colorScheme.onPrimary,
-                  fontSize: FontSize.titleLarge,
+                  fontSize: FontSize.extraLarge,
                 ),),
                 Container(
                   margin: const EdgeInsets.only(right: 16),
@@ -42,7 +42,7 @@ class Home extends StatelessWidget {
             ),
             TextButton(
               onPressed: () => Navigator.of(context).pushNamed('theme'),
-              child: const TextOnPrimary("THEME", fontSize: FontSize.labelMedium),
+              child: const TextOnPrimary("THEME", fontSize: FontSize.regular),
             )
           ],
         ),
