@@ -30,7 +30,7 @@ class App extends StatelessWidget {
                     dialogBorderWidth: 2,
                     dialogPadding: const EdgeInsets.all(8),
                     fontSize: FontSize(
-                      largest: 28,
+                      largest: 34,
                       extraLarge: 26,
                       large: 24,
                       regular: 22,

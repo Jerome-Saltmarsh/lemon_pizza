@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/blocs/order/order_enums.dart';
 
-import 'select_pizza_tile.dart';
+import '../tiles/select_pizza_tile.dart';
 
 class SelectPizzaColumn extends StatelessWidget {
 

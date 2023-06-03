@@ -4,7 +4,7 @@ import 'package:lemon_pizza/blocs/order/order_enums.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/common/texts/title_text.dart';
 import 'package:lemon_pizza/ui/common/toggles/theme_mode_toggle.dart';
-import 'package:lemon_pizza/ui/desktop/utils/format_dollars.dart';
+import 'package:lemon_pizza/ui/common/functions/format_dollars.dart';
 import 'package:lemon_pizza/ui/desktop/widgets/checkout_icon.dart';
 import 'package:lemon_pizza/ui/desktop/widgets/order_bloc_builder.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
