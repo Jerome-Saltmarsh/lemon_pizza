@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_bloc.dart';
+import 'package:lemon_pizza/ui/common/font_families.dart';
+import 'package:lemon_widgets/lemon_widgets.dart';
 
 import 'order_bloc_builder.dart';
 
@@ -27,8 +29,10 @@ class CardHolderName extends StatelessWidget {
                   .read<OrderBloc>()
                   .emitPaymentDetails(cardHolderName: value);
             },
+            style: const TextStyle(fontFamily: FontFamilies.roboto),
             decoration: InputDecoration(
-                label: const Text("Card holder name"),
+                label: Text("Card holder name", style: TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.onTertiary),),
+                errorStyle: TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.error),
                 errorText:
                 orderState.validate &&
                     !orderState.paymentDetails.cardHolderNameValid

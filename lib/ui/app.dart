@@ -49,7 +49,6 @@ class App extends StatelessWidget {
                           phone: ''
                       ),
                       paymentDetails: PaymentDetails(),
-                      ordersPlacedVisible: false,
                     ),
                     orderRepository: RepositoryProvider.of(context)
                 )

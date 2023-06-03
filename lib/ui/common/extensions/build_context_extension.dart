@@ -38,7 +38,6 @@ extension BuildContextExtension on BuildContext {
       bool? validate,
       PizzaType? selectPizzaType,
       PizzaSize? selectPizzaSize,
-      bool? ordersPlacedVisible,
       OrderType? orderType,
    }) => readOrderBloc.emitOrderState(
       orderItems: orderItems,
@@ -48,7 +47,6 @@ extension BuildContextExtension on BuildContext {
       validate: validate,
       selectPizzaType: selectPizzaType,
       selectPizzaSize: selectPizzaSize,
-      ordersPlacedVisible: ordersPlacedVisible,
       orderType: orderType,
    );
 

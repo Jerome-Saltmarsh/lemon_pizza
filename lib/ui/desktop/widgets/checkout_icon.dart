@@ -1,7 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
@@ -26,7 +24,9 @@ class CheckoutIcon extends StatelessWidget {
            children: [
              IconButton(
                icon: Icon(Icons.shopping_cart, size: 35, color: colorScheme.primary,),
-               onPressed: context.read<OrderBloc>().toggleOrdersVisible,
+               onPressed: (){
+
+               },
              ),
              if (orderState.orderItems.isNotEmpty)
                Positioned(

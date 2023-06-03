@@ -2,7 +2,7 @@ name: lemon_pizza
 description: order a pizza online
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.41
+version: 1.0.42
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -41,3 +41,6 @@ flutter:
     - family: Niconne
       fonts:
         - asset: assets/fonts/Niconne-Regular.ttf
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf

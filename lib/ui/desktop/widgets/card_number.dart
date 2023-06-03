@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_bloc.dart';
+import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
+import 'package:lemon_pizza/ui/common/font_families.dart';
 import 'package:lemon_pizza/ui/desktop/constants/numbers_only_formatter.dart';
+import 'package:lemon_widgets/lemon_widgets.dart';
 
 import 'order_bloc_builder.dart';
 
@@ -29,9 +32,23 @@ class CardNumber extends StatelessWidget {
                    .read<OrderBloc>()
                    .emitPaymentDetails(cardNumber: value);
              },
+              style: TextStyle(
+                color: context.colorScheme.onTertiary,
+                fontSize: context.fontSize.large,
+                fontFamily: FontFamilies.roboto,
+              ),
              inputFormatters: [CreditCardNumberFormatter(), numbersAndSpaceFormatter],
              decoration: InputDecoration(
-                label: const Text("Card Number"),
+
+                label: Text("Card Number", style: TextStyle(
+                  color: context.colorScheme.onTertiary,
+                  fontSize: context.fontSize.large,
+                  fontFamily: FontFamilies.roboto,
+                ),),
+                errorStyle: TextStyle(
+                  color: context.colorScheme.error,
+                  fontSize: context.fontSize.large,
+                ),
                 errorText:
                     orderState.validate
                         ? orderState.paymentDetails.cardNumberInvalidReason

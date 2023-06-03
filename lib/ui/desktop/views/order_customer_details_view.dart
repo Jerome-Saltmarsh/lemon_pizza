@@ -86,12 +86,8 @@ class _CustomerDetailsViewState extends State<CustomerDetailsView> {
                         height: 16,
                       ),
                       TextButton(onPressed: () {
-                        if (!this.validate()) {
-                          setState(() { });
-                          return;
-                        }
-                        applyChanges();
-                      }, child: Text("NEXT", style: TextStyle(
+                        submit();
+                      }, child: Text("COMPLETE", style: TextStyle(
                         fontSize: context.fontSize.large,
                         fontFamily: FontFamilies.secondary,
                       ),))
@@ -105,13 +101,18 @@ class _CustomerDetailsViewState extends State<CustomerDetailsView> {
       ],
     );
 
-  void applyChanges(){
-    context.emitOrderState(
-        customerDetails: CustomerDetails(
+  void submit(){
+    if (!validate()) {
+      setState(() { });
+      return;
+    }
+
+    context.readOrderBloc.submitCustomerDetails(
+        CustomerDetails(
           name: controllerName.text,
           address: controllerAddress.text,
           phone: controllerPhone.text,
-        )
+        ),
     );
   }
 
