@@ -22,7 +22,6 @@ class OrderState {
   final OrderStatus orderStatus;
   final CustomerDetails customerDetails;
   final PaymentDetails paymentDetails;
-  final bool validate;
   final PizzaType? selectedPizzaType;
   final PizzaSize selectedPizzaSize;
   final OrderType? orderType;
@@ -35,7 +34,6 @@ class OrderState {
   OrderState({
     required this.orderItems,
     required this.orderStatus,
-    required this.validate,
     required this.customerDetails,
     required this.paymentDetails,
     this.orderType,
@@ -55,7 +53,6 @@ class OrderState {
 }) => OrderState(
         orderItems: orderItems ?? this.orderItems,
         orderStatus: orderStatus ?? this.orderStatus,
-        validate: validate ?? this.validate,
         customerDetails: customerDetails ?? this.customerDetails,
         paymentDetails: paymentDetails ?? this.paymentDetails,
     );

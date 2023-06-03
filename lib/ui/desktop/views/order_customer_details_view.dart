@@ -6,7 +6,6 @@ import 'package:lemon_pizza/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_state.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/common/font_families.dart';
-import 'package:lemon_pizza/ui/desktop/widgets/order_invalid_builder.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class CustomerDetailsView extends StatefulWidget {
@@ -50,51 +49,47 @@ class _CustomerDetailsViewState extends State<CustomerDetailsView> {
           start: 0,
           end: 50,
           child: Center(
-            child: OrderValidateBuilder(
-                builder: (context, validate) {
-                return SizedBox(
-                  width: 300,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text("CUSTOMER DETAILS", style: TextStyle(
-                        fontFamily: FontFamilies.secondary,
-                        fontSize: context.fontSize.large,
-                      ),),
-                      TextField(
-                        controller: controllerName,
-                        decoration: InputDecoration(
-                            label: const Text("Name"),
-                            errorText: controllerNameError
-                        ),
-                      ),
-                      TextField(
-                        controller: controllerAddress,
-                        decoration: InputDecoration(
-                            label: const Text("Address"),
-                            errorText: controllerAddressError,
-                        ),
-                      ),
-                      TextField(
-                        controller: controllerPhone,
-                        decoration: InputDecoration(
-                            label: const Text("Phone"),
-                            errorText: controllerPhoneError
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      TextButton(onPressed: () {
-                        submit();
-                      }, child: Text("COMPLETE", style: TextStyle(
-                        fontSize: context.fontSize.large,
-                        fontFamily: FontFamilies.secondary,
-                      ),))
-                    ],
+            child: SizedBox(
+              width: 300,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text("CUSTOMER DETAILS", style: TextStyle(
+                    fontFamily: FontFamilies.secondary,
+                    fontSize: context.fontSize.large,
+                  ),),
+                  TextField(
+                    controller: controllerName,
+                    decoration: InputDecoration(
+                        label: const Text("Name"),
+                        errorText: controllerNameError
+                    ),
                   ),
-                );
-              }
+                  TextField(
+                    controller: controllerAddress,
+                    decoration: InputDecoration(
+                      label: const Text("Address"),
+                      errorText: controllerAddressError,
+                    ),
+                  ),
+                  TextField(
+                    controller: controllerPhone,
+                    decoration: InputDecoration(
+                        label: const Text("Phone"),
+                        errorText: controllerPhoneError
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  TextButton(onPressed: () {
+                    submit();
+                  }, child: Text("COMPLETE", style: TextStyle(
+                    fontSize: context.fontSize.large,
+                    fontFamily: FontFamilies.secondary,
+                  ),))
+                ],
+              ),
             ),
           ),
         ),

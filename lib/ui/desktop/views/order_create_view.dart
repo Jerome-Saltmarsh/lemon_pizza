@@ -12,11 +12,7 @@ class CreateOrderView extends StatelessWidget {
   const CreateOrderView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-
-    final orderBloc = context.watch<OrderBloc>();
-
-    return Stack(
+  Widget build(BuildContext context) => Stack(
       alignment: Alignment.center,
       children: [
         Container(
@@ -25,29 +21,13 @@ class CreateOrderView extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: const SelectPizzaColumn(),
         ),
-        if (orderBloc.state.orderItems.isNotEmpty)
+        if (context.watch<OrderBloc>().state.orderItems.isNotEmpty)
         const Positioned(
             top: 16,
             right: 16,
-            child: OrdersDialog()),
+            child: OrdersDialog(),
+        ),
         const SelectPizzaSizeDialog(),
-        if (orderBloc.state.validate && orderBloc.state.orderItems.isEmpty)
-          Container(
-              width: 300,
-              height: 200,
-              color: Colors.red,
-              child: Column(
-                children: [
-                  const Text("ADD ITEMS TO YOUR ORDER"),
-                  TextButton(
-                      onPressed: () => context.read<OrderBloc>().emitOrderState(
-                        validate: false
-                      ),
-                      child: const Text("CLOSE")),
-                ],
-              )
-          ),
       ],
     );
-  }
 }

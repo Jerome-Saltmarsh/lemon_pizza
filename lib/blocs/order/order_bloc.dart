@@ -95,7 +95,6 @@ class OrderBloc extends Cubit<OrderState> {
       orderStatus: state.orderStatus,
       customerDetails: state.customerDetails,
       paymentDetails: state.paymentDetails,
-      validate: state.validate,
       selectedPizzaType: null,
     ));
   }
@@ -116,7 +115,6 @@ class OrderBloc extends Cubit<OrderState> {
       orderStatus: orderStatus ?? state.orderStatus,
       customerDetails: customerDetails ?? state.customerDetails,
       paymentDetails: paymentDetails ?? state.paymentDetails,
-      validate: validate ?? state.validate,
       selectedPizzaType: selectPizzaType ?? state.selectedPizzaType,
       selectedPizzaSize: selectPizzaSize ?? state.selectedPizzaSize,
       orderType: orderType ?? state.orderType,
