@@ -6,6 +6,7 @@ import 'package:golden_ratio/constants.dart';
 import 'package:lemon_pizza/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_enums.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
+import 'package:lemon_pizza/ui/common/font_families.dart';
 import 'package:lemon_pizza/ui/desktop/buttons/pizza_size_button.dart';
 import 'package:lemon_pizza/ui/desktop/widgets/order_bloc_builder.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
@@ -20,7 +21,7 @@ class SelectPizzaSizeDialog extends StatelessWidget {
         final themeState = context.readThemeState;
         final selectedPizzaType = orderState.selectedPizzaType;
         if (selectedPizzaType == null) return const SizedBox();
-        const width = 450.0;
+        const width = 460.0;
         const blur = 4.0;
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
@@ -58,7 +59,10 @@ class SelectPizzaSizeDialog extends StatelessWidget {
                         children: [
                           TextButton(
                               onPressed: context.read<OrderBloc>().cancelSelectPizza,
-                              child: Text("Cancel", style: TextStyle(color: colorScheme.secondary),)
+                              child: Text(
+                                "Cancel", style: TextStyle(
+                                  fontFamily: FontFamilies.secondary,
+                                  color: colorScheme.secondary),)
                           ),
                           TextButton(
                             style: ButtonStyle(
@@ -75,7 +79,9 @@ class SelectPizzaSizeDialog extends StatelessWidget {
                               ),
                             ),
                             onPressed: context.read<OrderBloc>().addSelectedPizza,
-                            child: Text("CONFIRM", style: TextStyle(color: colorScheme.onPrimary),)
+                            child: Text("CONFIRM", style: TextStyle(
+                                fontFamily: FontFamilies.secondary,
+                                color: colorScheme.onPrimary),)
                           ),
                         ],
                       )

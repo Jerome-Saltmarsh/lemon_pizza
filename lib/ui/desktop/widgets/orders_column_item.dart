@@ -16,42 +16,44 @@ class OrdersColumnItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = context.colorScheme;
 
-    return Container(
-      margin: const EdgeInsets.only(top: 8),
-      padding: const EdgeInsets.only(top: 8),
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: colorScheme.secondary,
-            width: 1.0,
+    return FadeIn(
+      child: Container(
+        margin: const EdgeInsets.only(top: 8),
+        padding: const EdgeInsets.only(top: 8),
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: colorScheme.secondary,
+              width: 1.0,
+            ),
           ),
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(orderItem.pizzaType.name, style: TextStyle(color: colorScheme.secondary),),
-              Text(orderItem.pizzaSize.name, style: TextStyle(color: colorScheme.secondary)),
-              Text(formatDollars(orderItem.totalCost), style: TextStyle(color: colorScheme.secondary)),
-            ],
-          ),
-          TextButton(
-            style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                      (Set<MaterialState> states) {
-                    return colorScheme.secondaryContainer; // Default color
-                  },
-                )
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(orderItem.pizzaType.name, style: TextStyle(color: colorScheme.secondary),),
+                Text(orderItem.pizzaSize.name, style: TextStyle(color: colorScheme.secondary)),
+                Text(formatDollars(orderItem.totalCost), style: TextStyle(color: colorScheme.secondary)),
+              ],
             ),
-            child: Text("remove", style: TextStyle(color: colorScheme.onSecondaryContainer),),
-            onPressed: ()  {
-              context.read<OrderBloc>().removeOrderItem(orderItem);
-            },
-          ),
-        ],
+            TextButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                        (Set<MaterialState> states) {
+                      return colorScheme.secondaryContainer; // Default color
+                    },
+                  )
+              ),
+              child: Text("remove", style: TextStyle(color: colorScheme.onSecondaryContainer),),
+              onPressed: ()  {
+                context.read<OrderBloc>().removeOrderItem(orderItem);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

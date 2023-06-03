@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
+import 'package:lemon_pizza/ui/common/font_families.dart';
 import 'package:lemon_pizza/ui/desktop/buttons/checkout_button.dart';
 import 'package:lemon_pizza/ui/desktop/widgets/orders_column_item.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
@@ -29,7 +30,9 @@ class OrdersDialog extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text("ORDERS PLACED", style: TextStyle(color: colorScheme.secondary, fontSize: fontSize.large),),
+            Text("ORDERS PLACED", style: TextStyle(
+                fontFamily: FontFamilies.secondary,
+                color: colorScheme.secondary, fontSize: fontSize.large),),
             Expanded(
               child: Container(
                 constraints: const BoxConstraints(maxHeight: 300),
