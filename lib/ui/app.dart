@@ -69,7 +69,7 @@ class App extends StatelessWidget {
                   }
                 },
                 home: LayoutBuilder(builder: (context, constraints) =>
-                constraints.maxWidth > 500
+                constraints.maxWidth > 700
                     ? const ScaffoldDesktop()
                     : const ScaffoldMobile()),
               );

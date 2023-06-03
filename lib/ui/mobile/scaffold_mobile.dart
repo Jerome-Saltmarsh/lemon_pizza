@@ -2,8 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/blocs/order/order_enums.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
-import 'package:lemon_pizza/ui/desktop/theme/theme_mode_toggle.dart';
+import 'package:lemon_pizza/ui/common/widgets/toggles/theme_mode_toggle.dart';
 import 'package:lemon_pizza/ui/desktop/ui/utils/format_dollars.dart';
+import 'package:lemon_pizza/ui/desktop/ui/widgets/checkout_icon.dart';
+import 'package:lemon_pizza/ui/desktop/ui/widgets/order_bloc_builder.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class ScaffoldMobile extends StatelessWidget {
@@ -23,37 +25,39 @@ class ScaffoldMobile extends StatelessWidget {
            ThemeModeToggle(),
          ],
        ),
-       floatingActionButton: FloatingActionButton(
-         onPressed: () {
-
+       bottomSheet: Text("BOTTOM SHEET"),
+       floatingActionButton: OrderBlocBuilder(
+         buildWhen: (previous, current){
+           return previous.orderItems.length != current.orderItems.length;
          },
-         child: const Icon(Icons.arrow_forward),
+         builder: (context, orderState) {
+           if (orderState.orderItems.isEmpty) return const SizedBox();
+           return const CheckoutIcon();
+         }
        ),
        body: SingleChildScrollView(
          child: Column(
-           children: PizzaType.values.map((e){
-             final pizzaPrice = orderRepository.getPizzaPrice(pizzaType: e, pizzaSize: PizzaSize.medium);
+           children: PizzaType.values.map((pizzaType){
+             final pizzaPrice = orderRepository.getPizzaPrice(pizzaType: pizzaType, pizzaSize: PizzaSize.medium);
              return ListTile(
-               title: Text(e.name, style: TextStyle(fontSize: fontSize.regular, color: colorScheme.secondary),),
+               title: Text(pizzaType.name, style: TextStyle(fontSize: fontSize.regular, color: colorScheme.secondary),),
                leading: Text(formatDollars(pizzaPrice)),
-               subtitle: Text(e.ingredients.map((e) => e.name).reduce((previousValue, element) => '$previousValue, $element'),
+               subtitle: Text(pizzaType.ingredients.map((e) => e.name).reduce((previousValue, element) => '$previousValue, $element'),
                   style: TextStyle(
                     fontSize: fontSize.small,
                     color: colorScheme.tertiary,
                   ),
                ),
                trailing: TextButton(
-                  onPressed: () {
-
-                  },
+                  onPressed: () => context.selectPizzaType(pizzaType),
                  style: ButtonStyle(
                    backgroundColor: MaterialStateProperty.resolveWith<Color?>(
                          (Set<MaterialState> states) {
-                       return colorScheme.primary; // Default color
+                       return colorScheme.tertiaryContainer; // Default color
                      },
                    ),
                  ),
-                  child: Text("ADD", style: TextStyle(color: colorScheme.onPrimary, fontSize: fontSize.regular),),
+                  child: Text("ADD", style: TextStyle(color: colorScheme.onTertiaryContainer, fontSize: fontSize.regular),),
                ),
              );
            }).toList(),

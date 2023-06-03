@@ -43,16 +43,14 @@ class SelectPizzaTile extends StatelessWidget {
           Text(formatDollars(pizzaPrice), style: TextStyle(fontSize: fontSize.small, color: colorScheme.secondary),),
           const SizedBox(height: 12),
           OnPressed(
-            action: () => context.read<OrderBloc>().emitOrderState(
-                  selectPizzaType: pizzaType
-            ),
+            action: () => context.selectPizzaType(pizzaType),
             child: Container(
                 margin: const EdgeInsets.only(bottom: 12),
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
                   color: colorScheme.primary
                 ),
-                child: Text("SELECT", style: TextStyle(
+                child: Text("ADD", style: TextStyle(
                   color: colorScheme.onPrimary,
                   fontSize: fontSize.regular
                 ),)),

@@ -13,6 +13,7 @@ class CheckoutIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fontSize = context.fontSize;
+    final colorScheme = context.colorScheme;
 
     return OrderBlocBuilder(
        buildWhen: (previous, current){
@@ -24,7 +25,7 @@ class CheckoutIcon extends StatelessWidget {
            alignment: Alignment.center,
            children: [
              IconButton(
-               icon: Icon(Icons.shopping_cart, size: 35, color: context.colorScheme.onPrimary,),
+               icon: Icon(Icons.shopping_cart, size: 35, color: colorScheme.primary,),
                onPressed: context.read<OrderBloc>().toggleOrdersVisible,
              ),
              if (orderState.orderItems.isNotEmpty)

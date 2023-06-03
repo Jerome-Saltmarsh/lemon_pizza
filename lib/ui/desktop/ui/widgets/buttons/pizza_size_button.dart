@@ -31,7 +31,7 @@ class PizzaSizeButton extends StatelessWidget {
         throw Exception('selectedPizzaType == null');
       }
 
-      const height = 155.0;
+      const height = 175.0;
 
       return OnPressed(
         action: () => context.selectPizzaSize(pizzaSize),

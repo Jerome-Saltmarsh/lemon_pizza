@@ -20,6 +20,10 @@ extension BuildContextExtension on BuildContext {
    void selectPizzaSize(PizzaSize size) =>
        emitOrderState(selectPizzaSize: size);
 
+   void selectPizzaType(PizzaType pizzaType) => emitOrderState(
+          selectPizzaType: pizzaType
+      );
+
    void selectOrderTypePickup() =>
        emitOrderState(orderType: OrderType.pickup, orderStatus: OrderStatus.customerDetails);
 

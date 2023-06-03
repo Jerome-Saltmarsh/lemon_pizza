@@ -20,7 +20,7 @@ class SelectPizzaSizeDialog extends StatelessWidget {
         final themeState = context.readThemeState;
         final selectedPizzaType = orderState.selectedPizzaType;
         if (selectedPizzaType == null) return const SizedBox();
-        const width = 400.0;
+        const width = 450.0;
         const blur = 4.0;
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
