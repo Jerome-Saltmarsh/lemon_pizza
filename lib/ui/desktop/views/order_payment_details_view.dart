@@ -1,11 +1,11 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:lemon_pizza/ui/desktop/ui/widgets/card_cvv.dart';
-import 'package:lemon_pizza/ui/desktop/ui/widgets/card_expiry_date_year.dart';
-import 'package:lemon_pizza/ui/desktop/ui/widgets/card_expiry_month.dart';
-import 'package:lemon_pizza/ui/desktop/ui/widgets/card_holder_name.dart';
-import 'package:lemon_pizza/ui/desktop/ui/widgets/card_number.dart';
+import 'package:lemon_pizza/ui/desktop/widgets/card_cvv.dart';
+import 'package:lemon_pizza/ui/desktop/widgets/card_expiry_date_year.dart';
+import 'package:lemon_pizza/ui/desktop/widgets/card_expiry_month.dart';
+import 'package:lemon_pizza/ui/desktop/widgets/card_holder_name.dart';
+import 'package:lemon_pizza/ui/desktop/widgets/card_number.dart';
 
 class PaymentDetailsView extends StatelessWidget {
   const PaymentDetailsView({super.key});

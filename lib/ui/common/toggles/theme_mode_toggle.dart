@@ -14,7 +14,7 @@ class ThemeModeToggle extends StatelessWidget {
     return Row(
       children: [
         Text(
-          themeBloc.isDark ? 'DARK' : "LIGHT", style: TextStyle(color: colorScheme.onPrimary),),
+          themeBloc.isDark ? 'DARK' : "LIGHT", style: TextStyle(color: colorScheme.onPrimary, fontFamily: 'CabinSketch'),),
         const SizedBox(width: 8),
         Switch(
           activeColor: colorScheme.primary,

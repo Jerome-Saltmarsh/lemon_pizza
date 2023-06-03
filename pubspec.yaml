@@ -2,7 +2,7 @@ name: lemon_pizza
 description: order a pizza online
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.36
+version: 1.0.37
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -33,3 +33,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/pizza_icon.png
+  fonts:
+    - family: CabinSketch
+      fonts:
+        - asset: assets/fonts/CabinSketch-Bold.ttf
+        - asset: assets/fonts/CabinSketch-Regular.ttf
+    - family: Niconne
+      fonts:
+        - asset: assets/fonts/Niconne-Regular.ttf

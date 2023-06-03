@@ -25,8 +25,12 @@ class ThemeState {
     required this.dialogBorderWidth,
     required this.dialogPadding,
   }){
-    themeDataLight = ThemeData(colorSchemeSeed: color, brightness: Brightness.light, useMaterial3: true);
-    themeDataDark = ThemeData(colorSchemeSeed: color, brightness: Brightness.dark, useMaterial3: true);
+    themeDataLight = ThemeData(
+        fontFamily: 'Niconne',
+        colorSchemeSeed: color, brightness: Brightness.light, useMaterial3: true);
+    themeDataDark = ThemeData(
+        fontFamily: 'Niconne',
+        colorSchemeSeed: color, brightness: Brightness.dark, useMaterial3: true);
   }
 
   ThemeState copyWith({
@@ -47,6 +51,7 @@ class ThemeState {
 }
 
 class FontSize {
+  final double largest;
   final double extraLarge;
   final double large;
   final double regular;
@@ -54,6 +59,7 @@ class FontSize {
   final double extraSmall;
 
   FontSize({
+    required this.largest,
     required this.extraLarge,
     required this.large,
     required this.regular,

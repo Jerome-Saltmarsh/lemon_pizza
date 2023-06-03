@@ -2,10 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/blocs/order/order_enums.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
-import 'package:lemon_pizza/ui/common/widgets/toggles/theme_mode_toggle.dart';
-import 'package:lemon_pizza/ui/desktop/ui/utils/format_dollars.dart';
-import 'package:lemon_pizza/ui/desktop/ui/widgets/checkout_icon.dart';
-import 'package:lemon_pizza/ui/desktop/ui/widgets/order_bloc_builder.dart';
+import 'package:lemon_pizza/ui/common/texts/title_text.dart';
+import 'package:lemon_pizza/ui/common/toggles/theme_mode_toggle.dart';
+import 'package:lemon_pizza/ui/desktop/utils/format_dollars.dart';
+import 'package:lemon_pizza/ui/desktop/widgets/checkout_icon.dart';
+import 'package:lemon_pizza/ui/desktop/widgets/order_bloc_builder.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class ScaffoldMobile extends StatelessWidget {
@@ -20,12 +21,11 @@ class ScaffoldMobile extends StatelessWidget {
     return Scaffold(
        appBar: AppBar(
          backgroundColor: colorScheme.primary,
-         title: Text("PIZZA MOBILE", style: TextStyle(color: colorScheme.onPrimary, fontSize: context.fontSize.large),),
+         title: const TitleText(),
          actions: const [
            ThemeModeToggle(),
          ],
        ),
-       bottomSheet: Text("BOTTOM SHEET"),
        floatingActionButton: OrderBlocBuilder(
          buildWhen: (previous, current){
            return previous.orderItems.length != current.orderItems.length;
@@ -39,26 +39,41 @@ class ScaffoldMobile extends StatelessWidget {
          child: Column(
            children: PizzaType.values.map((pizzaType){
              final pizzaPrice = orderRepository.getPizzaPrice(pizzaType: pizzaType, pizzaSize: PizzaSize.medium);
-             return ListTile(
-               title: Text(pizzaType.name, style: TextStyle(fontSize: fontSize.regular, color: colorScheme.secondary),),
-               leading: Text(formatDollars(pizzaPrice)),
-               subtitle: Text(pizzaType.ingredients.map((e) => e.name).reduce((previousValue, element) => '$previousValue, $element'),
-                  style: TextStyle(
-                    fontSize: fontSize.small,
-                    color: colorScheme.tertiary,
-                  ),
+
+             final pizzaName = Text(pizzaType.name, style: TextStyle(fontSize: fontSize.large, color: colorScheme.secondary));
+             final price = Text(formatDollars(pizzaPrice), style: TextStyle(
+               fontSize: fontSize.regular,
+               color: colorScheme.onSecondaryContainer,
+             ));
+
+             final ingredients = Text(pizzaType.ingredients.map((ingredient) => ingredient.name).reduce((previousValue, element) => '$previousValue, $element'),
+               style: TextStyle(
+                 fontSize: fontSize.regular,
+                 color: colorScheme.tertiary,
                ),
-               trailing: TextButton(
-                  onPressed: () => context.selectPizzaType(pizzaType),
-                 style: ButtonStyle(
-                   backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                         (Set<MaterialState> states) {
-                       return colorScheme.tertiaryContainer; // Default color
-                     },
-                   ),
+             );
+
+             final addButton = TextButton(
+               onPressed: () => context.selectPizzaType(pizzaType),
+               style: ButtonStyle(
+                 backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                       (Set<MaterialState> states) {
+                     return colorScheme.tertiaryContainer; // Default color
+                   },
                  ),
-                  child: Text("ADD", style: TextStyle(color: colorScheme.onTertiaryContainer, fontSize: fontSize.regular),),
                ),
+               child: Text("ADD", style: TextStyle(
+                   fontFamily: 'CabinSketch',
+                   color: colorScheme.onTertiaryContainer, fontSize: fontSize.regular),),
+             );
+
+             return ListTile(
+               title: price,
+               leading: SizedBox(
+                   width: 90,
+                   child: pizzaName),
+               subtitle: ingredients,
+               trailing: addButton,
              );
            }).toList(),
          ),

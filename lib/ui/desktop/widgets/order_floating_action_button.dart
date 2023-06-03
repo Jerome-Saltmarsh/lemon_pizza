@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_enums.dart';
+import 'package:lemon_pizza/ui/desktop/buttons/checkout_button.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
-
-import 'buttons/checkout_button.dart';
 
 class OrderStatusFloatingActionButton extends StatelessWidget {
 

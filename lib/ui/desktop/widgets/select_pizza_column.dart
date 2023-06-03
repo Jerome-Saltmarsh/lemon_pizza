@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/blocs/order/order_enums.dart';
-import 'package:lemon_pizza/ui/common/widgets/tiles/add_pizza_tile.dart';
 
 import 'select_pizza_tile.dart';
 

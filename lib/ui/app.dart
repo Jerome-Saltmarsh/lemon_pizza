@@ -6,10 +6,10 @@ import 'package:lemon_pizza/blocs/theme/theme_state.dart';
 
 import '../blocs/order/order_bloc.dart';
 import '../blocs/order/order_repository.dart';
-import '../data/order_repository_memory.dart';
 import '../blocs/theme/theme_bloc.dart';
+import '../data/order_repository_memory.dart';
+import 'common/theme/theme_page.dart';
 import 'desktop/scaffold_desktop.dart';
-import 'desktop/theme/theme_page.dart';
 import 'mobile/scaffold_mobile.dart';
 
 class App extends StatelessWidget {
@@ -30,11 +30,12 @@ class App extends StatelessWidget {
                     dialogBorderWidth: 2,
                     dialogPadding: const EdgeInsets.all(8),
                     fontSize: FontSize(
-                      extraLarge: 22,
-                      large: 20,
-                      regular: 18,
-                      small: 16,
-                      extraSmall: 14,
+                      largest: 26,
+                      extraLarge: 24,
+                      large: 22,
+                      regular: 20,
+                      small: 18,
+                      extraSmall: 16,
                     )))),
             BlocProvider<OrderBloc>(
                 create: (context) => OrderBloc(
