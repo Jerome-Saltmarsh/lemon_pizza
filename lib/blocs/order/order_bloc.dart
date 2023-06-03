@@ -130,11 +130,20 @@ class OrderBloc extends Cubit<OrderState> {
     );
   }
 
-  void submitPaymentDetails(PaymentDetails paymentDetails){
+  void submitPaymentDetails(PaymentDetails paymentDetails) async {
     emitOrderState(
       paymentDetails: paymentDetails,
-      orderStatus: OrderStatus.paymentInProgress,
     );
+    submitOrder();
+  }
+
+  void submitOrder() async {
+    emitOrderState(orderStatus: OrderStatus.paymentInProgress);
+    await orderRepository.submitOrder().then((value) {
+      emitOrderState(orderStatus: OrderStatus.paymentSucceeded);
+    }).catchError((error){
+      emitOrderState(orderStatus: OrderStatus.paymentFailed);
+    });
   }
 
   void back() {

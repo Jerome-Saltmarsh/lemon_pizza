@@ -1,16 +1,125 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:lemon_pizza/blocs/order/order_state.dart';
+import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/common/font_families.dart';
-import 'package:lemon_pizza/ui/desktop/widgets/card_cvv.dart';
-import 'package:lemon_pizza/ui/desktop/widgets/card_expiry_date_year.dart';
-import 'package:lemon_pizza/ui/desktop/widgets/card_expiry_month.dart';
-import 'package:lemon_pizza/ui/desktop/widgets/card_holder_name.dart';
-import 'package:lemon_pizza/ui/desktop/widgets/card_number.dart';
+import 'package:lemon_pizza/ui/desktop/constants/numbers_only_formatter.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
-class PaymentDetailsView extends StatelessWidget {
+class PaymentDetailsView extends StatefulWidget {
   const PaymentDetailsView({super.key});
+
+  @override
+  State<PaymentDetailsView> createState() => _PaymentDetailsViewState();
+}
+
+class _PaymentDetailsViewState extends State<PaymentDetailsView> {
+
+  final controllerCardHolderName = TextEditingController();
+  final controllerCardNumber = TextEditingController();
+  final controllerCVV = TextEditingController();
+  int? expiryYear;
+  int? expiryMonth;
+  String? controllerCardHolderNameError;
+  String? controllerCardNumberError;
+  String? controllerCVVError;
+
+
+  @override
+  void dispose() {
+    super.dispose();
+
+  }
+
+  Widget buildDropdownButtonExpiryYear()=> DropdownButton<int>(
+      hint: const Text("Year"),
+      value: expiryYear,
+      items: List.generate(10, (index) => DateTime.now().year + index).map((year) => DropdownMenuItem(
+        value: year,
+        child: Text(year.toString()),
+      )).toList(),
+      onChanged: (expiryYear) {
+        setState(() {
+          this.expiryYear = expiryYear;
+        });
+      },
+    );
+
+  Widget buildDropdownButtonExpiryMonth()=> DropdownButton<int>(
+      hint: const Text("Month"),
+      value: expiryMonth,
+      items: List.generate(12, (month) => DropdownMenuItem(
+        value: month + 1,
+        child: Text((month + 1).toString()),
+      )
+      ),
+      onChanged: (month) {
+          setState(() {
+            expiryMonth = month;
+          });
+      },
+    );
+
+  Widget buildTextFieldCardholderName(){
+    return TextField(
+      controller: controllerCardHolderName,
+      onChanged: (value) {
+
+      },
+      style: const TextStyle(fontFamily: FontFamilies.roboto),
+      decoration: InputDecoration(
+          label: Text("Card holder name", style: TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.onTertiary),),
+          errorStyle: TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.error),
+          errorText: controllerCardHolderNameError
+      ),
+    );
+  }
+
+  Widget buildTextFieldCardNumber(){
+    return TextField(
+      controller: controllerCardNumber,
+      onChanged: (value) {
+
+      },
+      style: TextStyle(
+        color: context.colorScheme.onTertiary,
+        fontSize: context.fontSize.large,
+        fontFamily: FontFamilies.roboto,
+      ),
+      inputFormatters: [CreditCardNumberFormatter(), numbersAndSpaceFormatter],
+      decoration: InputDecoration(
+          label: Text("Card Number", style: TextStyle(
+            color: context.colorScheme.onTertiary,
+            fontSize: context.fontSize.large,
+            fontFamily: FontFamilies.roboto,
+          ),),
+          errorStyle: TextStyle(
+            color: context.colorScheme.error,
+            fontSize: context.fontSize.large,
+          ),
+          errorText: controllerCardNumberError,
+      ),
+    );
+  }
+
+  Widget buildTextFieldCVV(){
+    return SizedBox(
+      width: 50,
+      child: TextField(
+          maxLength: 3,
+          maxLengthEnforcement: MaxLengthEnforcement.enforced,
+          keyboardType: TextInputType.number,
+          inputFormatters: [numbersOnlyFormatter],
+          decoration: InputDecoration(
+              counterText: '',
+              label: const Text("cvv"),
+              errorText: controllerCVVError          ),
+          controller: controllerCVV,
+          ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,32 +144,34 @@ class PaymentDetailsView extends StatelessWidget {
                        height: 40,
                       color: context.colorScheme.tertiaryContainer,
                     ),
-                    const CardHolderName(),
-                    const CardNumber(),
+                    buildTextFieldCardholderName(),
+                    buildTextFieldCardNumber(),
                     Row(
                       children: [
                         Container(
                           margin: const EdgeInsets.only(top: 20),
-                          child: const Row(
+                          child: Row(
                             children: [
-                              ExpiryDateYear(),
-                              CardExpiryMonth(),
+                              buildDropdownButtonExpiryYear(),
+                              buildDropdownButtonExpiryMonth(),
                             ],
                           ),
                         ),
                         const SizedBox(width: 64),
-                        const CardCvv(),
+                        buildTextFieldCVV(),
                       ],
                     ),
                  ],
               ),
             ),
             TextButton(onPressed: () {
-              // context.readOrderBloc.submitPaymentDetails(
-              //    PaymentDetails(
-              //       // cardHolderName: contro
-              //    )
-              // );
+              context.readOrderBloc.submitPaymentDetails(
+                 PaymentDetails(
+                    cardHolderName: controllerCardHolderName.text,
+                    cardNumber: controllerCardNumber.text,
+                    cvv: int.tryParse(controllerCVV.text),
+                 )
+              );
             },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith<Color?>(
@@ -76,3 +187,32 @@ class PaymentDetailsView extends StatelessWidget {
     );
   }
 }
+
+class CreditCardNumberFormatter extends TextInputFormatter {
+    @override
+    TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue,
+      TextEditingValue newValue,
+    ) {
+      final originalText = newValue.text.replaceAll(" ", "");
+      var text = "";
+      for (var i = 0; i < originalText.length; i++) {
+        if (i > 0 && i % 4 == 0) {
+          text += " ";
+        }
+        text += originalText.characters.elementAt(i);
+      }
+      var offset = oldValue.selection.end + 1;
+  
+      if (oldValue.selection.end == 04 ||
+          oldValue.selection.end == 09 ||
+          oldValue.selection.end == 14 ||
+          oldValue.selection.end == 19) {
+        offset++;
+      }
+      return TextEditingValue(
+        text: text,
+        selection: TextSelection.collapsed(offset: offset),
+      );
+    }
+  }
