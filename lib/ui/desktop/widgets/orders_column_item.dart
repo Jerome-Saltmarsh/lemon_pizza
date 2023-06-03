@@ -34,7 +34,7 @@ class OrdersColumnItem extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(orderItem.pizzaType.name, style: TextStyle(color: colorScheme.secondary),),
+                Text(orderItem.pizzaType.name, style: TextStyle(color: colorScheme.tertiary),),
                 Text(orderItem.pizzaSize.name, style: TextStyle(color: colorScheme.secondary)),
                 Text(formatDollars(orderItem.totalCost), style: TextStyle(color: colorScheme.secondary)),
               ],

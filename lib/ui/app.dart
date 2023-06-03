@@ -30,12 +30,12 @@ class App extends StatelessWidget {
                     dialogBorderWidth: 2,
                     dialogPadding: const EdgeInsets.all(8),
                     fontSize: FontSize(
-                      largest: 26,
-                      extraLarge: 24,
-                      large: 22,
-                      regular: 20,
-                      small: 18,
-                      extraSmall: 16,
+                      largest: 28,
+                      extraLarge: 26,
+                      large: 24,
+                      regular: 22,
+                      small: 20,
+                      extraSmall: 18,
                     )))),
             BlocProvider<OrderBloc>(
                 create: (context) => OrderBloc(
