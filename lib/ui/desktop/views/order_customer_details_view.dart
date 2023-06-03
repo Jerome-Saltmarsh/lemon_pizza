@@ -5,37 +5,44 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_state.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
+import 'package:lemon_pizza/ui/common/font_families.dart';
 import 'package:lemon_pizza/ui/desktop/widgets/order_invalid_builder.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
-class CustomerDetailsView extends StatelessWidget {
+class CustomerDetailsView extends StatefulWidget {
 
-  CustomerDetailsView({super.key});
+  const CustomerDetailsView({super.key});
 
+  @override
+  State<CustomerDetailsView> createState() => _CustomerDetailsViewState();
+}
+
+class _CustomerDetailsViewState extends State<CustomerDetailsView> {
   final controllerName = TextEditingController();
   final controllerAddress = TextEditingController();
   final controllerPhone = TextEditingController();
 
-  void applyCustomDetails(OrderBloc orderBloc){
-    orderBloc.emitOrderState(
-       customerDetails: CustomerDetails(
-         name: controllerName.text,
-         address: controllerAddress.text,
-         phone: controllerPhone.text,
-       )
-    );
+  String? controllerNameError;
+  String? controllerAddressError;
+  String? controllerPhoneError;
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     final orderBloc = context.read<OrderBloc>();
     final customerDetails = orderBloc.state.customerDetails;
     controllerName.text = customerDetails.name;
     controllerAddress.text = customerDetails.address;
     controllerPhone.text = customerDetails.phone;
-    onChanged(String value) => applyCustomDetails(orderBloc);
+  }
 
-    return Stack(
+  @override
+  Widget build(BuildContext context) => Stack(
       alignment: Alignment.center,
       children: [
         AnimatePosition(
@@ -50,54 +57,44 @@ class CustomerDetailsView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      const Text("CUSTOMER DETAILS"),
-                      BlocBuilder<OrderBloc, OrderState>(
-                          builder: (context, orderState) =>
-                              TextField(
-                                controller: controllerName,
-                                decoration: InputDecoration(
-                                    label: const Text("Name"),
-                                    errorText: validate && controllerName.text.isEmpty ? 'required' : null
-                                ),
-                                onChanged: onChanged,
-                              ),
-                            buildWhen: (previous, current) =>
-                              previous.customerDetails.name != current.customerDetails.name,
+                      Text("CUSTOMER DETAILS", style: TextStyle(
+                        fontFamily: FontFamilies.secondary,
+                        fontSize: context.fontSize.large,
+                      ),),
+                      TextField(
+                        controller: controllerName,
+                        decoration: InputDecoration(
+                            label: const Text("Name"),
+                            errorText: controllerNameError
+                        ),
                       ),
-                      BlocBuilder<OrderBloc, OrderState>(
-                        builder: (context, orderState) =>
-                            TextField(
-                              controller: controllerAddress,
-                              decoration: InputDecoration(
-                                  label: const Text("Address"),
-                                  errorText: validate && controllerAddress.text.isEmpty ? 'required' : null
-                              ),
-                              onChanged: onChanged,
-                            ),
-                        buildWhen: (previous, current) =>
-                        previous.customerDetails.address != current.customerDetails.address,
+                      TextField(
+                        controller: controllerAddress,
+                        decoration: InputDecoration(
+                            label: const Text("Address"),
+                            errorText: controllerAddressError,
+                        ),
                       ),
-                      BlocBuilder<OrderBloc, OrderState>(
-                        builder: (context, orderState) =>
-                            TextField(
-                              controller: controllerPhone,
-                              decoration: InputDecoration(
-                                  label: const Text("Phone"),
-                                  errorText: validate && controllerPhone.text.isEmpty ? 'required' : null
-                              ),
-                              onChanged: onChanged,
-                            ),
-                        buildWhen: (previous, current) =>
-                          previous.customerDetails.phone != current.customerDetails.phone,
+                      TextField(
+                        controller: controllerPhone,
+                        decoration: InputDecoration(
+                            label: const Text("Phone"),
+                            errorText: controllerPhoneError
+                        ),
                       ),
                       const SizedBox(
                         height: 16,
                       ),
-                      TextButton(onPressed: (){
-                        context.emitOrderState(
-                           customerDetails: customerDetails
-                        );
-                      }, child: const Text("NEXT"))
+                      TextButton(onPressed: () {
+                        if (!this.validate()) {
+                          setState(() { });
+                          return;
+                        }
+                        applyChanges();
+                      }, child: Text("NEXT", style: TextStyle(
+                        fontSize: context.fontSize.large,
+                        fontFamily: FontFamilies.secondary,
+                      ),))
                     ],
                   ),
                 );
@@ -107,5 +104,34 @@ class CustomerDetailsView extends StatelessWidget {
         ),
       ],
     );
+
+  void applyChanges(){
+    context.emitOrderState(
+        customerDetails: CustomerDetails(
+          name: controllerName.text,
+          address: controllerAddress.text,
+          phone: controllerPhone.text,
+        )
+    );
+  }
+
+  bool validate() {
+    controllerNameError = null;
+    controllerAddressError = null;
+    controllerPhoneError = null;
+    if (controllerName.text.isEmpty){
+      controllerNameError = 'name required';
+    }
+    if (controllerAddress.text.isEmpty){
+      controllerAddressError = 'address required';
+    }
+    if (controllerPhone.text.isEmpty){
+      controllerPhoneError = 'phone number required';
+    }
+    return
+        controllerNameError == null &&
+        controllerAddressError == null &&
+        controllerPhoneError == null
+    ;
   }
 }

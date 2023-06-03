@@ -25,7 +25,7 @@ class OrderStatusView extends StatelessWidget {
           case OrderStatus.orderType:
             return const OrderTypeView();
           case OrderStatus.customerDetails:
-            return CustomerDetailsView();
+            return const CustomerDetailsView();
           case OrderStatus.paymentDetails:
             return const PaymentDetailsView();
           case OrderStatus.paymentInProgress:

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
+import 'package:lemon_pizza/ui/common/font_families.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class OrderTypeView extends StatelessWidget {
@@ -26,11 +27,17 @@ class OrderTypeView extends StatelessWidget {
               children: [
                 TextButton(
                     onPressed: context.selectOrderTypePickup,
-                    child: const Text("PICKUP")
+                    child: Text("PICKUP", style: TextStyle(
+                      fontFamily: FontFamilies.secondary,
+                      fontSize: context.fontSize.large,
+                    ),)
                 ),
                 TextButton(
                     onPressed: context.selectOrderTypeDeliver,
-                    child: const Text("DELIVER")
+                    child: Text("DELIVER", style: TextStyle(
+                      fontFamily: FontFamilies.secondary,
+                      fontSize: context.fontSize.large,
+                    ))
                 ),
               ],
             ),

@@ -1,6 +1,4 @@
 
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:golden_ratio/constants.dart';
@@ -30,13 +28,6 @@ class SelectPizzaTile extends StatelessWidget {
     return Container(
       width: width,
       height: width * goldenRatio_0618,
-      // decoration: BoxDecoration(
-      //   color: colorScheme.tertiary,
-      //   // border: Border.all(
-      //   //    color: colorScheme.onPrimaryContainer,
-      //   //    width: 1
-      //   // )
-      // ),
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -41,7 +41,7 @@ class App extends StatelessWidget {
                 create: (context) => OrderBloc(
                     OrderState(
                       orderItems: [],
-                      orderStatus: OrderStatus.createOrder,
+                      orderStatus: OrderStatus.customerDetails,
                       validate: false,
                       customerDetails: CustomerDetails(
                           name: '',
