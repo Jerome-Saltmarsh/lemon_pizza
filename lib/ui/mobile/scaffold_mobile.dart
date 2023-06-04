@@ -54,7 +54,9 @@ class ScaffoldMobile extends StatelessWidget {
              );
 
              final addButton = TextButton(
-               onPressed: () => context.selectPizzaType(pizzaType),
+               onPressed: () {
+
+               },
                style: ButtonStyle(
                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
                        (Set<MaterialState> states) {

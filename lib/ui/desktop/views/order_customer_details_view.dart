@@ -84,7 +84,7 @@ class _CustomerDetailsViewState extends State<CustomerDetailsView> {
                   ),
                   TextButton(onPressed: () {
                     submit();
-                  }, child: Text("COMPLETE", style: TextStyle(
+                  }, child: Text("NEXT", style: TextStyle(
                     fontSize: context.fontSize.large,
                     fontFamily: FontFamilies.secondary,
                   ),))

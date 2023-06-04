@@ -26,15 +26,20 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
   String? controllerCardNumberError;
   String? controllerCVVError;
 
+  TextStyle buildTextStyle(){
+    return TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.onTertiary, fontSize:  context.fontSize.large);
+  }
 
-  @override
-  void dispose() {
-    super.dispose();
+  TextStyle buildTextStyleError(){
+    return TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.error, fontSize:  context.fontSize.large);
+  }
 
+  Widget buildText(String value){
+    return Text(value, style: buildTextStyle());
   }
 
   Widget buildDropdownButtonExpiryYear()=> DropdownButton<int>(
-      hint: const Text("Year"),
+      hint: buildText("Year"),
       value: expiryYear,
       items: List.generate(10, (index) => DateTime.now().year + index).map((year) => DropdownMenuItem(
         value: year,
@@ -48,7 +53,7 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
     );
 
   Widget buildDropdownButtonExpiryMonth()=> DropdownButton<int>(
-      hint: const Text("Month"),
+      hint: buildText("Month"),
       value: expiryMonth,
       items: List.generate(12, (month) => DropdownMenuItem(
         value: month + 1,
@@ -65,13 +70,10 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
   Widget buildTextFieldCardholderName(){
     return TextField(
       controller: controllerCardHolderName,
-      onChanged: (value) {
-
-      },
-      style: const TextStyle(fontFamily: FontFamilies.roboto),
+      style: buildTextStyle(),
       decoration: InputDecoration(
-          label: Text("Card holder name", style: TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.onTertiary),),
-          errorStyle: TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.error),
+          label: buildText("Card holder name"),
+          errorStyle: buildTextStyleError(),
           errorText: controllerCardHolderNameError
       ),
     );
@@ -80,25 +82,11 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
   Widget buildTextFieldCardNumber(){
     return TextField(
       controller: controllerCardNumber,
-      onChanged: (value) {
-
-      },
-      style: TextStyle(
-        color: context.colorScheme.onTertiary,
-        fontSize: context.fontSize.large,
-        fontFamily: FontFamilies.roboto,
-      ),
+      style: buildTextStyle(),
       inputFormatters: [CreditCardNumberFormatter(), numbersAndSpaceFormatter],
       decoration: InputDecoration(
-          label: Text("Card Number", style: TextStyle(
-            color: context.colorScheme.onTertiary,
-            fontSize: context.fontSize.large,
-            fontFamily: FontFamilies.roboto,
-          ),),
-          errorStyle: TextStyle(
-            color: context.colorScheme.error,
-            fontSize: context.fontSize.large,
-          ),
+          label: buildText("Card Number"),
+          errorStyle: buildTextStyleError(),
           errorText: controllerCardNumberError,
       ),
     );
@@ -114,8 +102,10 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
           inputFormatters: [numbersOnlyFormatter],
           decoration: InputDecoration(
               counterText: '',
-              label: const Text("cvv"),
-              errorText: controllerCVVError          ),
+              label: buildText("CVV"),
+              errorStyle: buildTextStyleError(),
+              errorText: controllerCVVError,
+          ),
           controller: controllerCVV,
           ),
     );

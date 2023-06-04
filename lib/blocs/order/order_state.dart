@@ -22,8 +22,6 @@ class OrderState {
   final OrderStatus orderStatus;
   final CustomerDetails customerDetails;
   final PaymentDetails paymentDetails;
-  final PizzaType? selectedPizzaType;
-  final PizzaSize selectedPizzaSize;
   final OrderType? orderType;
 
   bool get orderCompleted => orderItems.isNotEmpty;
@@ -37,8 +35,6 @@ class OrderState {
     required this.customerDetails,
     required this.paymentDetails,
     this.orderType,
-    this.selectedPizzaType,
-    this.selectedPizzaSize = PizzaSize.medium,
   });
 
   OrderState copyWith({
@@ -47,8 +43,6 @@ class OrderState {
     CustomerDetails? customerDetails,
     PaymentDetails? paymentDetails,
     bool? validate,
-    PizzaType? selectPizzaType,
-    PizzaSize? selectPizzaSize,
     bool? ordersPlacedVisible,
 }) => OrderState(
         orderItems: orderItems ?? this.orderItems,

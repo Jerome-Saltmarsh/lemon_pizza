@@ -17,13 +17,6 @@ extension BuildContextExtension on BuildContext {
    OrderState get watchOrderState => watchOrderBloc.state;
    OrderRepository get orderRepository => RepositoryProvider.of<OrderRepository>(this);
 
-   void selectPizzaSize(PizzaSize size) =>
-       emitOrderState(selectPizzaSize: size);
-
-   void selectPizzaType(PizzaType pizzaType) => emitOrderState(
-          selectPizzaType: pizzaType
-      );
-
    void selectOrderTypePickup() =>
        emitOrderState(orderType: OrderType.pickup, orderStatus: OrderStatus.customerDetails);
 
@@ -36,8 +29,6 @@ extension BuildContextExtension on BuildContext {
       CustomerDetails? customerDetails,
       PaymentDetails? paymentDetails,
       bool? validate,
-      PizzaType? selectPizzaType,
-      PizzaSize? selectPizzaSize,
       OrderType? orderType,
    }) => readOrderBloc.emitOrderState(
       orderItems: orderItems,
@@ -45,8 +36,6 @@ extension BuildContextExtension on BuildContext {
       customerDetails: customerDetails,
       paymentDetails: paymentDetails,
       validate: validate,
-      selectPizzaType: selectPizzaType,
-      selectPizzaSize: selectPizzaSize,
       orderType: orderType,
    );
 

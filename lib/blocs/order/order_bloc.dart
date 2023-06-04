@@ -37,23 +37,17 @@ class OrderBloc extends Cubit<OrderState> {
     );
   }
 
-  void addSelectedPizza(){
-    final selectedPizzaType = state.selectedPizzaType;
-     if (selectedPizzaType == null) {
-       throw Exception('selectPizzaType is null');
-     }
-     final pizzaSize = state.selectedPizzaSize;
+  void addPizza({required PizzaType pizzaType, required PizzaSize pizzaSize}){
      addOrderItem(
        OrderItem(
-           pizzaType: selectedPizzaType,
-           pizzaSize: state.selectedPizzaSize,
+           pizzaType: pizzaType,
+           pizzaSize: pizzaSize,
            quantity: 1,
            pricePerPizza: orderRepository.getPizzaPrice(
-               pizzaType: selectedPizzaType, pizzaSize: pizzaSize
+               pizzaType: pizzaType, pizzaSize: pizzaSize
            ),
        )
      );
-     cancelSelectPizza();
   }
 
   void setCustomerDetails({
@@ -89,24 +83,12 @@ class OrderBloc extends Cubit<OrderState> {
     );
   }
 
-  void cancelSelectPizza(){
-    emit(OrderState(
-      orderItems: state.orderItems,
-      orderStatus: state.orderStatus,
-      customerDetails: state.customerDetails,
-      paymentDetails: state.paymentDetails,
-      selectedPizzaType: null,
-    ));
-  }
-
   void emitOrderState({
     List<OrderItem>? orderItems,
     OrderStatus? orderStatus,
     CustomerDetails? customerDetails,
     PaymentDetails? paymentDetails,
     bool? validate,
-    PizzaType? selectPizzaType,
-    PizzaSize? selectPizzaSize,
     bool? ordersPlacedVisible,
     OrderType? orderType,
   }){
@@ -115,8 +97,6 @@ class OrderBloc extends Cubit<OrderState> {
       orderStatus: orderStatus ?? state.orderStatus,
       customerDetails: customerDetails ?? state.customerDetails,
       paymentDetails: paymentDetails ?? state.paymentDetails,
-      selectedPizzaType: selectPizzaType ?? state.selectedPizzaType,
-      selectedPizzaSize: selectPizzaSize ?? state.selectedPizzaSize,
       orderType: orderType ?? state.orderType,
     ));
   }
