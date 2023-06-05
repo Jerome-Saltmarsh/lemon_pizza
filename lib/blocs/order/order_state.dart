@@ -53,14 +53,12 @@ class OrderState {
 }
 
 class PaymentDetails {
-  final String cardHolderName;
   final String cardNumber;
   final int? expiryYear;
   final int? expiryMonth;
   final int? cvv;
 
   PaymentDetails({
-    this.cardHolderName = '',
     this.cardNumber = '',
     this.expiryYear,
     this.expiryMonth,
@@ -69,7 +67,6 @@ class PaymentDetails {
 
   bool get valid =>
       cardNumberValid &&
-      cardHolderNameValid &&
       expiryYear != null &&
       expiryMonth != null &&
       cvvValid;
@@ -77,9 +74,6 @@ class PaymentDetails {
   bool get cvvValid =>
       cvv != null &&
       cvv.toString().length == 3;
-
-  bool get cardHolderNameValid =>
-      cardHolderName.isNotEmpty;
 
   bool get cardNumberValid =>
       cardNumber.removeEmptySpace.length >= 16 &&

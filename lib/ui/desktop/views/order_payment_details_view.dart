@@ -18,16 +18,14 @@ class PaymentDetailsView extends StatefulWidget {
 
 class _PaymentDetailsViewState extends State<PaymentDetailsView> {
 
-  final controllerCardHolderName = TextEditingController();
   final controllerCardNumber = TextEditingController();
   final controllerExpiryMonth = TextEditingController();
   final controllerExpiryYear = TextEditingController();
   final controllerCVV = TextEditingController();
-  int? expiryYear;
-  int? expiryMonth;
-  String? controllerCardHolderNameError;
-  String? controllerCardNumberError;
-  String? controllerCVVError;
+  String? errorCardNumber;
+  String? errorCVV;
+  String? errorExpiryYear;
+  String? errorExpiryMonth;
 
   TextStyle buildTextStyle(){
     return TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.secondary, fontSize:  context.fontSize.regular);
@@ -88,7 +86,7 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
       inputFormatters: [CreditCardNumberFormatter(), numbersAndSpaceFormatter],
       decoration: buildInputDecoration(
           text: "Card Number",
-          error: controllerCardNumberError,
+          error: errorCardNumber,
           prefixIcon: const Icon(Icons.credit_card),
           prefixIconColor: context.colorScheme.secondary.withOpacity(0.5),
         ),
@@ -102,7 +100,7 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
           keyboardType: TextInputType.number,
           inputFormatters: [numbersOnlyFormatter],
-          decoration: buildInputDecoration(text: "MM", error: controllerCVVError),
+          decoration: buildInputDecoration(text: "MM", error: errorExpiryMonth),
           controller: controllerExpiryMonth,
           ),
     );
@@ -115,7 +113,7 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
           keyboardType: TextInputType.number,
           inputFormatters: [numbersOnlyFormatter],
-          decoration: buildInputDecoration(text: "YYYY", error: controllerCVVError),
+          decoration: buildInputDecoration(text: "YYYY", error: errorExpiryYear),
           controller: controllerExpiryYear,
           ),
     );
@@ -128,7 +126,7 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
           keyboardType: TextInputType.number,
           inputFormatters: [numbersOnlyFormatter],
-          decoration: buildInputDecoration(text: "CVV", error: controllerCVVError),
+          decoration: buildInputDecoration(text: "CVV", error: errorCVV),
           controller: controllerCVV,
           ),
     );
@@ -173,9 +171,14 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
                     ),
                   ),
                   TextButton(onPressed: () {
+                    if (!validate()) {
+                      return setState(() {
+
+                      });
+                    }
+
                     context.readOrderBloc.submitPaymentDetails(
                        PaymentDetails(
-                          cardHolderName: controllerCardHolderName.text,
                           cardNumber: controllerCardNumber.text,
                           cvv: int.tryParse(controllerCVV.text),
                        )
@@ -206,6 +209,41 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
         ),
       ],
     );
+  }
+
+  bool validate(){
+    errorCardNumber = null;
+    errorCVV = null;
+    errorExpiryMonth = null;
+    errorExpiryYear = null;
+
+    if (controllerCardNumber.text.isEmpty){
+      errorCardNumber = 'required';
+    } else
+    if (controllerCardNumber.text.length < 16){
+      errorCardNumber = 'too short';
+    }
+    if (controllerCVV.text.length != 3){
+      errorCVV = 'invalid';
+    } else
+    if (int.tryParse(controllerCVV.text) == null){
+      errorCVV = 'invalid';
+    }
+
+    if (controllerExpiryYear.text.length != 4){
+      errorExpiryYear = 'invalid';
+    }
+
+    if (controllerExpiryMonth.text.isEmpty){
+      errorExpiryMonth = 'required';
+    } else {
+      final expiryMonth = int.tryParse(controllerExpiryMonth.text);
+      if (expiryMonth == null || expiryMonth <= 0 || expiryMonth > 12){
+       errorExpiryMonth = 'invalid';
+      }
+    }
+
+    return errorCardNumber == null && errorCVV == null;
   }
 }
 

@@ -75,7 +75,6 @@ class OrderBloc extends Cubit<OrderState> {
     final paymentDetails = state.paymentDetails;
     emitOrderState(
       paymentDetails: PaymentDetails(
-        cardHolderName: cardHolderName ?? paymentDetails.cardHolderName,
         cardNumber: cardNumber ?? paymentDetails.cardNumber,
         expiryYear: expiryYear ?? paymentDetails.expiryYear,
         expiryMonth: expiryMonth ?? paymentDetails.expiryMonth,
