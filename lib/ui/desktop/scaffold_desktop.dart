@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
+import 'package:lemon_pizza/ui/common/font_families.dart';
 import 'package:lemon_pizza/ui/common/sliders/theme_hue_slider.dart';
 import 'package:lemon_pizza/ui/common/texts/text_on_primary.dart';
 import 'package:lemon_pizza/ui/common/texts/title_text.dart';
@@ -34,7 +35,9 @@ class ScaffoldDesktop extends StatelessWidget {
               child: const ThemeModeToggle()),
           TextButton(
             onPressed: () => Navigator.of(context).pushNamed('theme'),
-            child: TextOnPrimary("THEME", fontSize: fontSize.regular),
+            child: Text("THEME", style: TextStyle(
+                color: colorScheme.onPrimary,
+                fontSize: fontSize.regular, fontFamily: FontFamilies.roboto),),
           )
         ],
       ),

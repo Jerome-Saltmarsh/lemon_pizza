@@ -42,7 +42,7 @@ class App extends StatelessWidget {
                 create: (context) => OrderBloc(
                     OrderState(
                       orderItems: [],
-                      orderStatus: OrderStatus.paymentFailed,
+                      orderStatus: OrderStatus.paymentInProgress,
                       customerDetails: CustomerDetails(
                           name: '',
                           address: '',
