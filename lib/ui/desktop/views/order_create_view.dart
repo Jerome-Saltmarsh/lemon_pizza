@@ -32,7 +32,7 @@ class _CreateOrderViewState extends State<CreateOrderView> {
 
   Widget buildGridViewPizzaType() {
     return SizedBox(
-      width: 400,
+      width: 600,
       child: GridView.count(
           physics: const NeverScrollableScrollPhysics(),
           crossAxisCount: 2,
@@ -46,29 +46,31 @@ class _CreateOrderViewState extends State<CreateOrderView> {
     final orderRepository = RepositoryProvider.of<OrderRepository>(context);
     final pizzaPrice = orderRepository.getPizzaPrice(pizzaType: pizzaType, pizzaSize: PizzaSize.medium);
     final colorScheme = context.colorScheme;
-    const width = 150.0;
+    final themeState = context.readThemeState;
+    const width = 200.0;
+
+    final priceText = Text(formatDollars(pizzaPrice), style: TextStyle(fontSize: fontSize.small, color: colorScheme.onPrimaryContainer));
 
     return Container(
       width: width,
       height: width * goldenRatio_0618,
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      margin: const EdgeInsets.symmetric(horizontal: 64, vertical: 4),
+      padding: themeState.dialogPadding,
+      decoration: BoxDecoration(
+        color: colorScheme.secondaryContainer,
+        borderRadius: themeState.dialogBorderRadius,
+      ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(pizzaType.name, style: TextStyle(fontSize: fontSize.large, color: colorScheme.secondary)),
-              Container(
-                  width: 60,
-                  alignment: Alignment.center,
-                  color: colorScheme.primaryContainer,
-                  padding: const EdgeInsets.all(2),
-                  child: Text(formatDollars(pizzaPrice), style: TextStyle(fontSize: fontSize.small, color: colorScheme.onPrimaryContainer))),
+              Text(pizzaType.name, style: TextStyle(fontSize: fontSize.large, color: colorScheme.tertiary)),
             ],
           ),
           Text(mapIngredientsToString(pizzaType.ingredients),
-            style: TextStyle(fontSize: fontSize.regular, color: colorScheme.tertiary),
+            style: TextStyle(fontSize: fontSize.regular, color: colorScheme.onSecondaryContainer),
 
           ),
           // Text(formatDollars(pizzaPrice), style: TextStyle(fontSize: fontSize.small, color: colorScheme.secondary),),
@@ -83,13 +85,21 @@ class _CreateOrderViewState extends State<CreateOrderView> {
                 margin: const EdgeInsets.only(bottom: 12),
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                    color: colorScheme.primary
+                    color: colorScheme.primary,
+                    borderRadius: context.readThemeState.dialogBorderRadius,
                 ),
-                child: Text("ADD", style: TextStyle(
-                    fontFamily: FontFamilies.secondary,
-                    color: colorScheme.onPrimary,
-                    fontSize: fontSize.regular
-                ),)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text("ADD", style: TextStyle(
+                        fontFamily: FontFamilies.roboto,
+                        color: colorScheme.onPrimary,
+                        fontSize: fontSize.regular
+                    ),),
+                    priceText,
+                  ],
+                )),
           )
         ],
       ),

@@ -8,13 +8,22 @@ class TitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      "PIZZA-ONLINE",
-      style: TextStyle(
-          color: context.colorScheme.onPrimary,
-          fontSize: context.fontSize.largest,
-          fontFamily: 'CabinSketch'
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+            width: 100,
+            child: Image.asset('assets/images/pizza.png', fit: BoxFit.fitWidth, color: context.colorScheme.onSurface,)),
+        const SizedBox(width: 16,),
+        Text(
+          "PIZZA-BOX",
+          style: TextStyle(
+              color: context.colorScheme.onSurfaceVariant,
+              fontSize: context.fontSize.largest,
+              fontFamily: 'CabinSketch'
+          ),
+        ),
+      ],
     );
   }
 }

@@ -21,7 +21,7 @@ class ScaffoldDesktop extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: colorScheme.primary,
+        backgroundColor: colorScheme.surfaceVariant,
         title: const TitleText(),
         leading: const OrderBackButton(),
         actions: [
