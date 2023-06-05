@@ -31,9 +31,13 @@ class _CreateOrderViewState extends State<CreateOrderView> {
   var selectedPizzaSize = PizzaSize.medium;
 
   Widget buildGridViewPizzaType() {
-
-    return SizedBox(
-      width: 800,
+    final screenWidth = MediaQuery.of(context).size.width;
+    return Container(
+      width:  screenWidth - 300,
+      constraints: const BoxConstraints(
+        maxWidth: 700,
+      ),
+      margin: EdgeInsets.only(right: context.watchOrderState.orderItems.isEmpty ? 0 : 160),
       child: Wrap(
           children: PizzaType.values.map(buildTilePizzaType).toList()
       ),
@@ -47,8 +51,8 @@ class _CreateOrderViewState extends State<CreateOrderView> {
     final colorScheme = context.colorScheme;
     final themeState = context.readThemeState;
     const width = 200.0;
-
     final priceText = Text(formatDollars(pizzaPrice), style: TextStyle(fontSize: fontSize.small, color: colorScheme.onPrimaryContainer));
+    final pizzaTypeText = Text(pizzaType.name, style: TextStyle(fontSize: fontSize.large, color: colorScheme.tertiary));
 
     return Container(
       width: width,
@@ -65,15 +69,15 @@ class _CreateOrderViewState extends State<CreateOrderView> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(pizzaType.name, style: TextStyle(fontSize: fontSize.large, color: colorScheme.tertiary)),
+              pizzaTypeText,
+              priceText,
             ],
           ),
           Text(mapIngredientsToString(pizzaType.ingredients),
-            style: TextStyle(fontSize: fontSize.regular, color: colorScheme.onSecondaryContainer),
-
+            style: TextStyle(fontSize: fontSize.regular, color: colorScheme.onSecondaryContainer, fontStyle: FontStyle.italic),
           ),
           // Text(formatDollars(pizzaPrice), style: TextStyle(fontSize: fontSize.small, color: colorScheme.secondary),),
-          const SizedBox(height: 12),
+          const Expanded(child: SizedBox()),
           OnPressed(
             action: (){
               setState(() {
@@ -81,24 +85,17 @@ class _CreateOrderViewState extends State<CreateOrderView> {
               });
             },
             child: Container(
-                margin: const EdgeInsets.only(bottom: 12),
+                alignment: Alignment.center,
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
                     color: colorScheme.primary,
                     borderRadius: context.readThemeState.dialogBorderRadius,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("ADD", style: TextStyle(
-                        fontFamily: FontFamilies.roboto,
-                        color: colorScheme.onPrimary,
-                        fontSize: fontSize.regular
-                    ),),
-                    priceText,
-                  ],
-                )),
+                child: Text("ADD", style: TextStyle(
+                    fontFamily: FontFamilies.roboto,
+                    color: colorScheme.onPrimary,
+                    fontSize: fontSize.regular
+                ),)),
           )
         ],
       ),
