@@ -31,11 +31,10 @@ class _CreateOrderViewState extends State<CreateOrderView> {
   var selectedPizzaSize = PizzaSize.medium;
 
   Widget buildGridViewPizzaType() {
+
     return SizedBox(
-      width: 600,
-      child: GridView.count(
-          physics: const NeverScrollableScrollPhysics(),
-          crossAxisCount: 2,
+      width: 800,
+      child: Wrap(
           children: PizzaType.values.map(buildTilePizzaType).toList()
       ),
     );
@@ -53,8 +52,8 @@ class _CreateOrderViewState extends State<CreateOrderView> {
 
     return Container(
       width: width,
-      height: width * goldenRatio_0618,
-      margin: const EdgeInsets.symmetric(horizontal: 64, vertical: 4),
+      height: width,
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
       padding: themeState.dialogPadding,
       decoration: BoxDecoration(
         color: colorScheme.secondaryContainer,
