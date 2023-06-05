@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class ThemeState {
 
+  final Duration animationDuration;
   final FontSize fontSize;
   final ThemeMode themeMode;
   final Color color;
@@ -24,6 +25,7 @@ class ThemeState {
     required this.dialogBorderRadius,
     required this.dialogBorderWidth,
     required this.dialogPadding,
+    required this.animationDuration,
   }){
     themeDataLight = ThemeData(
         fontFamily: 'Niconne',
@@ -40,7 +42,9 @@ class ThemeState {
      BorderRadius? dialogBorderRadius,
      double? dialogBorderWidth,
      EdgeInsets? dialogPadding,
+     Duration? animationDuration,
   }) => ThemeState(
+      animationDuration: animationDuration ?? this.animationDuration,
       themeMode: themeMode ?? this.themeMode,
       color: color ?? this.color,
       fontSize:  fontSize ?? this.fontSize,

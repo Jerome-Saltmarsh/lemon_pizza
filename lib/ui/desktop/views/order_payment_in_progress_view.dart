@@ -1,12 +1,19 @@
-
 import 'package:flutter/cupertino.dart';
+import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
+import 'package:lemon_pizza/ui/common/font_families.dart';
+import 'package:lemon_widgets/lemon_widgets.dart';
 
 class PaymentInProgressView extends StatelessWidget {
   const PaymentInProgressView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("PAYMENT IN PROGRESS"));
+    return Center(
+        child: Text(
+      "PAYMENT IN PROGRESS",
+      style: TextStyle(
+          color: context.colorScheme.secondary,
+          fontFamily: FontFamilies.roboto, fontSize: context.fontSize.large),
+    ));
   }
-
 }

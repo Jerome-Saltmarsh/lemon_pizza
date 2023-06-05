@@ -24,6 +24,7 @@ class App extends StatelessWidget {
           providers: [
             BlocProvider<ThemeBloc>(
                 create: (context) => ThemeBloc(ThemeState(
+                    animationDuration: const Duration(milliseconds: 200),
                     themeMode: ThemeMode.system,
                     color: Colors.green,
                     dialogBorderRadius: BorderRadius.circular(4),
@@ -41,7 +42,7 @@ class App extends StatelessWidget {
                 create: (context) => OrderBloc(
                     OrderState(
                       orderItems: [],
-                      orderStatus: OrderStatus.customerDetails,
+                      orderStatus: OrderStatus.paymentFailed,
                       customerDetails: CustomerDetails(
                           name: '',
                           address: '',

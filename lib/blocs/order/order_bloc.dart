@@ -2,6 +2,7 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_repository.dart';
+import 'package:lemon_pizza/ui/common/functions/format_dollars.dart';
 
 import 'order_enums.dart';
 import 'order_state.dart';
@@ -232,4 +233,5 @@ class OrderBloc extends Cubit<OrderState> {
     }
   }
 
+  String get formattedTotalCost => formatDollars(state.totalOrderCost);
 }

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lemon_pizza/blocs/order/order_state.dart';
+import 'package:lemon_pizza/ui/common/animations/animate_position_down.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/common/font_families.dart';
 import 'package:lemon_pizza/ui/desktop/constants/numbers_only_formatter.dart';
@@ -19,6 +20,8 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
 
   final controllerCardHolderName = TextEditingController();
   final controllerCardNumber = TextEditingController();
+  final controllerExpiryMonth = TextEditingController();
+  final controllerExpiryYear = TextEditingController();
   final controllerCVV = TextEditingController();
   int? expiryYear;
   int? expiryMonth;
@@ -27,153 +30,181 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
   String? controllerCVVError;
 
   TextStyle buildTextStyle(){
-    return TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.onTertiary, fontSize:  context.fontSize.large);
+    return TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.secondary, fontSize:  context.fontSize.regular);
+  }
+
+  TextStyle buildLabelStyle(){
+    return TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.secondary.withOpacity(0.5), fontSize:  context.fontSize.regular);
   }
 
   TextStyle buildTextStyleError(){
-    return TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.error, fontSize:  context.fontSize.large);
+    return TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.error, fontSize:  context.fontSize.regular);
+  }
+
+  InputDecoration buildInputDecoration({required String text, String? error, Widget? prefixIcon, Color? prefixIconColor}){
+    final color = context.colorScheme.secondary;
+    return InputDecoration(
+      prefixIcon: prefixIcon,
+      prefixIconColor: prefixIconColor,
+      counterText: '',
+      label: buildLabel(text),
+      labelStyle: buildLabelStyle(),
+      focusColor: color,
+      fillColor: color,
+      errorStyle: buildTextStyleError(),
+      errorText: error,
+      border: OutlineInputBorder(
+        borderSide: BorderSide(color: color),
+        borderRadius: context.readThemeState.dialogBorderRadius,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: color),
+        borderRadius: context.readThemeState.dialogBorderRadius,
+      ),
+    );
   }
 
   Widget buildText(String value){
     return Text(value, style: buildTextStyle());
   }
 
-  Widget buildDropdownButtonExpiryYear()=> DropdownButton<int>(
-      hint: buildText("Year"),
-      value: expiryYear,
-      items: List.generate(10, (index) => DateTime.now().year + index).map((year) => DropdownMenuItem(
-        value: year,
-        child: Text(year.toString()),
-      )).toList(),
-      onChanged: (expiryYear) {
-        setState(() {
-          this.expiryYear = expiryYear;
-        });
-      },
-    );
-
-  Widget buildDropdownButtonExpiryMonth()=> DropdownButton<int>(
-      hint: buildText("Month"),
-      value: expiryMonth,
-      items: List.generate(12, (month) => DropdownMenuItem(
-        value: month + 1,
-        child: Text((month + 1).toString()),
-      )
-      ),
-      onChanged: (month) {
-          setState(() {
-            expiryMonth = month;
-          });
-      },
-    );
-
-  Widget buildTextFieldCardholderName(){
-    return TextField(
-      controller: controllerCardHolderName,
-      style: buildTextStyle(),
-      decoration: InputDecoration(
-          label: buildText("Card holder name"),
-          errorStyle: buildTextStyleError(),
-          errorText: controllerCardHolderNameError
-      ),
-    );
-  }
-
-  Widget buildTextFieldCardNumber(){
-    return TextField(
-      controller: controllerCardNumber,
-      style: buildTextStyle(),
-      inputFormatters: [CreditCardNumberFormatter(), numbersAndSpaceFormatter],
-      decoration: InputDecoration(
-          label: buildText("Card Number"),
-          errorStyle: buildTextStyleError(),
-          errorText: controllerCardNumberError,
-      ),
-    );
-  }
-
-  Widget buildTextFieldCVV(){
-    return SizedBox(
-      width: 50,
-      child: TextField(
-          maxLength: 3,
-          maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          keyboardType: TextInputType.number,
-          inputFormatters: [numbersOnlyFormatter],
-          decoration: InputDecoration(
-              counterText: '',
-              label: buildText("CVV"),
-              errorStyle: buildTextStyleError(),
-              errorText: controllerCVVError,
-          ),
-          controller: controllerCVV,
-          ),
-    );
+  Widget buildLabel(String value){
+    return Text(value, style: buildLabelStyle());
   }
 
   @override
+  void dispose() {
+    controllerExpiryYear.dispose();
+    controllerExpiryMonth.dispose();
+    controllerCardNumber.dispose();
+    controllerCVV.dispose();
+    super.dispose();
+  }
+
+  Widget buildTextFieldCardNumber() => TextField(
+      cursorColor: context.colorScheme.secondary,
+      controller: controllerCardNumber,
+      style: buildTextStyle(),
+      inputFormatters: [CreditCardNumberFormatter(), numbersAndSpaceFormatter],
+      decoration: buildInputDecoration(
+          text: "Card Number",
+          error: controllerCardNumberError,
+          prefixIcon: const Icon(Icons.credit_card),
+          prefixIconColor: context.colorScheme.secondary.withOpacity(0.5),
+        ),
+    );
+
+  Widget buildTextFieldExpiryMonth() => SizedBox(
+      width: 70,
+      child: TextField(
+          maxLength: 2,
+          cursorColor: context.colorScheme.secondary,
+          maxLengthEnforcement: MaxLengthEnforcement.enforced,
+          keyboardType: TextInputType.number,
+          inputFormatters: [numbersOnlyFormatter],
+          decoration: buildInputDecoration(text: "MM", error: controllerCVVError),
+          controller: controllerExpiryMonth,
+          ),
+    );
+
+  Widget buildTextFieldExpiryYear() => SizedBox(
+      width: 120,
+      child: TextField(
+          maxLength: 4,
+          cursorColor: context.colorScheme.secondary,
+          maxLengthEnforcement: MaxLengthEnforcement.enforced,
+          keyboardType: TextInputType.number,
+          inputFormatters: [numbersOnlyFormatter],
+          decoration: buildInputDecoration(text: "YYYY", error: controllerCVVError),
+          controller: controllerExpiryYear,
+          ),
+    );
+
+  Widget buildTextFieldCVV() => SizedBox(
+      width: 80,
+      child: TextField(
+          maxLength: 3,
+          cursorColor: context.colorScheme.secondary,
+          maxLengthEnforcement: MaxLengthEnforcement.enforced,
+          keyboardType: TextInputType.number,
+          inputFormatters: [numbersOnlyFormatter],
+          decoration: buildInputDecoration(text: "CVV", error: controllerCVVError),
+          controller: controllerCVV,
+          ),
+    );
+
+  @override
   Widget build(BuildContext context) {
-    const width = 500.0;
-    return Container(
-      margin: const EdgeInsets.only(top: 16),
-      child: Center(
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              width: width,
-              height: width * 0.630434782608696,
-              decoration: BoxDecoration(
-                color: context.colorScheme.tertiary,
-                borderRadius: const BorderRadius.all(Radius.circular(5)),
-              ),
+    const width = 400.0;
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        AnimatePositionDown(
+          child: Container(
+            margin: const EdgeInsets.only(top: 16),
+            child: Center(
               child: Column(
-                 children: [
-                    Container(
-                       width: double.infinity,
-                       height: 40,
-                      color: context.colorScheme.tertiaryContainer,
-                    ),
-                    buildTextFieldCardholderName(),
-                    buildTextFieldCardNumber(),
-                    Row(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(top: 20),
-                          child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    width: width,
+                    child: Column(
+                       children: [
+                          buildText("PAYMENT DETAILS"),
+                          const SizedBox(height: 32),
+                          buildTextFieldCardNumber(),
+                         const SizedBox(height: 16),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              buildDropdownButtonExpiryYear(),
-                              buildDropdownButtonExpiryMonth(),
+                              Row(
+                              children: [
+                                buildTextFieldExpiryMonth(),
+                                const SizedBox(
+                                  width: 4,
+                                ),
+                                buildTextFieldExpiryYear(),
+                              ],),
+                              buildTextFieldCVV(),
                             ],
                           ),
-                        ),
-                        const SizedBox(width: 64),
-                        buildTextFieldCVV(),
-                      ],
+                       ],
                     ),
-                 ],
+                  ),
+                  TextButton(onPressed: () {
+                    context.readOrderBloc.submitPaymentDetails(
+                       PaymentDetails(
+                          cardHolderName: controllerCardHolderName.text,
+                          cardNumber: controllerCardNumber.text,
+                          cvv: int.tryParse(controllerCVV.text),
+                       )
+                    );
+                  },
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: context.readThemeState.dialogBorderRadius, // Set the border radius here
+                          ),
+                        ),
+                        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                              (Set<MaterialState> states) {
+                            return context.colorScheme.tertiary; // Default color
+                          },
+                        ),
+                      ),
+                      child: Container(
+                          width: 150,
+                          height: 50,
+                          alignment: Alignment.center,
+                          child: Text("PAY ${context.readOrderBloc.formattedTotalCost}",
+                            style: TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.onTertiary),)))
+                ],
               ),
             ),
-            TextButton(onPressed: () {
-              context.readOrderBloc.submitPaymentDetails(
-                 PaymentDetails(
-                    cardHolderName: controllerCardHolderName.text,
-                    cardNumber: controllerCardNumber.text,
-                    cvv: int.tryParse(controllerCVV.text),
-                 )
-              );
-            },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                        (Set<MaterialState> states) {
-                      return context.colorScheme.primary; // Default color
-                    },
-                  ),
-                ),
-                child: Text("SUBMIT ORDER", style: TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.onPrimary),))
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
