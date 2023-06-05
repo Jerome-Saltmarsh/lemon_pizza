@@ -1,8 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/order/order_bloc.dart';
-import 'package:lemon_pizza/blocs/order/order_enums.dart';
+import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/common/font_families.dart';
 import 'package:lemon_pizza/ui/common/functions/format_dollars.dart';
 import 'package:lemon_pizza/ui/desktop/widgets/order_bloc_builder.dart';
@@ -18,7 +16,7 @@ class CheckoutButton extends StatelessWidget {
     return OrderBlocBuilder(builder: (context, orderState){
       final orderItems = orderState.orderItems;
       return OnPressed(
-        action: () => orderItems.isEmpty ? null : context.read<OrderBloc>().emitOrderState(orderStatus: OrderStatus.orderType),
+        action: orderItems.isEmpty ? null : context.selectOrderStatusOrderType,
         child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             alignment: Alignment.center,

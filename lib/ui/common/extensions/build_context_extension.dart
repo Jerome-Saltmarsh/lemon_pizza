@@ -17,6 +17,10 @@ extension BuildContextExtension on BuildContext {
    OrderState get watchOrderState => watchOrderBloc.state;
    OrderRepository get orderRepository => RepositoryProvider.of<OrderRepository>(this);
 
+   void selectOrderStatusOrderType() {
+      emitOrderState(orderStatus: OrderStatus.customerDetails);
+   }
+
    void selectOrderTypePickup() =>
        emitOrderState(orderType: OrderType.pickup, orderStatus: OrderStatus.customerDetails);
 
