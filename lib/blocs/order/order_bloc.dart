@@ -68,9 +68,9 @@ class OrderBloc extends Cubit<OrderState> {
   void emitPaymentDetails({
     String? cardHolderName,
     String? cardNumber,
-    int? expiryYear,
-    int? expiryMonth,
-    int? cvv,
+    String? expiryYear,
+    String? expiryMonth,
+    String? cvv,
   }){
     final paymentDetails = state.paymentDetails;
     emitOrderState(
@@ -147,89 +147,6 @@ class OrderBloc extends Cubit<OrderState> {
        default:
          break;
      }
-  }
-
-  void next() async {
-    switch (state.orderStatus) {
-      case OrderStatus.createOrder:
-        if (state.orderItems.isEmpty) {
-          emitOrderState(validate: true);
-          return;
-        }
-        emitOrderState(
-          orderStatus: OrderStatus.orderType,
-          validate: false,
-        );
-        break;
-      case OrderStatus.customerDetails:
-        final customerDetails = state.customerDetails;
-        if (!customerDetails.valid) {
-          emitOrderState(validate: true);
-          return;
-        }
-        emitOrderState(
-            orderStatus: OrderStatus.paymentDetails,
-            validate: false,
-        );
-        break;
-      case OrderStatus.paymentDetails:
-        if (!state.paymentDetails.valid) {
-          emitOrderState(validate: true);
-          return;
-        }
-        if (!state.orderCompleted){
-          emitOrderState(
-              orderStatus: OrderStatus.createOrder,
-              validate: true,
-          );
-          return;
-        }
-        if (!state.customerDetails.valid){
-          emitOrderState(
-            orderStatus: OrderStatus.customerDetails,
-            validate: true,
-          );
-          return;
-        }
-
-        emitOrderState(
-            orderStatus: OrderStatus.paymentInProgress,
-            validate: false,
-        );
-        await orderRepository.submitOrder().then((value) {
-          emitOrderState(orderStatus: OrderStatus.paymentSucceeded);
-        }).catchError((error){
-          emitOrderState(orderStatus: OrderStatus.paymentFailed);
-        });
-        break;
-      case OrderStatus.paymentFailed:
-        emitOrderState(orderStatus: OrderStatus.paymentDetails);
-        break;
-      case OrderStatus.paymentSucceeded:
-        restart();
-        break;
-      default:
-        break;
-    }
-  }
-
-  OrderStatus get nextOrderStatus {
-    switch (state.orderStatus) {
-      case OrderStatus.createOrder:
-        return OrderStatus.orderType;
-      case OrderStatus.orderType:
-        return OrderStatus.customerDetails;
-      case OrderStatus.customerDetails:
-        return OrderStatus.paymentDetails;
-      case OrderStatus.paymentDetails:
-        return OrderStatus.paymentInProgress;
-      case OrderStatus.paymentFailed:
-        return OrderStatus.paymentDetails;
-      case OrderStatus.paymentSucceeded:
-        return OrderStatus.createOrder;
-      case OrderStatus.paymentInProgress:
-        return OrderStatus.paymentInProgress;
-    }
   }
 
   String get formattedTotalCost => formatDollars(state.totalOrderCost);

@@ -42,13 +42,18 @@ class App extends StatelessWidget {
                 create: (context) => OrderBloc(
                     OrderState(
                       orderItems: [],
-                      orderStatus: OrderStatus.paymentInProgress,
+                      orderStatus: OrderStatus.paymentSucceeded,
                       customerDetails: CustomerDetails(
                           name: '',
                           address: '',
                           phone: ''
                       ),
-                      paymentDetails: PaymentDetails(),
+                      paymentDetails: PaymentDetails(
+                        cardNumber: '',
+                        expiryYear: '',
+                        expiryMonth:  '',
+                        cvv: '',
+                      ),
                     ),
                     orderRepository: RepositoryProvider.of(context)
                 )

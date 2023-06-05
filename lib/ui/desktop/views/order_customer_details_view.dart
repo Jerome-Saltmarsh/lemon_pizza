@@ -26,11 +26,6 @@ class _CustomerDetailsViewState extends State<CustomerDetailsView> {
   String? controllerPhoneError;
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   void initState() {
     super.initState();
     final orderBloc = context.read<OrderBloc>();

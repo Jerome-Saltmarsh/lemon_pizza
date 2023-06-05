@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/common/font_families.dart';
 import 'package:lemon_pizza/ui/common/sliders/theme_hue_slider.dart';
-import 'package:lemon_pizza/ui/common/texts/text_on_primary.dart';
 import 'package:lemon_pizza/ui/common/texts/title_text.dart';
 import 'package:lemon_pizza/ui/common/toggles/theme_mode_toggle.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';

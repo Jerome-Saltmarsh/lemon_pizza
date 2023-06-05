@@ -70,8 +70,26 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
     return Text(value, style: buildLabelStyle());
   }
 
+
+  @override
+  void initState() {
+     super.initState();
+     final paymentDetails = context.readOrderBloc.state.paymentDetails;
+     controllerCardNumber.text = paymentDetails.cardNumber;
+     controllerExpiryYear.text = paymentDetails.expiryYear.toString();
+     controllerExpiryMonth.text = paymentDetails.expiryMonth.toString();
+  }
+
   @override
   void dispose() {
+
+    context.readOrderBloc.submitPaymentDetails(PaymentDetails(
+      cardNumber: controllerCardNumber.text,
+      expiryMonth: controllerExpiryMonth.text,
+      expiryYear: controllerExpiryYear.text,
+      cvv: controllerCVV.text,
+    ));
+
     controllerExpiryYear.dispose();
     controllerExpiryMonth.dispose();
     controllerCardNumber.dispose();
@@ -180,7 +198,9 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
                     context.readOrderBloc.submitPaymentDetails(
                        PaymentDetails(
                           cardNumber: controllerCardNumber.text,
-                          cvv: int.tryParse(controllerCVV.text),
+                          expiryMonth: controllerExpiryMonth.text,
+                          expiryYear: controllerExpiryYear.text,
+                          cvv: controllerCVV.text,
                        )
                     );
                   },

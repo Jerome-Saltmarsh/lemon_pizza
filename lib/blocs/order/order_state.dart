@@ -54,40 +54,16 @@ class OrderState {
 
 class PaymentDetails {
   final String cardNumber;
-  final int? expiryYear;
-  final int? expiryMonth;
-  final int? cvv;
+  final String expiryYear;
+  final String expiryMonth;
+  final String cvv;
 
   PaymentDetails({
-    this.cardNumber = '',
-    this.expiryYear,
-    this.expiryMonth,
-    this.cvv,
+    required this.cardNumber,
+    required this.expiryYear,
+    required this.expiryMonth,
+    required this.cvv,
   });
-
-  bool get valid =>
-      cardNumberValid &&
-      expiryYear != null &&
-      expiryMonth != null &&
-      cvvValid;
-
-  bool get cvvValid =>
-      cvv != null &&
-      cvv.toString().length == 3;
-
-  bool get cardNumberValid =>
-      cardNumber.removeEmptySpace.length >= 16 &&
-      cardNumber.removeEmptySpace.length <= 19;
-
-  String? get cardNumberInvalidReason {
-    if (cardNumber.removeEmptySpace.length < 16){
-      return 'too short';
-    }
-    if (cardNumber.removeEmptySpace.length > 19){
-      return 'too long';
-    }
-    return null;
-  }
 }
 
 class CustomerDetails {
@@ -100,10 +76,6 @@ class CustomerDetails {
     required this.address,
     required this.phone,
   });
-
-  bool get valid {
-    return name.isNotEmpty && address.isNotEmpty && phone.isNotEmpty;
-  }
 }
 
 extension StringExtensions on String {

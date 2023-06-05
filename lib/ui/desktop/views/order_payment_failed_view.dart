@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:golden_ratio/constants.dart';
 import 'package:lemon_pizza/blocs/order/order_bloc.dart';
+import 'package:lemon_pizza/blocs/order/order_enums.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/common/font_families.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
@@ -27,7 +27,7 @@ class PaymentFailedView extends StatelessWidget {
             ),
             const SizedBox(width: 32),
             TextButton(
-              onPressed: context.read<OrderBloc>().next,
+              onPressed: () => context.read<OrderBloc>().emitOrderState(orderStatus: OrderStatus.paymentDetails),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.resolveWith<Color?>(
                       (Set<MaterialState> states) {
