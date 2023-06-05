@@ -32,12 +32,12 @@ class ScaffoldDesktop extends StatelessWidget {
           Container(
               margin: const EdgeInsets.only(right: 8),
               child: const ThemeModeToggle()),
-          TextButton(
-            onPressed: () => Navigator.of(context).pushNamed('theme'),
-            child: Text("THEME", style: TextStyle(
-                color: colorScheme.onPrimary,
-                fontSize: fontSize.regular, fontFamily: FontFamilies.roboto),),
-          )
+          // TextButton(
+          //   onPressed: () => Navigator.of(context).pushNamed('theme'),
+          //   child: Text("THEME", style: TextStyle(
+          //       color: colorScheme.onSurface,
+          //       fontSize: fontSize.regular, fontFamily: FontFamilies.roboto),),
+          // )
         ],
       ),
       body: const OrderStatusView(),

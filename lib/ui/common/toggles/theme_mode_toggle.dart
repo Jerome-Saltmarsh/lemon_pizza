@@ -14,13 +14,13 @@ class ThemeModeToggle extends StatelessWidget {
     return Row(
       children: [
         Text(
-          themeBloc.isDark ? 'DARK' : "LIGHT", style: TextStyle(color: colorScheme.onPrimary, fontFamily: 'CabinSketch'),),
+          themeBloc.isDark ? 'DARK' : "LIGHT", style: TextStyle(color: colorScheme.onSurfaceVariant, fontFamily: 'CabinSketch'),),
         const SizedBox(width: 8),
         Switch(
-          activeColor: colorScheme.primary,
-          activeTrackColor: colorScheme.onPrimary,
-          inactiveThumbColor: colorScheme.primary,
-          inactiveTrackColor: colorScheme.onPrimary,
+          activeColor: colorScheme.onInverseSurface,
+          activeTrackColor: colorScheme.onSurface,
+          inactiveThumbColor: colorScheme.onSurface,
+          inactiveTrackColor: colorScheme.onInverseSurface,
           value: themeBloc.isDark,
           onChanged: themeBloc.setDarkMode,
         ),
