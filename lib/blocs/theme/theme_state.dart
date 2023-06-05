@@ -27,11 +27,24 @@ class ThemeState {
     required this.dialogPadding,
     required this.animationDuration,
   }){
+
+    final textButtonTheme = TextButtonThemeData(
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: dialogBorderRadius, // Set the border radius here
+          ),
+        ),
+      ),
+    );
+
     themeDataLight = ThemeData(
         fontFamily: 'Niconne',
+        textButtonTheme: textButtonTheme,
         colorSchemeSeed: color, brightness: Brightness.light, useMaterial3: true);
     themeDataDark = ThemeData(
         fontFamily: 'Niconne',
+        textButtonTheme: textButtonTheme,
         colorSchemeSeed: color, brightness: Brightness.dark, useMaterial3: true);
   }
 
