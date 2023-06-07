@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/common/font_families.dart';
 import 'package:lemon_pizza/ui/desktop/buttons/checkout_button.dart';
-import 'package:lemon_pizza/ui/desktop/widgets/orders_column_item.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
-class OrdersDialog extends StatelessWidget {
+import 'orders_dialog_item.dart';
 
-  const OrdersDialog({super.key});
+class OrderItemsDialog extends StatelessWidget {
+
+  const OrderItemsDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class OrdersDialog extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: orderItems.map(
-                                (orderItem) => OrdersColumnItem(orderItem: orderItem)
+                                (orderItem) => OrdersDialogItem(orderItem: orderItem)
                         ).toList(),
                       ),
                     ],

@@ -89,6 +89,7 @@ class PizzaSizeDialog extends StatelessWidget {
                             ),
                             onPressed: (){
                               context.read<OrderBloc>().addPizza(pizzaType: selectPizzaType, pizzaSize: selectState.pizzaSize);
+                              context.read<SelectBloc>().clearPizzaType();
                             },
                             child: Text("CONFIRM", style: TextStyle(
                                 fontFamily: FontFamilies.secondary,
