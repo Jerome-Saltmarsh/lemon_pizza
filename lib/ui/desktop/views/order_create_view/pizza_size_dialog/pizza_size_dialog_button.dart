@@ -31,9 +31,7 @@ class PizzaSizeDialogButton extends StatelessWidget {
     final isSelected = selectionBloc.state.pizzaSize == pizzaSize;
 
     return OnPressed(
-      action: () {
-        selectionBloc.emit(selectionState.copyWith(pizzaType: selectedPizzaType));
-      },
+      action: () => selectionBloc.selectPizzaSize(pizzaSize),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
@@ -55,7 +53,7 @@ class PizzaSizeDialogButton extends StatelessWidget {
             )),
             Text(
                 formatDollars(context.orderRepository.getPizzaPrice(
-                  pizzaType: selectedPizzaType!, // todo
+                  pizzaType: selectedPizzaType,
                   pizzaSize: pizzaSize,
                 )),
                 style: TextStyle(
