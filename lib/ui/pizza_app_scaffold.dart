@@ -7,12 +7,12 @@ import 'package:lemon_pizza/ui/views/order_create_view/create_order_view_mobile.
 import 'package:lemon_pizza/ui/views/order_create_view/create_order_view_desktop.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
-import 'views/order_customer_details_view.dart';
-import 'views/order_payment_details_view.dart';
-import 'views/order_payment_failed_view.dart';
-import 'views/order_payment_in_progress_view.dart';
-import 'views/order_payment_succeeded_view.dart';
-import 'views/order_type_view.dart';
+import 'views/customer_details_view.dart';
+import 'views/payment_details_view.dart';
+import 'views/payment_failed_view.dart';
+import 'views/payment_in_progress_view.dart';
+import 'views/payment_succeeded_view.dart';
+import 'views/type_type_view.dart';
 import 'widgets/checkout_icon.dart';
 import 'widgets/order_status_changed.dart';
 
