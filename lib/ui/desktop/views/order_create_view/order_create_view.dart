@@ -26,7 +26,6 @@ class CreateOrderView extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Container(
-            margin: const EdgeInsets.only(top: 16),
             width: double.infinity,
             alignment: Alignment.topCenter,
             child: const PizzaTypeGrid(),

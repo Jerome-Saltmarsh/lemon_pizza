@@ -15,7 +15,8 @@ class PizzaTypeGrid extends StatelessWidget {
       final orderBloc = context.watch<OrderBloc>();
       final orderState = orderBloc.state;
 
-      return Container(
+      return AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
         width:  screenWidth - 300,
         constraints: const BoxConstraints(
           maxWidth: 700,
