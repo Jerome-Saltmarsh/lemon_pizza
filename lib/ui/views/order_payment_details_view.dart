@@ -6,7 +6,7 @@ import 'package:lemon_pizza/blocs/order/order_state.dart';
 import 'package:lemon_pizza/ui/common/animations/animate_position_down.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/common/font_families.dart';
-import 'package:lemon_pizza/ui/desktop/constants/numbers_only_formatter.dart';
+import 'package:lemon_pizza/ui/constants/numbers_only_formatter.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class PaymentDetailsView extends StatefulWidget {

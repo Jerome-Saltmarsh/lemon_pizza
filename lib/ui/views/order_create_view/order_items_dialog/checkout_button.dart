@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/common/font_families.dart';
 import 'package:lemon_pizza/ui/common/functions/format_dollars.dart';
-import 'package:lemon_pizza/ui/desktop/widgets/order_bloc_builder.dart';
+import 'package:lemon_pizza/ui/widgets/order_bloc_builder.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class CheckoutButton extends StatelessWidget {
