@@ -1,5 +1,6 @@
 
-import 'order_enums.dart';
+import 'package:lemon_pizza/model/pizza_size.dart';
+import 'package:lemon_pizza/model/pizza_type.dart';
 
 abstract class OrderRepository {
   Future submitOrder();

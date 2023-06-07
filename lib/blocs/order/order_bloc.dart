@@ -2,9 +2,12 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_repository.dart';
+import 'package:lemon_pizza/model/order_status.dart';
+import 'package:lemon_pizza/model/order_type.dart';
+import 'package:lemon_pizza/model/pizza_size.dart';
+import 'package:lemon_pizza/model/pizza_type.dart';
 import 'package:lemon_pizza/ui/common/functions/format_dollars.dart';
 
-import 'order_enums.dart';
 import 'order_state.dart';
 
 

@@ -1,8 +1,9 @@
 
 import 'dart:math';
 
-import 'package:lemon_pizza/blocs/order/order_enums.dart';
 import 'package:lemon_pizza/blocs/order/order_repository.dart';
+import 'package:lemon_pizza/model/pizza_size.dart';
+import 'package:lemon_pizza/model/pizza_type.dart';
 
 class OrderRepositoryMemory implements OrderRepository {
 

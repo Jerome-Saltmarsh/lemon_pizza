@@ -1,5 +1,9 @@
 
-import 'order_enums.dart';
+import 'package:lemon_pizza/model/order_status.dart';
+import 'package:lemon_pizza/model/order_type.dart';
+import 'package:lemon_pizza/model/pizza_size.dart';
+import 'package:lemon_pizza/model/pizza_type.dart';
+
 
 class OrderItem {
    final PizzaType pizzaType;

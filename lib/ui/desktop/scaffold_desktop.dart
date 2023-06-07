@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
-import 'package:lemon_pizza/ui/common/font_families.dart';
 import 'package:lemon_pizza/ui/common/sliders/theme_hue_slider.dart';
 import 'package:lemon_pizza/ui/common/texts/title_text.dart';
 import 'package:lemon_pizza/ui/common/toggles/theme_mode_toggle.dart';
@@ -15,7 +13,6 @@ class ScaffoldDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fontSize = context.fontSize;
     final colorScheme = context.colorScheme;
 
     return Scaffold(

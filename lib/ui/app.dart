@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/order/order_enums.dart';
 import 'package:lemon_pizza/blocs/order/order_state.dart';
+import 'package:lemon_pizza/blocs/select/select_bloc.dart';
 import 'package:lemon_pizza/blocs/theme/theme_state.dart';
+import 'package:lemon_pizza/model/order_status.dart';
 
 import '../blocs/order/order_bloc.dart';
 import '../blocs/order/order_repository.dart';
@@ -22,6 +23,9 @@ class App extends StatelessWidget {
         create: (context) => OrderRepositoryMemory(),
         child: MultiBlocProvider(
           providers: [
+            BlocProvider<SelectBloc>(
+              create: (context) => SelectBloc(),
+            ),
             BlocProvider<ThemeBloc>(
                 create: (context) => ThemeBloc(ThemeState(
                     animationDuration: const Duration(milliseconds: 200),

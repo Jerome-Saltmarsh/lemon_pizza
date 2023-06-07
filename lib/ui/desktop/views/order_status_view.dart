@@ -1,10 +1,10 @@
 
 
 import 'package:flutter/cupertino.dart';
-import 'package:lemon_pizza/blocs/order/order_enums.dart';
+import 'package:lemon_pizza/model/order_status.dart';
 import 'package:lemon_pizza/ui/desktop/widgets/order_status_changed.dart';
 
-import 'order_create_view.dart';
+import 'order_create_view/order_create_view.dart';
 import 'order_customer_details_view.dart';
 import 'order_payment_details_view.dart';
 import 'order_payment_failed_view.dart';

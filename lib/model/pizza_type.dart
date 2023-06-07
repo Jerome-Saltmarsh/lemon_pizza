@@ -1,24 +1,5 @@
-enum Ingredient {
-  cheese,
-  olives,
-  salami,
-  capsicum,
-  onion,
-  mushroom,
-  anchovy,
-  pineapple,
-  garlic,
-  pesto,
-}
 
-enum OrderType {
-  pickup,
-  deliver,
-}
-
-enum PizzaSize {
-  small, medium, large,
-}
+import 'pizza_ingredient.dart';
 
 enum PizzaType {
   margherita(
@@ -48,14 +29,4 @@ enum PizzaType {
     required this.ingredients,
     required this.image,
   });
-}
-
-enum OrderStatus {
-  createOrder,
-  orderType,
-  customerDetails,
-  paymentDetails,
-  paymentInProgress,
-  paymentSucceeded,
-  paymentFailed,
 }
