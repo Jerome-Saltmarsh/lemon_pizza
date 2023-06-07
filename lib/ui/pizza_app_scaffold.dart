@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/model/order_status.dart';
 import 'package:lemon_pizza/ui/common/app_bar/app_bar_title.dart';
-import 'package:lemon_pizza/ui/common/app_bar/order_back_button.dart';
 import 'package:lemon_pizza/ui/common/app_bar/theme_hue_slider.dart';
 import 'package:lemon_pizza/ui/common/toggles/theme_mode_toggle.dart';
 import 'package:lemon_pizza/ui/views/order_create_view/create_order_view_mobile.dart';
@@ -29,16 +28,17 @@ class PizzaAppScaffold extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
-            centerTitle: true,
+            centerTitle: !isMobile,
             backgroundColor: colorScheme.surfaceVariant,
-            title: const AppBarTitle(),
-            leading: const OrderBackButton(),
+            title: AppBarTitle(compact: isMobile,),
+            // leading: const OrderBackButton(),
             actions: [
               if (!isMobile)
               const SizedBox(
                 width: 200,
                 child: ThemeHueSlider(),
               ),
+              if (!isMobile)
               Container(
                   margin: const EdgeInsets.only(right: 8),
                   child: const ThemeModeToggle()),

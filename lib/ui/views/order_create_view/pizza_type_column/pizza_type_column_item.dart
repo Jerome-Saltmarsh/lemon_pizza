@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lemon_pizza/blocs/select/select_bloc.dart';
 import 'package:lemon_pizza/model/pizza_size.dart';
 import 'package:lemon_pizza/model/pizza_type.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
@@ -33,9 +35,7 @@ class PizzaTypeColumnItem extends StatelessWidget {
     );
 
     final addButton = TextButton(
-      onPressed: () {
-
-      },
+      onPressed: () => context.read<SelectBloc>().selectPizzaType(pizzaType),
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith<Color?>(
               (Set<MaterialState> states) {

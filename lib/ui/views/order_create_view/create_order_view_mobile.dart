@@ -1,5 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lemon_pizza/blocs/select/select_bloc.dart';
+import 'package:lemon_pizza/ui/views/order_create_view/pizza_size_dialog/pizza_size_dialog.dart';
 
 import 'pizza_type_column/pizza_type_column.dart';
 
@@ -8,6 +11,15 @@ class CreateOrderViewMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return const PizzaTypeColumn();
+      final selectState = context.watch<SelectBloc>().state;
+      return Stack(children: [
+          const PizzaTypeColumn(),
+            if (selectState.pizzaType != null)
+          const PizzaSizeDialog(),
+      ],);
+      if (selectState.pizzaType == null){
+        return const PizzaTypeColumn();
+      }
+     return const PizzaSizeDialog();
   }
 }
