@@ -33,7 +33,7 @@ class PizzaSizeDialogRowButton extends StatelessWidget {
     return OnPressed(
       action: () => selectionBloc.selectPizzaSize(pizzaSize),
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 200),
         curve: Curves.easeInOut,
         height: height,
         width:  height * goldenRatio_0618,
