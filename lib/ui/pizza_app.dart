@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lemon_pizza/blocs/layout/layout_bloc.dart';
+import 'package:lemon_pizza/blocs/layout/layout_type.dart';
 import 'package:lemon_pizza/blocs/order/order_state.dart';
 import 'package:lemon_pizza/blocs/select/select_bloc.dart';
 import 'package:lemon_pizza/blocs/theme/theme_state.dart';
@@ -19,6 +21,9 @@ class PizzaApp extends StatelessWidget {
         create: (context) => OrderRepositoryMemory(),
         child: MultiBlocProvider(
           providers: [
+            BlocProvider<LayoutBloc>(
+              create: (context) => LayoutBloc(LayoutType.desktop),
+            ),
             BlocProvider<SelectBloc>(
               create: (context) => SelectBloc(),
             ),
@@ -54,7 +59,10 @@ class PizzaApp extends StatelessWidget {
                     ),
                     orderRepository: RepositoryProvider.of(context))),
           ],
-          child: Builder(builder: (builderContext) {
+          child: LayoutBuilder(builder: (builderContext, size) {
+
+            builderContext.read<LayoutBloc>().updateScreenWidth(size.maxWidth);
+
             final themeState = builderContext.watch<ThemeBloc>().state;
             return MaterialApp(
               title: 'PIZZA',

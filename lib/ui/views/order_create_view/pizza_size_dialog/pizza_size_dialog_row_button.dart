@@ -9,11 +9,11 @@ import 'package:lemon_pizza/ui/common/functions/format_dollars.dart';
 import 'package:lemon_pizza/ui/desktop/images/pizza_image.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
-class PizzaSizeDialogButton extends StatelessWidget {
+class PizzaSizeDialogRowButton extends StatelessWidget {
 
   final PizzaSize pizzaSize;
 
-  const PizzaSizeDialogButton({super.key, required this.pizzaSize});
+  const PizzaSizeDialogRowButton({super.key, required this.pizzaSize});
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +37,7 @@ class PizzaSizeDialogButton extends StatelessWidget {
         curve: Curves.easeInOut,
         height: height,
         width:  height * goldenRatio_0618,
+        margin: const EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(
           borderRadius: themeState.dialogBorderRadius,
           color: isSelected ? colorScheme.primary : colorScheme.secondary,

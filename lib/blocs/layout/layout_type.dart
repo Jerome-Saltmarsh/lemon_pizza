@@ -1,0 +1,5 @@
+
+enum LayoutType {
+  mobile,
+  desktop,
+}
