@@ -3,6 +3,7 @@ import 'package:lemon_pizza/model/order_status.dart';
 import 'package:lemon_pizza/ui/common/app_bar/app_bar_title.dart';
 import 'package:lemon_pizza/ui/common/app_bar/theme_hue_slider.dart';
 import 'package:lemon_pizza/ui/common/toggles/theme_mode_toggle.dart';
+import 'package:lemon_pizza/ui/desktop/widgets/checkout_icon.dart';
 import 'package:lemon_pizza/ui/views/order_create_view/create_order_view_mobile.dart';
 import 'package:lemon_pizza/ui/views/order_create_view/create_order_view_desktop.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
@@ -44,6 +45,7 @@ class PizzaAppScaffold extends StatelessWidget {
                   child: const ThemeModeToggle()),
             ],
           ),
+          floatingActionButton: isMobile ? const CheckoutIcon() : null,
           body: OrderStatusChanged((context, orderStatus) {
             switch (orderStatus) {
               case OrderStatus.createOrder:

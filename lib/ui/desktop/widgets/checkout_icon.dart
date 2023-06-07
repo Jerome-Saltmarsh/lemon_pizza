@@ -37,9 +37,9 @@ class CheckoutIcon extends StatelessWidget {
                        width: 25,
                        height: 25,
                        alignment: Alignment.center,
-                       decoration: const BoxDecoration(
+                       decoration: BoxDecoration(
                          shape: BoxShape.circle,
-                         color: Colors.red,
+                         color: context.colorScheme.error,
                        ),
                        child: Text(orderState.orderItems.length.toString(),
                            style: TextStyle(color: Colors.white, fontSize: fontSize.regular)

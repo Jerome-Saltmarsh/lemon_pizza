@@ -1,7 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/order/order_state.dart';
 import 'package:lemon_pizza/blocs/select/select_bloc.dart';
 import 'package:lemon_pizza/model/pizza_size.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';

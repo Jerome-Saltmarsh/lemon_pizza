@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/common/font_families.dart';
-import 'package:lemon_pizza/ui/desktop/buttons/checkout_button.dart';
+import 'package:lemon_pizza/ui/views/order_create_view/order_items_dialog/checkout_button.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 import 'orders_dialog_item.dart';

@@ -17,9 +17,5 @@ class CreateOrderViewMobile extends StatelessWidget {
             if (selectState.pizzaType != null)
           const PizzaSizeDialog(),
       ],);
-      if (selectState.pizzaType == null){
-        return const PizzaTypeColumn();
-      }
-     return const PizzaSizeDialog();
   }
 }

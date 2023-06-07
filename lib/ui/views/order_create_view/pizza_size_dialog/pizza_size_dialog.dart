@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:golden_ratio/constants.dart';
 import 'package:lemon_pizza/blocs/layout/layout_bloc.dart';
 import 'package:lemon_pizza/blocs/layout/layout_type.dart';
 import 'package:lemon_pizza/blocs/order/order_bloc.dart';
