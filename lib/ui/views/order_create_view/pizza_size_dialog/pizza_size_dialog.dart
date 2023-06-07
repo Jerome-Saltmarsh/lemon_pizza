@@ -9,9 +9,10 @@ import 'package:lemon_pizza/blocs/select/select_bloc.dart';
 import 'package:lemon_pizza/model/pizza_size.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/common/font_families.dart';
-import 'package:lemon_pizza/ui/desktop/views/order_create_view/pizza_size_dialog/pizza_size_dialog_button.dart';
 import 'package:lemon_pizza/ui/desktop/widgets/order_bloc_builder.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
+
+import 'pizza_size_dialog_button.dart';
 
 class PizzaSizeDialog extends StatelessWidget {
   const PizzaSizeDialog({super.key});

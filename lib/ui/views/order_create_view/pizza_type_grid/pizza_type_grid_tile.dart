@@ -33,7 +33,7 @@ class PizzaTypeGridTile extends StatelessWidget {
     return Container(
       width: width,
       height: width,
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+      margin: const EdgeInsets.only(left: 8, top: 16, right: 8),
       padding: themeState.dialogPadding,
       decoration: BoxDecoration(
         color: colorScheme.secondaryContainer,

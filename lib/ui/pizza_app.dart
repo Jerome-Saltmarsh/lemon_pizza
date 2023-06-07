@@ -9,17 +9,13 @@ import '../blocs/order/order_bloc.dart';
 import '../blocs/order/order_repository.dart';
 import '../blocs/theme/theme_bloc.dart';
 import '../data/order_repository_memory.dart';
-import 'common/theme/theme_page.dart';
-import 'desktop/scaffold_desktop.dart';
-import 'mobile/scaffold_mobile.dart';
+import 'pizza_app_scaffold.dart';
 
-class App extends StatelessWidget {
-
-  const App({super.key});
+class PizzaApp extends StatelessWidget {
+  const PizzaApp({super.key});
 
   @override
-  Widget build(BuildContext context) =>
-      RepositoryProvider<OrderRepository>(
+  Widget build(BuildContext context) => RepositoryProvider<OrderRepository>(
         create: (context) => OrderRepositoryMemory(),
         child: MultiBlocProvider(
           providers: [
@@ -47,43 +43,28 @@ class App extends StatelessWidget {
                     OrderState(
                       orderItems: [],
                       orderStatus: OrderStatus.paymentSucceeded,
-                      customerDetails: CustomerDetails(
-                          name: '',
-                          address: '',
-                          phone: ''
-                      ),
+                      customerDetails:
+                          CustomerDetails(name: '', address: '', phone: ''),
                       paymentDetails: PaymentDetails(
                         cardNumber: '',
                         expiryYear: '',
-                        expiryMonth:  '',
+                        expiryMonth: '',
                         cvv: '',
                       ),
                     ),
-                    orderRepository: RepositoryProvider.of(context)
-                )
-            ),
+                    orderRepository: RepositoryProvider.of(context))),
           ],
-          child: Builder(
-            builder: (context) {
-              final themeState = context.watch<ThemeBloc>().state;
-              return MaterialApp(
-                title: 'PIZZA',
-                debugShowCheckedModeBanner: false,
-                themeMode: themeState.themeMode,
-                darkTheme: themeState.themeDataDark,
-                theme: themeState.themeDataLight,
-                routes: {
-                  "theme": (context){
-                    return const ThemePage();
-                  }
-                },
-                home: LayoutBuilder(builder: (context, constraints) =>
-                constraints.maxWidth > 700
-                    ? const ScaffoldDesktop()
-                    : const ScaffoldMobile()),
-              );
-            }
-          ),
+          child: Builder(builder: (builderContext) {
+            final themeState = builderContext.watch<ThemeBloc>().state;
+            return MaterialApp(
+              title: 'PIZZA',
+              debugShowCheckedModeBanner: false,
+              themeMode: themeState.themeMode,
+              darkTheme: themeState.themeDataDark,
+              theme: themeState.themeDataLight,
+              home: const PizzaAppScaffold(),
+            );
+          }),
         ),
       );
 }

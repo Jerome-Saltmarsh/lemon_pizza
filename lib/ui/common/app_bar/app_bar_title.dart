@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
-class TitleText extends StatelessWidget {
-  const TitleText({super.key});
+class AppBarTitle extends StatelessWidget {
+  const AppBarTitle({super.key});
 
   @override
   Widget build(BuildContext context) {
