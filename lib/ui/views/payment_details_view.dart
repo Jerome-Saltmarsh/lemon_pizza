@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lemon_pizza/blocs/order/order_state.dart';
-import 'package:lemon_pizza/ui/common/animations/animate_position_down.dart';
-import 'package:lemon_pizza/ui/common/font_families.dart';
+import 'package:lemon_pizza/ui/font_families.dart';
 import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/formatters/numbers_only_formatter.dart';
+import 'package:lemon_pizza/ui/widgets/animations/animate_position_down.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class PaymentDetailsView extends StatefulWidget {

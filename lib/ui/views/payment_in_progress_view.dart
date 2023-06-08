@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lemon_pizza/ui/common/font_families.dart';
+import 'package:lemon_pizza/ui/font_families.dart';
 import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
