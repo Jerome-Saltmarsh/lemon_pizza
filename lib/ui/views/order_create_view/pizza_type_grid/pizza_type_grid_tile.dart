@@ -4,9 +4,9 @@ import 'package:lemon_pizza/blocs/order/order_repository.dart';
 import 'package:lemon_pizza/blocs/select/select_bloc.dart';
 import 'package:lemon_pizza/model/pizza_size.dart';
 import 'package:lemon_pizza/model/pizza_type.dart';
-import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
-import 'package:lemon_pizza/ui/common/functions/format_dollars.dart';
-import 'package:lemon_pizza/ui/common/functions/map_ingredients_to_string.dart';
+import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
+import 'package:lemon_pizza/ui/functions/format_dollars.dart';
+import 'package:lemon_pizza/ui/functions/map_ingredients_to_string.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class PizzaTypeGridTile extends StatelessWidget {

@@ -6,7 +6,7 @@ import 'package:lemon_pizza/model/order_status.dart';
 import 'package:lemon_pizza/model/order_type.dart';
 import 'package:lemon_pizza/model/pizza_size.dart';
 import 'package:lemon_pizza/model/pizza_type.dart';
-import 'package:lemon_pizza/ui/common/functions/format_dollars.dart';
+import 'package:lemon_pizza/ui/functions/format_dollars.dart';
 
 import 'order_state.dart';
 

@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:golden_ratio/constants.dart';
 import 'package:lemon_pizza/blocs/select/select_bloc.dart';
 import 'package:lemon_pizza/model/pizza_size.dart';
-import 'package:lemon_pizza/ui/common/extensions/build_context_extension.dart';
-import 'package:lemon_pizza/ui/common/functions/format_dollars.dart';
+import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
+import 'package:lemon_pizza/ui/functions/format_dollars.dart';
 import 'package:lemon_pizza/ui/images/pizza_image.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
