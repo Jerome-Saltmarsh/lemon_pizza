@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/font_families.dart';
 import 'package:lemon_pizza/ui/views/order_create_view/order_items/order_items_column/order_items_column.dart';
+import 'package:lemon_pizza/ui/widgets/buttons/checkout_button.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
-
-import 'order_items_dialog_checkout_button.dart';
 
 
 class OrderItemsDialog extends StatelessWidget {
@@ -40,7 +39,7 @@ class OrderItemsDialog extends StatelessWidget {
                 ],
               ),
             ),
-            const OrderItemsDialogCheckoutButton(),
+            const CheckoutButton(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),),
           ],
         ),
       ),

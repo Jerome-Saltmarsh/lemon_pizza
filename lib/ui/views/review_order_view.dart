@@ -2,10 +2,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/font_families.dart';
+import 'package:lemon_pizza/ui/widgets/buttons/checkout_button.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 import 'order_create_view/order_items/order_items_column/order_items_column.dart';
-import 'order_create_view/order_items/order_items_dialog/order_items_dialog_checkout_button.dart';
 
 class ReviewOrderView extends StatelessWidget {
   const ReviewOrderView({super.key});
@@ -26,7 +26,7 @@ class ReviewOrderView extends StatelessWidget {
                 child: const SingleChildScrollView(child: OrderItemsColumn())),
             const SizedBox(
                 width: 200,
-                child: OrderItemsDialogCheckoutButton()),
+                child: CheckoutButton(borderRadius: BorderRadius.all(Radius.circular(4)),)),
           ],
         ),
     );

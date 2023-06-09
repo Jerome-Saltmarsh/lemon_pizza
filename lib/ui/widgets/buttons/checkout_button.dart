@@ -6,8 +6,11 @@ import 'package:lemon_pizza/ui/functions/format_dollars.dart';
 import 'package:lemon_pizza/ui/widgets/order_bloc_builder.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
-class OrderItemsDialogCheckoutButton extends StatelessWidget {
-  const OrderItemsDialogCheckoutButton({super.key});
+class CheckoutButton extends StatelessWidget {
+
+  final BorderRadiusGeometry borderRadius;
+
+  const CheckoutButton({super.key, required this.borderRadius});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,7 @@ class OrderItemsDialogCheckoutButton extends StatelessWidget {
             height: 40,
             decoration: BoxDecoration(
               color: colorScheme.error,
-              borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
+              borderRadius: borderRadius,
             ),
 
             child: Text("CHECKOUT ${formatDollars(orderState.totalOrderCost)}",
