@@ -4,7 +4,6 @@ import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/font_families.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
-import 'checkout_button.dart';
 import 'orders_dialog_item.dart';
 
 class OrdersColumn extends StatelessWidget {

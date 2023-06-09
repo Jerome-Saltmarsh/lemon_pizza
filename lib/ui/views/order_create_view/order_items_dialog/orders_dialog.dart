@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/views/order_create_view/order_items_dialog/orders_column.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
@@ -13,7 +12,7 @@ class OrderItemsDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FadeIn(
-      child: Container(
+      child: SizedBox(
         width: 200,
         child: Column(
           children: [

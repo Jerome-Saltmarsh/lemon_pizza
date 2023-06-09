@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/ui/views/order_status_view.dart';
+import 'package:lemon_pizza/ui/widgets/device_builder.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 import 'widgets/app_bar/app_bar_title.dart';
 import 'widgets/app_bar/order_back_button.dart';
 import 'widgets/app_bar/theme_hue_slider.dart';
-import 'widgets/pizza_box_floating_action_button.dart';
+import 'widgets/floating_action_button/pizza_box_floating_action_button.dart';
 import 'widgets/toggles/theme_mode_toggle.dart';
 
 
@@ -34,7 +35,11 @@ class PizzaAppScaffold extends StatelessWidget {
                   child: const ThemeModeToggle()),
             ],
           ),
-          floatingActionButton: const PizzaBoxFloatingActionButton(),
+          floatingActionButton: DeviceBuilder(
+            mobile: (context) {
+              return const PizzaBoxFloatingActionButton();
+            }
+          ),
           body: const OrderStatusView(),
         );
       }
