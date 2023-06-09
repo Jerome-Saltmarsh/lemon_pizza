@@ -6,10 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza/model/order_status.dart';
 import 'package:lemon_pizza/ui/widgets/order_status_changed.dart';
+import 'package:lemon_widgets/lemon_widgets.dart';
 
 class OrderBackButton extends StatelessWidget {
 
   static const supportedOrderStatuses = [
+    OrderStatus.reviewOrder,
     OrderStatus.customerDetails,
     OrderStatus.paymentDetails,
     OrderStatus.paymentFailed,
@@ -20,7 +22,7 @@ class OrderBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final backIcon = IconButton(
-        icon: const Icon(Icons.navigate_before),
+        icon: Icon(Icons.navigate_before, color: context.colorScheme.onSurfaceVariant,),
         onPressed: context.read<OrderBloc>().back,
     );
     return OrderStatusChanged((context, orderStatus) {

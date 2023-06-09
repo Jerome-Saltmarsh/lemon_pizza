@@ -1,15 +1,22 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lemon_pizza/blocs/layout/layout_bloc.dart';
+import 'package:lemon_pizza/blocs/order/order_bloc.dart';
+import 'package:lemon_pizza/model/order_status.dart';
 import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 import 'order_bloc_builder.dart';
 
-class CheckoutIcon extends StatelessWidget {
-  const CheckoutIcon({super.key});
+class PizzaBoxFloatingActionButton extends StatelessWidget {
+  const PizzaBoxFloatingActionButton({super.key});
 
   @override
   Widget build(BuildContext context) {
+    if (context.watch<LayoutBloc>().isDesktop) return const SizedBox();
+
+
     final fontSize = context.fontSize;
     final colorScheme = context.colorScheme;
 
@@ -25,7 +32,7 @@ class CheckoutIcon extends StatelessWidget {
              IconButton(
                icon: Icon(Icons.shopping_cart, size: 35, color: colorScheme.primary,),
                onPressed: (){
-
+                  context.read<OrderBloc>().setOrderStatus(OrderStatus.reviewOrder);
                },
              ),
              if (orderState.orderItems.isNotEmpty)

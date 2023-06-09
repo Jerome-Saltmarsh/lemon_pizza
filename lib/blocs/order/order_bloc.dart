@@ -17,6 +17,9 @@ class OrderBloc extends Cubit<OrderState> {
 
   OrderBloc(super.initialState, {required this.orderRepository});
 
+  void setOrderStatus(OrderStatus value) =>
+      emit(state.copyWith(orderStatus: value));
+
   void restart(){
     emitOrderState(
       orderItems: [],
@@ -129,6 +132,12 @@ class OrderBloc extends Cubit<OrderState> {
 
   void back() {
      switch (state.orderStatus) {
+       case OrderStatus.reviewOrder:
+         emitOrderState(
+           orderStatus: OrderStatus.createOrder,
+           validate: false,
+         );
+         break;
        case OrderStatus.customerDetails:
          emitOrderState(
            orderStatus: OrderStatus.createOrder,

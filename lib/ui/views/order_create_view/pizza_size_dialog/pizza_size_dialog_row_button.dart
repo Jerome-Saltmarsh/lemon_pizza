@@ -6,7 +6,7 @@ import 'package:lemon_pizza/blocs/select/select_bloc.dart';
 import 'package:lemon_pizza/model/pizza_size.dart';
 import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/functions/format_dollars.dart';
-import 'package:lemon_pizza/ui/images/pizza_image.dart';
+import 'package:lemon_pizza/ui/views/order_create_view/pizza_size_dialog/pizza_size_image.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class PizzaSizeDialogRowButton extends StatelessWidget {
@@ -67,7 +67,7 @@ class PizzaSizeDialogRowButton extends StatelessWidget {
                 height: 75,
                 width: 225.0 * getIconSize(pizzaSize) * 0.2,
                 alignment: Alignment.center,
-                child: const PizzaImage()
+                child: const PizzaSizeImage()
             ),
           ],
         ),

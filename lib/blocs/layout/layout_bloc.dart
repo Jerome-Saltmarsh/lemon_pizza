@@ -11,4 +11,7 @@ class LayoutBloc extends Cubit<LayoutType> {
   void updateScreenWidth(double screenWidth){
     emit(screenWidth < mobileScreenWidth ? LayoutType.mobile : LayoutType.desktop);
   }
+
+  bool get isMobile => state == LayoutType.mobile;
+  bool get isDesktop => state == LayoutType.desktop;
 }

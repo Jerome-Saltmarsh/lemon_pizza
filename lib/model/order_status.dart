@@ -1,5 +1,6 @@
 enum OrderStatus {
   createOrder,
+  reviewOrder,
   orderType,
   customerDetails,
   paymentDetails,
