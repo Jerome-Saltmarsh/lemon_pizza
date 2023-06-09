@@ -6,8 +6,8 @@ import 'package:lemon_pizza/ui/functions/format_dollars.dart';
 import 'package:lemon_pizza/ui/widgets/order_bloc_builder.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
-class CheckoutButton extends StatelessWidget {
-  const CheckoutButton({super.key});
+class OrderItemsDialogCheckoutButton extends StatelessWidget {
+  const OrderItemsDialogCheckoutButton({super.key});
 
   @override
   Widget build(BuildContext context) {

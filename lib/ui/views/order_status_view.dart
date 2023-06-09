@@ -12,7 +12,7 @@ import 'payment_failed_view.dart';
 import 'payment_in_progress_view.dart';
 import 'payment_succeeded_view.dart';
 import 'review_order_view.dart';
-import 'type_type_view.dart';
+import 'order_type_view.dart';
 
 class OrderStatusView extends StatelessWidget {
   const OrderStatusView({super.key});

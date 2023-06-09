@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/model/order_status.dart';
-import 'package:lemon_pizza/ui/views/order_create_view/order_items/order_items_dialog/checkout_button.dart';
 import 'package:lemon_pizza/ui/widgets/floating_action_button/review_orders_button.dart';
 import 'package:lemon_pizza/ui/widgets/order_status_changed.dart';
 
@@ -11,7 +10,7 @@ class PizzaBoxFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) =>
       OrderStatusChanged((context, orderStatus) => switch (orderStatus) {
             OrderStatus.createOrder => const ReviewOrdersButton(),
-            OrderStatus.reviewOrder => const CheckoutButton(),
+            // OrderStatus.reviewOrder => const CheckoutButton(),
             _ => const SizedBox()
           });
 }

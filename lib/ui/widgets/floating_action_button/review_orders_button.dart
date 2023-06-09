@@ -20,6 +20,8 @@ class ReviewOrdersButton extends StatelessWidget {
         return previous.orderItems.length != current.orderItems.length;
       },
       builder: (context, orderState){
+        if (orderState.orderItems.isEmpty) return const SizedBox();
+
         return Stack(
           clipBehavior: Clip.none,
           alignment: Alignment.center,
