@@ -24,24 +24,21 @@ class OrdersColumn extends StatelessWidget {
         Text("ORDERS PLACED", style: TextStyle(
             fontFamily: FontFamilies.secondary,
             color: colorScheme.secondary, fontSize: fontSize.large),),
-        Expanded(
-          child: Container(
-            constraints: const BoxConstraints(maxHeight: 300),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: orderItems.map(
-                            (orderItem) => OrdersDialogItem(orderItem: orderItem)
-                    ).toList(),
-                  ),
-                ],
-              ),
+        Container(
+          constraints: const BoxConstraints(maxHeight: 300),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: orderItems.map(
+                          (orderItem) => OrdersDialogItem(orderItem: orderItem)
+                  ).toList(),
+                ),
+              ],
             ),
           ),
         ),
-        const CheckoutButton(),
       ],
     );
   }

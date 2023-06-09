@@ -4,6 +4,8 @@ import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
 import 'package:lemon_pizza/ui/views/order_create_view/order_items_dialog/orders_column.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
+import 'checkout_button.dart';
+
 
 class OrderItemsDialog extends StatelessWidget {
 
@@ -13,13 +15,20 @@ class OrderItemsDialog extends StatelessWidget {
   Widget build(BuildContext context) => FadeIn(
       child: Container(
         width: 200,
-        padding: const EdgeInsets.all(16),
-        constraints: const BoxConstraints(maxHeight: 400),
-        decoration: BoxDecoration(
-          color: context.colorScheme.surfaceVariant,
-          borderRadius: context.readThemeState.dialogBorderRadius,
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              constraints: const BoxConstraints(maxHeight: 400),
+              decoration: BoxDecoration(
+                color: context.colorScheme.surfaceVariant,
+                borderRadius: const BorderRadius.only(topLeft: Radius.circular(4), topRight: Radius.circular(4)),
+              ),
+              child: const OrdersColumn(),
+            ),
+            const CheckoutButton(),
+          ],
         ),
-        child: const OrdersColumn(),
       ),
     );
 

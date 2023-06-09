@@ -29,8 +29,10 @@ class OrderBloc extends Cubit<OrderState> {
   }
 
   void removeOrderItem(OrderItem orderItem) {
+    final orderItems = state.orderItems.where((element) => element != orderItem).toList();
      emitOrderState(
-       orderItems: state.orderItems.where((element) => element != orderItem).toList()
+       orderItems: orderItems,
+       orderStatus: orderItems.isEmpty ? OrderStatus.createOrder : null,
      );
   }
 

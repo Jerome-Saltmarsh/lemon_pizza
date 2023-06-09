@@ -20,14 +20,16 @@ class CheckoutButton extends StatelessWidget {
         child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             alignment: Alignment.center,
-            width: double.infinity,
-            constraints: const BoxConstraints(
-              maxWidth: 150,
-            ),
             height: 40,
-            color: colorScheme.error,
+            decoration: BoxDecoration(
+              color: colorScheme.error,
+              borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
+            ),
+
             child: Text("CHECKOUT ${formatDollars(orderState.totalOrderCost)}",
-              style: TextStyle(color: colorScheme.onError, fontFamily: FontFamilies.secondary),)),
+              style: TextStyle(
+                  fontSize: context.fontSize.small,
+                  color: colorScheme.onError, fontFamily: FontFamilies.roboto),)),
       );
     });
   }
