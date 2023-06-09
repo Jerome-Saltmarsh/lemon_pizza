@@ -11,13 +11,16 @@ class ThemeHueSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeBloc = context.watch<ThemeBloc>();
-    return ColorPickerSlider(
-      TrackType.hue,
-      HSVColor.fromColor(themeBloc.state.color),
-          (HSVColor color) {
-            themeBloc.setColor(color.toColor());
-      },
-      displayThumbColor: true,
+    return SizedBox(
+      width: 200,
+      child: ColorPickerSlider(
+        TrackType.hue,
+        HSVColor.fromColor(themeBloc.state.color),
+            (HSVColor color) {
+              themeBloc.setColor(color.toColor());
+        },
+        displayThumbColor: true,
+      ),
     );
   }
 }

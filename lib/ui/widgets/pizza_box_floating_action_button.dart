@@ -40,17 +40,29 @@ class PizzaBoxFloatingActionButton extends StatelessWidget {
                  top: -5,
                  right: -10,
                  child: IgnorePointer(
-                   child: Container(
-                       width: 25,
-                       height: 25,
+                   child: SizedBox(
+                     width: 25,
+                     height: 25,
+                     child: Stack(
                        alignment: Alignment.center,
-                       decoration: BoxDecoration(
-                         shape: BoxShape.circle,
-                         color: context.colorScheme.error,
-                       ),
-                       child: Text(orderState.orderItems.length.toString(),
-                           style: TextStyle(color: Colors.white, fontSize: fontSize.regular)
-                       )
+                       children: [
+                         Container(
+                            decoration: BoxDecoration(
+                               color: context.colorScheme.error,
+                               shape: BoxShape.circle,
+                            ),
+                         ),
+
+                         Positioned(
+                           top: -5,
+                           child: Text(orderState.orderItems.length.toString(),
+                               textAlign: TextAlign.center,
+                               overflow: TextOverflow.ellipsis,
+                               style: TextStyle(color: Colors.white, fontSize: fontSize.regular, )
+                           ),
+                         ),
+                       ],
+                     ),
                    ),
                  ),
                ),
