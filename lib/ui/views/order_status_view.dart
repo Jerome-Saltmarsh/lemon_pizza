@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/layout/layout_bloc.dart';
+import 'package:lemon_pizza/blocs/device/device_bloc.dart';
 import 'package:lemon_pizza/model/order_status.dart';
 import 'package:lemon_pizza/ui/widgets/order_status_changed.dart';
 import 'customer_details_view.dart';
@@ -20,7 +20,7 @@ class OrderStatusView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = context.watch<LayoutBloc>().isMobile;
+    final isMobile = context.watch<DeviceBloc>().isMobile;
 
     return OrderStatusChanged((context, orderStatus) {
 

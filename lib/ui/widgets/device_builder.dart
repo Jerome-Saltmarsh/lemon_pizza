@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/layout/layout_bloc.dart';
+import 'package:lemon_pizza/blocs/device/device_bloc.dart';
 
 class DeviceBuilder extends StatelessWidget {
 
@@ -12,7 +12,7 @@ class DeviceBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (context.watch<LayoutBloc>().isDesktop) {
+    if (context.watch<DeviceBloc>().isDesktop) {
       return desktop != null ? desktop!(context) : const SizedBox();
     }
     return mobile != null ? mobile!(context) : const SizedBox();

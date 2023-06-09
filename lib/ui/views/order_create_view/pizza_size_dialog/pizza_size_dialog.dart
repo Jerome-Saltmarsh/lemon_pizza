@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/layout/layout_bloc.dart';
-import 'package:lemon_pizza/blocs/layout/layout_type.dart';
+import 'package:lemon_pizza/blocs/device/device_bloc.dart';
+import 'package:lemon_pizza/blocs/device/device_type.dart';
 import 'package:lemon_pizza/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza/blocs/select/select_bloc.dart';
 import 'package:lemon_pizza/ui/font_families.dart';
@@ -21,7 +21,7 @@ class PizzaSizeDialog extends StatelessWidget {
     final selectState = selectBloc.state;
     final colorScheme = context.colorScheme;
     final themeState = context.readThemeState;
-    final layoutType = context.watch<LayoutBloc>().state;
+    final deviceType = context.watch<DeviceBloc>().state;
     const blur = 4.0;
 
     final selectPizzaType = selectState.pizzaType;
@@ -54,9 +54,9 @@ class PizzaSizeDialog extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   const SizedBox(height: 16),
-                  if (layoutType == LayoutType.desktop)
+                  if (deviceType == DeviceType.desktop)
                     const PizzaSizeDialogRow(),
-                  if (layoutType == LayoutType.mobile)
+                  if (deviceType == DeviceType.mobile)
                     const PizzaSizeDialogColumn(),
                   const SizedBox(height: 16),
                   Row(
