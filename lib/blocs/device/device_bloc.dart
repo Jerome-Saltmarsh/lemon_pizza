@@ -9,20 +9,21 @@ class DeviceBloc extends Cubit<DeviceType> {
   DeviceBloc(super.initialState);
 
   bool get isMobile => state == DeviceType.mobile;
+  bool get isTablet => state == DeviceType.tablet;
   bool get isDesktop => state == DeviceType.desktop;
 
   void update(BuildContext buildContext){
-    emit(getDeviceType(buildContext));
+    emit(_getDeviceType(buildContext));
   }
 
-  DeviceType getDeviceType(BuildContext context) {
+  static DeviceType _getDeviceType(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     if (screenWidth < 600) {
       return DeviceType.mobile;
-    } else if (screenWidth < 1200) {
-      return DeviceType.tablet;
-    } else {
-      return DeviceType.desktop;
     }
+    if (screenWidth < 900) {
+      return DeviceType.tablet;
+    }
+    return DeviceType.desktop;
   }
 }

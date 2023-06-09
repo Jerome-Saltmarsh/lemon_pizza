@@ -10,35 +10,29 @@ import 'order_items_dialog/orders_dialog.dart';
 import 'pizza_size_dialog/pizza_size_dialog.dart';
 import 'pizza_type_grid/pizza_type_grid.dart';
 
-
-
 class CreateOrderViewDesktop extends StatelessWidget {
   const CreateOrderViewDesktop({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final selectBloc = context.watch<SelectBloc>();
-
-    return LayoutBuilder(builder: (context, size){
-      return Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
-            width: double.infinity,
-            alignment: Alignment.topCenter,
-            child: const PizzaTypeGrid(),
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Container(
+          width: double.infinity,
+          alignment: Alignment.topCenter,
+          child: const PizzaTypeGrid(),
+        ),
+        if (context.watch<OrderBloc>().state.orderItems.isNotEmpty)
+          const Positioned(
+            top: 16,
+            right: 16,
+            child: OrderItemsDialog(),
           ),
-          if (context.watch<OrderBloc>().state.orderItems.isNotEmpty)
-            const Positioned(
-              top: 16,
-              right: 16,
-              child: OrderItemsDialog(),
-            ),
-          if (selectBloc.state.pizzaType != null)
-            const PizzaSizeDialog(),
-        ],
-      );
-    });
+        if (context.watch<SelectBloc>().state.pizzaType != null)
+          const PizzaSizeDialog(),
+      ],
+    );
   }
 
   static double getIconSize(PizzaSize pizzaSize) {

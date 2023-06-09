@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/blocs/device/device_bloc.dart';
 import 'package:lemon_pizza/model/order_status.dart';
+import 'package:lemon_pizza/ui/views/order_create_view/create_order_view.dart';
 import 'package:lemon_pizza/ui/widgets/order_status_changed.dart';
 import 'customer_details_view.dart';
 import 'order_create_view/create_order_view_desktop.dart';
@@ -26,7 +27,7 @@ class OrderStatusView extends StatelessWidget {
 
       switch (orderStatus) {
         case OrderStatus.createOrder:
-          return isMobile ? const CreateOrderViewMobile() : const CreateOrderViewDesktop();
+          return const CreateOrderView();
         case OrderStatus.reviewOrder:
           return const ReviewOrderView();
         case OrderStatus.orderType:
