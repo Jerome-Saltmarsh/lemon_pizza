@@ -1,7 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
-import 'package:lemon_pizza/ui/views/order_create_view/order_items_dialog/orders_column.dart';
+
+import 'order_create_view/order_items/order_items_column/order_items_column.dart';
 
 class ReviewOrderView extends StatelessWidget {
   const ReviewOrderView({super.key});
@@ -10,7 +11,7 @@ class ReviewOrderView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: context.readThemeState.dialogPadding,
-        child: const OrdersColumn(),
+        child: const OrderItemsColumn(),
     );
   }
 

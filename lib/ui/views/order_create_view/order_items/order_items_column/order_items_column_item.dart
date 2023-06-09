@@ -6,11 +6,11 @@ import 'package:lemon_pizza/blocs/order/order_state.dart';
 import 'package:lemon_pizza/ui/functions/format_dollars.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
-class OrdersDialogItem extends StatelessWidget {
+class OrderItemsColumnItem extends StatelessWidget {
 
   final OrderItem orderItem;
 
-  const OrdersDialogItem({super.key, required this.orderItem});
+  const OrderItemsColumnItem({super.key, required this.orderItem});
 
   @override
   Widget build(BuildContext context) {

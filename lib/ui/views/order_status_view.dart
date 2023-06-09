@@ -7,8 +7,6 @@ import 'package:lemon_pizza/model/order_status.dart';
 import 'package:lemon_pizza/ui/views/order_create_view/create_order_view.dart';
 import 'package:lemon_pizza/ui/widgets/order_status_changed.dart';
 import 'customer_details_view.dart';
-import 'order_create_view/create_order_view_desktop.dart';
-import 'order_create_view/create_order_view_mobile.dart';
 import 'payment_details_view.dart';
 import 'payment_failed_view.dart';
 import 'payment_in_progress_view.dart';

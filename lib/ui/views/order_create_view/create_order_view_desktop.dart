@@ -6,7 +6,7 @@ import 'package:lemon_pizza/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza/blocs/select/select_bloc.dart';
 import 'package:lemon_pizza/model/pizza_size.dart';
 
-import 'order_items_dialog/orders_dialog.dart';
+import 'order_items/order_items_dialog/orders_dialog.dart';
 import 'pizza_size_dialog/pizza_size_dialog.dart';
 import 'pizza_type_grid/pizza_type_grid.dart';
 
