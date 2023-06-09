@@ -2,9 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza/blocs/select/select_bloc.dart';
-import 'package:lemon_pizza/ui/views/order_create_view/pizza_type_column/pizza_type_column.dart';
 
 import 'order_items/order_items_column/order_items_column.dart';
+import 'pizza_type/pizza_type_column/pizza_type_column.dart';
 
 class CreateOrderViewTablet extends StatelessWidget {
   const CreateOrderViewTablet({super.key});

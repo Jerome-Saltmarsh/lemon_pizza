@@ -8,7 +8,7 @@ import 'package:lemon_pizza/model/pizza_size.dart';
 
 import 'order_items/order_items_dialog/orders_dialog.dart';
 import 'pizza_size_dialog/pizza_size_dialog.dart';
-import 'pizza_type_grid/pizza_type_grid.dart';
+import 'pizza_type/pizza_type_grid/pizza_type_grid.dart';
 
 class CreateOrderViewDesktop extends StatelessWidget {
   const CreateOrderViewDesktop({super.key});

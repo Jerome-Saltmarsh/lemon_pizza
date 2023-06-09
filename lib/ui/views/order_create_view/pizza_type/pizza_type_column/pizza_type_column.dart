@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:lemon_pizza/model/pizza_type.dart';
-import 'package:lemon_pizza/ui/views/order_create_view/pizza_type_column/pizza_type_column_item.dart';
+
+import 'pizza_type_column_item.dart';
 
 class PizzaTypeColumn extends StatelessWidget {
   const PizzaTypeColumn({super.key});
