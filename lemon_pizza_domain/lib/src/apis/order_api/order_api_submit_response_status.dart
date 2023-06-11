@@ -1,0 +1,6 @@
+
+
+enum OrderApiSubmitResponseStatus {
+    failed,
+    succeeded,
+}
