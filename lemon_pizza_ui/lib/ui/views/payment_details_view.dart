@@ -19,9 +19,6 @@ class PaymentDetailsView extends StatefulWidget {
 
 class _PaymentDetailsViewState extends State<PaymentDetailsView> {
 
-  final controllerExpiryMonth = TextEditingController();
-  final controllerExpiryYear = TextEditingController();
-  final controllerCVV = TextEditingController();
   String? errorCardNumber;
   String? errorCVV;
   String? errorExpiryYear;
@@ -70,23 +67,6 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
     return Text(value, style: buildLabelStyle());
   }
 
-
-  @override
-  void initState() {
-     super.initState();
-     final paymentDetails = context.readOrderBloc.state.paymentDetails;
-     controllerExpiryYear.text = paymentDetails.expiryYear.toString();
-     controllerExpiryMonth.text = paymentDetails.expiryMonth.toString();
-  }
-
-  @override
-  void dispose() {
-    controllerExpiryYear.dispose();
-    controllerExpiryMonth.dispose();
-    controllerCVV.dispose();
-    super.dispose();
-  }
-
   Widget buildTextFieldCardNumber() => TextField(
       cursorColor: context.colorScheme.secondary,
       controller: TextEditingController(text: context.read<OrderBloc>().state.paymentDetails.cardNumber),
@@ -115,7 +95,13 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
           keyboardType: TextInputType.number,
           inputFormatters: [numbersOnlyFormatter],
           decoration: buildInputDecoration(text: "MM", error: errorExpiryMonth),
-          controller: controllerExpiryMonth,
+          onChanged: (value){
+            final orderBloc = context.read<OrderBloc>();
+            orderBloc.emitOrderState(
+               paymentDetails: orderBloc.state.paymentDetails.copyWith(expiryMonth: value)
+            );
+          },
+          controller: TextEditingController(text: context.read<OrderBloc>().state.paymentDetails.expiryMonth),
           ),
     );
 
@@ -128,7 +114,13 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
           keyboardType: TextInputType.number,
           inputFormatters: [numbersOnlyFormatter],
           decoration: buildInputDecoration(text: "YYYY", error: errorExpiryYear),
-          controller: controllerExpiryYear,
+          controller: TextEditingController(text: context.read<OrderBloc>().state.paymentDetails.expiryYear),
+          onChanged: (value){
+             final orderBloc = context.read<OrderBloc>();
+             orderBloc.emitOrderState(
+               paymentDetails: orderBloc.state.paymentDetails.copyWith(expiryYear: value)
+             );
+          },
           ),
     );
 
@@ -141,7 +133,15 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
           keyboardType: TextInputType.number,
           inputFormatters: [numbersOnlyFormatter],
           decoration: buildInputDecoration(text: "CVV", error: errorCVV),
-          controller: controllerCVV,
+          controller: TextEditingController(
+            text: context.read<OrderBloc>().state.paymentDetails.cvv
+          ),
+          onChanged: (value){
+            final orderBloc = context.read<OrderBloc>();
+            orderBloc.emitOrderState(
+                paymentDetails: orderBloc.state.paymentDetails.copyWith(cvv: value)
+            );
+          },
           ),
     );
 
@@ -234,21 +234,21 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
     if (cardNumber.length < 16){
       errorCardNumber = 'too short';
     }
-    if (controllerCVV.text.length != 3){
+    if (paymentDetails.cvv.length != 3){
       errorCVV = 'invalid';
     } else
-    if (int.tryParse(controllerCVV.text) == null){
+    if (int.tryParse(paymentDetails.cvv) == null){
       errorCVV = 'invalid';
     }
 
-    if (controllerExpiryYear.text.length != 4){
+    if (paymentDetails.expiryYear.length != 4){
       errorExpiryYear = 'invalid';
     }
 
-    if (controllerExpiryMonth.text.isEmpty){
+    if (paymentDetails.expiryMonth.isEmpty){
       errorExpiryMonth = 'required';
     } else {
-      final expiryMonth = int.tryParse(controllerExpiryMonth.text);
+      final expiryMonth = int.tryParse(paymentDetails.expiryMonth);
       if (expiryMonth == null || expiryMonth <= 0 || expiryMonth > 12){
        errorExpiryMonth = 'invalid';
       }
