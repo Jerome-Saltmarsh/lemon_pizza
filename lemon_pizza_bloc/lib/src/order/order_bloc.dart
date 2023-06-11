@@ -2,10 +2,12 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
-import 'package:lemon_pizza_ui/ui/functions/format_dollars.dart';
+
+import 'order_repository.dart';
+import 'order_state.dart';
 
 
-class OrderBloc extends Cubit<Order> {
+class OrderBloc extends Cubit<OrderState> {
 
   final OrderRepository orderRepository;
 
@@ -36,6 +38,7 @@ class OrderBloc extends Cubit<Order> {
     }
     emitOrderState(
         orderItems: [...state.orderItems, orderItem],
+        ordersPlacedVisible: true,
     );
   }
 
@@ -90,9 +93,10 @@ class OrderBloc extends Cubit<Order> {
     CustomerDetails? customerDetails,
     PaymentDetails? paymentDetails,
     bool? validate,
+    bool? ordersPlacedVisible,
     OrderType? orderType,
   }){
-    emit(Order(
+    emit(OrderState(
       orderItems: orderItems ?? state.orderItems,
       orderStatus: orderStatus ?? state.orderStatus,
       customerDetails: customerDetails ?? state.customerDetails,
@@ -117,13 +121,11 @@ class OrderBloc extends Cubit<Order> {
 
   void submitOrder() async {
     emitOrderState(orderStatus: OrderStatus.paymentInProgress);
-    await orderRepository.createOrder(state).then((value) {
+    await orderRepository.submitOrder().then((value) {
       emitOrderState(orderStatus: OrderStatus.paymentSucceeded);
     }).catchError((error){
       emitOrderState(orderStatus: OrderStatus.paymentFailed);
     });
-
-
   }
 
   void back() {
@@ -158,4 +160,6 @@ class OrderBloc extends Cubit<Order> {
   }
 
   String get formattedTotalCost => formatDollars(state.totalOrderCost);
+
+  String formatDollars(double value)=> '\$${value.toStringAsFixed(2)}';
 }

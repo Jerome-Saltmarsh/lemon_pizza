@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lemon_pizza_ui/blocs/order/order_state.dart';
+import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
 import 'package:lemon_pizza_ui/ui/extensions/build_context_extension.dart';
 import 'package:lemon_pizza_ui/ui/font_families.dart';
 import 'package:lemon_pizza_ui/ui/formatters/numbers_only_formatter.dart';

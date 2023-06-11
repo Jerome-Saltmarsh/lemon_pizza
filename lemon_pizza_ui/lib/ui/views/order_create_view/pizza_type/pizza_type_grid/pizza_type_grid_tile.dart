@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
-import 'package:lemon_pizza_ui/blocs/order/order_repository.dart';
 import 'package:lemon_pizza_ui/blocs/select/select_bloc.dart';
 import 'package:lemon_pizza_ui/ui/extensions/build_context_extension.dart';
 import 'package:lemon_pizza_ui/ui/functions/format_dollars.dart';

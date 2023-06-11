@@ -3,12 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
 import 'package:lemon_pizza_ui/blocs/device/device_bloc.dart';
 import 'package:lemon_pizza_ui/blocs/device/device_type.dart';
-import 'package:lemon_pizza_ui/blocs/order/order_state.dart';
 import 'package:lemon_pizza_ui/blocs/select/select_bloc.dart';
 import 'package:lemon_pizza_ui/blocs/theme/theme_state.dart';
 
 import '../blocs/order/order_bloc.dart';
-import '../blocs/order/order_repository.dart';
 import '../blocs/theme/theme_bloc.dart';
 import '../data/order_repository_memory.dart';
 import 'pizza_app_scaffold.dart';
@@ -45,7 +43,7 @@ class PizzaApp extends StatelessWidget {
                     )))),
             BlocProvider<OrderBloc>(
                 create: (context) => OrderBloc(
-                    OrderState(
+                    Order(
                       orderItems: [],
                       orderStatus: OrderStatus.paymentFailed,
                       customerDetails:

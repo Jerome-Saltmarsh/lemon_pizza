@@ -2,18 +2,10 @@
 import 'dart:math';
 
 import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
-import 'package:lemon_pizza_ui/blocs/order/order_repository.dart';
 
 class OrderRepositoryMemory implements OrderRepository {
 
   final random = Random();
-
-  @override
-  Future submitOrder() async {
-    return Future.delayed(const Duration(seconds: 2), (){
-        if (random.nextBool()) throw Exception('Insufficient Funds');
-    });
-  }
 
   @override
   double getPizzaPrice({required PizzaType pizzaType, required PizzaSize pizzaSize}) {
@@ -49,5 +41,16 @@ class OrderRepositoryMemory implements OrderRepository {
            PizzaSize.large => 15.0,
         }
     };
+  }
+
+  @override
+  Future<OrderRepositorySubmitResponse> createOrder(Order order) async {
+    await Future.delayed(Duration(seconds: 3 + random.nextInt(3)));
+    return OrderRepositorySubmitResponse(
+      order: order,
+      status: random.nextBool()
+          ? OrderRepositorySubmitResponseStatus.failed
+          : OrderRepositorySubmitResponseStatus.succeeded,
+    );
   }
 }

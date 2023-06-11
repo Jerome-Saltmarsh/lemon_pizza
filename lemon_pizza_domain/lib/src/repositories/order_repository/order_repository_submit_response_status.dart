@@ -1,0 +1,6 @@
+
+
+enum OrderRepositorySubmitResponseStatus {
+    failed,
+    succeeded,
+}

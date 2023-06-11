@@ -1,0 +1,16 @@
+name: lemon_pizza_bloc
+description: The business logic layer of the lemon pizza
+version: 1.0.0
+
+environment:
+  sdk: ^3.0.3
+
+dependencies:
+  bloc: ^8.1.0
+
+  lemon_pizza_domain:
+    path: ..\lemon_pizza_domain
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.21.0
