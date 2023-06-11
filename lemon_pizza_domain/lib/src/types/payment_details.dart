@@ -11,5 +11,18 @@ class PaymentDetails {
     required this.expiryMonth,
     required this.cvv,
   });
+
+  PaymentDetails copyWith({
+    String? cardNumber,
+    String? expiryYear,
+    String? expiryMonth,
+    String? cvv,
+  }) =>
+    PaymentDetails(
+      cardNumber: cardNumber ?? this.cardNumber,
+      expiryYear: expiryYear ?? this.expiryYear,
+      expiryMonth: expiryMonth ?? this.expiryMonth,
+      cvv: cvv ?? this.cvv,
+    );
 }
 

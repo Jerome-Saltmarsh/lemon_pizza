@@ -52,20 +52,6 @@ class OrderBloc extends Cubit<Order> {
      );
   }
 
-  void setCustomerDetails({
-    required String name,
-    required String address,
-    required String phone,
-  }){
-    emitOrderState(
-       customerDetails: CustomerDetails(
-        name: name,
-        address: address,
-         phone: phone,
-       )
-    );
-  }
-
   void emitPaymentDetails({
     String? cardHolderName,
     String? cardNumber,

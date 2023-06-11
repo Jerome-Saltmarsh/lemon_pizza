@@ -2,7 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lemon_pizza_ui/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza_ui/ui/extensions/build_context_extension.dart';
 import 'package:lemon_pizza_ui/ui/font_families.dart';
 import 'package:lemon_pizza_ui/ui/formatters/numbers_only_formatter.dart';
@@ -18,7 +19,6 @@ class PaymentDetailsView extends StatefulWidget {
 
 class _PaymentDetailsViewState extends State<PaymentDetailsView> {
 
-  final controllerCardNumber = TextEditingController();
   final controllerExpiryMonth = TextEditingController();
   final controllerExpiryYear = TextEditingController();
   final controllerCVV = TextEditingController();
@@ -75,33 +75,29 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
   void initState() {
      super.initState();
      final paymentDetails = context.readOrderBloc.state.paymentDetails;
-     controllerCardNumber.text = paymentDetails.cardNumber;
      controllerExpiryYear.text = paymentDetails.expiryYear.toString();
      controllerExpiryMonth.text = paymentDetails.expiryMonth.toString();
   }
 
   @override
   void dispose() {
-
-    context.readOrderBloc.submitPaymentDetails(PaymentDetails(
-      cardNumber: controllerCardNumber.text,
-      expiryMonth: controllerExpiryMonth.text,
-      expiryYear: controllerExpiryYear.text,
-      cvv: controllerCVV.text,
-    ));
-
     controllerExpiryYear.dispose();
     controllerExpiryMonth.dispose();
-    controllerCardNumber.dispose();
     controllerCVV.dispose();
     super.dispose();
   }
 
   Widget buildTextFieldCardNumber() => TextField(
       cursorColor: context.colorScheme.secondary,
-      controller: controllerCardNumber,
+      controller: TextEditingController(text: context.read<OrderBloc>().state.paymentDetails.cardNumber),
       style: buildTextStyle(),
       inputFormatters: [CreditCardNumberFormatter(), numbersAndSpaceFormatter],
+      onChanged: (value){
+        final orderBloc = context.read<OrderBloc>();
+        orderBloc.emitOrderState(
+           paymentDetails: orderBloc.state.paymentDetails.copyWith(cardNumber: value)
+        );
+      },
       decoration: buildInputDecoration(
           text: "Card Number",
           error: errorCardNumber,
@@ -152,6 +148,7 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
   @override
   Widget build(BuildContext context) {
     const width = 400.0;
+
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -191,18 +188,9 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
                   TextButton(onPressed: () {
                     if (!validate()) {
                       return setState(() {
-
                       });
                     }
-
-                    context.readOrderBloc.submitPaymentDetails(
-                       PaymentDetails(
-                          cardNumber: controllerCardNumber.text,
-                          expiryMonth: controllerExpiryMonth.text,
-                          expiryYear: controllerExpiryYear.text,
-                          cvv: controllerCVV.text,
-                       )
-                    );
+                    context.readOrderBloc.submitOrder();
                   },
                       style: ButtonStyle(
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -237,10 +225,13 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
     errorExpiryMonth = null;
     errorExpiryYear = null;
 
-    if (controllerCardNumber.text.isEmpty){
+    final paymentDetails = context.read<OrderBloc>().state.paymentDetails;
+    final cardNumber = paymentDetails.cardNumber;
+
+    if (cardNumber.isEmpty){
       errorCardNumber = 'required';
     } else
-    if (controllerCardNumber.text.length < 16){
+    if (cardNumber.length < 16){
       errorCardNumber = 'too short';
     }
     if (controllerCVV.text.length != 3){

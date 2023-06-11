@@ -45,7 +45,7 @@ class PizzaApp extends StatelessWidget {
                 create: (context) => OrderBloc(
                     Order(
                       orderItems: [],
-                      orderStatus: OrderStatus.paymentFailed,
+                      orderStatus: OrderStatus.paymentDetails,
                       customerDetails:
                           CustomerDetails(name: '', address: '', phone: ''),
                       paymentDetails: PaymentDetails(
