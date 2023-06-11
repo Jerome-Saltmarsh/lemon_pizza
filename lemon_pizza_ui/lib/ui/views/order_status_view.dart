@@ -1,10 +1,10 @@
 
 
 import 'package:flutter/cupertino.dart';
-import 'package:lemon_pizza/ui/views/order_create_view/create_order_view.dart';
-import 'package:lemon_pizza/ui/widgets/order_status_changed.dart';
 import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
+import 'package:lemon_pizza_ui/ui/widgets/order_status_changed.dart';
 import 'customer_details_view.dart';
+import 'order_create_view/create_order_view.dart';
 import 'payment_details_view.dart';
 import 'payment_failed_view.dart';
 import 'payment_in_progress_view.dart';

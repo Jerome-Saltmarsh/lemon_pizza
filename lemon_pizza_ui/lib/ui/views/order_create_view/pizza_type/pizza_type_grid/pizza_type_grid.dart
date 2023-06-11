@@ -1,8 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
+import 'package:lemon_pizza_ui/blocs/order/order_bloc.dart';
 
 import 'pizza_type_grid_tile.dart';
 

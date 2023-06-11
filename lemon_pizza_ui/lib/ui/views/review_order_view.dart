@@ -1,8 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
-import 'package:lemon_pizza/ui/font_families.dart';
-import 'package:lemon_pizza/ui/widgets/buttons/checkout_button.dart';
+import 'package:lemon_pizza_ui/ui/extensions/build_context_extension.dart';
+import 'package:lemon_pizza_ui/ui/font_families.dart';
+import 'package:lemon_pizza_ui/ui/widgets/buttons/checkout_button.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 import 'order_create_view/order_items/order_items_column/order_items_column.dart';

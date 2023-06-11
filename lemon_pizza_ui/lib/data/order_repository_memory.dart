@@ -1,8 +1,8 @@
 
 import 'dart:math';
 
-import 'package:lemon_pizza/blocs/order/order_repository.dart';
 import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
+import 'package:lemon_pizza_ui/blocs/order/order_repository.dart';
 
 class OrderRepositoryMemory implements OrderRepository {
 

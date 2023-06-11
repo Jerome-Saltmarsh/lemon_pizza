@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:lemon_pizza/blocs/theme/theme_bloc.dart';
+import 'package:lemon_pizza_ui/blocs/theme/theme_bloc.dart';
 
 class ThemeHueSlider extends StatelessWidget {
 

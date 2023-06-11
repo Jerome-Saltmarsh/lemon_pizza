@@ -1,9 +1,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/select/select_bloc.dart';
-import 'package:lemon_pizza/ui/views/order_create_view/pizza_size_dialog/pizza_size_dialog.dart';
+import 'package:lemon_pizza_ui/blocs/select/select_bloc.dart';
 
+import 'pizza_size_dialog/pizza_size_dialog.dart';
 import 'pizza_type/pizza_type_column/pizza_type_column.dart';
 
 class CreateOrderViewMobile extends StatelessWidget {

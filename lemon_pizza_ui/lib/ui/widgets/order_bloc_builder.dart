@@ -1,8 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/order/order_bloc.dart';
-import 'package:lemon_pizza/blocs/order/order_state.dart';
+import 'package:lemon_pizza_ui/blocs/order/order_bloc.dart';
+import 'package:lemon_pizza_ui/blocs/order/order_state.dart';
 
 class OrderBlocBuilder extends StatelessWidget {
 

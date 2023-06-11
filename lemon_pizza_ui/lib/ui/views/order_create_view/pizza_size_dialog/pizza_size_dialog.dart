@@ -2,15 +2,16 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/device/device_bloc.dart';
-import 'package:lemon_pizza/blocs/device/device_type.dart';
-import 'package:lemon_pizza/blocs/order/order_bloc.dart';
-import 'package:lemon_pizza/blocs/select/select_bloc.dart';
-import 'package:lemon_pizza/ui/font_families.dart';
-import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
-import 'package:lemon_pizza/ui/views/order_create_view/pizza_size_dialog/pizza_size_dialog_column.dart';
-import 'package:lemon_pizza/ui/views/order_create_view/pizza_size_dialog/pizza_size_dialog_row.dart';
+import 'package:lemon_pizza_ui/blocs/device/device_bloc.dart';
+import 'package:lemon_pizza_ui/blocs/device/device_type.dart';
+import 'package:lemon_pizza_ui/blocs/order/order_bloc.dart';
+import 'package:lemon_pizza_ui/blocs/select/select_bloc.dart';
+import 'package:lemon_pizza_ui/ui/extensions/build_context_extension.dart';
+import 'package:lemon_pizza_ui/ui/font_families.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
+
+import 'pizza_size_dialog_column.dart';
+import 'pizza_size_dialog_row.dart';
 
 class PizzaSizeDialog extends StatelessWidget {
   const PizzaSizeDialog({super.key});

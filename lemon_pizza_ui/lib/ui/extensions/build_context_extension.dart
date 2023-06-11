@@ -1,12 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/order/order_bloc.dart';
-import 'package:lemon_pizza/blocs/order/order_repository.dart';
-import 'package:lemon_pizza/blocs/order/order_state.dart';
-import 'package:lemon_pizza/blocs/theme/theme_bloc.dart';
-import 'package:lemon_pizza/blocs/theme/theme_state.dart';
 import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
+import 'package:lemon_pizza_ui/blocs/order/order_bloc.dart';
+import 'package:lemon_pizza_ui/blocs/order/order_repository.dart';
+import 'package:lemon_pizza_ui/blocs/order/order_state.dart';
+import 'package:lemon_pizza_ui/blocs/theme/theme_bloc.dart';
+import 'package:lemon_pizza_ui/blocs/theme/theme_state.dart';
 
 extension BuildContextExtension on BuildContext {
    FontSize get fontSize => readThemeState.fontSize;

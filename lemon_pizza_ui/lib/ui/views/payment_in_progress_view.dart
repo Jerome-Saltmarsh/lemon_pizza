@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lemon_pizza/ui/font_families.dart';
-import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
+import 'package:lemon_pizza_ui/ui/extensions/build_context_extension.dart';
+import 'package:lemon_pizza_ui/ui/font_families.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class PaymentInProgressView extends StatelessWidget {

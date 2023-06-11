@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:lemon_pizza/ui/font_families.dart';
-import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
-import 'package:lemon_pizza/ui/widgets/animations/animate_position_down.dart';
+import 'package:lemon_pizza_ui/ui/extensions/build_context_extension.dart';
+import 'package:lemon_pizza_ui/ui/font_families.dart';
+import 'package:lemon_pizza_ui/ui/widgets/animations/animate_position_down.dart';
 
 class OrderTypeView extends StatelessWidget {
   const OrderTypeView({super.key});

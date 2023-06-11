@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
+import 'package:lemon_pizza_ui/ui/extensions/build_context_extension.dart';
 
 import 'order_items_column_item.dart';
 

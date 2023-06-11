@@ -1,8 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/device/device_bloc.dart';
-import 'package:lemon_pizza/blocs/device/device_type.dart';
+import 'package:lemon_pizza_ui/blocs/device/device_bloc.dart';
+import 'package:lemon_pizza_ui/blocs/device/device_type.dart';
 
 class DeviceBuilder extends StatelessWidget {
 

@@ -1,9 +1,10 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:lemon_pizza/ui/views/order_create_view/create_order_view_desktop.dart';
-import 'package:lemon_pizza/ui/views/order_create_view/create_order_view_mobile.dart';
-import 'package:lemon_pizza/ui/views/order_create_view/create_order_view_tablet.dart';
-import 'package:lemon_pizza/ui/widgets/device_builder.dart';
+import 'package:lemon_pizza_ui/ui/widgets/device_builder.dart';
+
+import 'create_order_view_desktop.dart';
+import 'create_order_view_mobile.dart';
+import 'create_order_view_tablet.dart';
 
 class CreateOrderView extends StatelessWidget {
 

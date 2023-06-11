@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:lemon_pizza/ui/widgets/toggles/theme_mode_toggle.dart';
+import 'package:lemon_pizza_ui/ui/widgets/toggles/theme_mode_toggle.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 import 'color_scheme_column.dart';

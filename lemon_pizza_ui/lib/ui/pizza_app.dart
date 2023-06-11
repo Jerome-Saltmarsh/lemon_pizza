@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/device/device_bloc.dart';
-import 'package:lemon_pizza/blocs/device/device_type.dart';
-import 'package:lemon_pizza/blocs/order/order_state.dart';
-import 'package:lemon_pizza/blocs/select/select_bloc.dart';
-import 'package:lemon_pizza/blocs/theme/theme_state.dart';
 import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
+import 'package:lemon_pizza_ui/blocs/device/device_bloc.dart';
+import 'package:lemon_pizza_ui/blocs/device/device_type.dart';
+import 'package:lemon_pizza_ui/blocs/order/order_state.dart';
+import 'package:lemon_pizza_ui/blocs/select/select_bloc.dart';
+import 'package:lemon_pizza_ui/blocs/theme/theme_state.dart';
 
 import '../blocs/order/order_bloc.dart';
 import '../blocs/order/order_repository.dart';

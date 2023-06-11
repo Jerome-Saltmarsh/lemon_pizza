@@ -1,10 +1,10 @@
 
 
 import 'package:bloc/bloc.dart';
-import 'package:lemon_pizza/blocs/order/order_repository.dart';
-import 'package:lemon_pizza/ui/functions/format_dollars.dart';
 import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
+import 'package:lemon_pizza_ui/ui/functions/format_dollars.dart';
 
+import 'order_repository.dart';
 import 'order_state.dart';
 
 

@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lemon_pizza/blocs/select/select_bloc.dart';
-import 'package:lemon_pizza/ui/extensions/build_context_extension.dart';
-import 'package:lemon_pizza/ui/functions/format_dollars.dart';
 import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
+import 'package:lemon_pizza_ui/blocs/select/select_bloc.dart';
+import 'package:lemon_pizza_ui/ui/extensions/build_context_extension.dart';
+import 'package:lemon_pizza_ui/ui/functions/format_dollars.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
 class PizzaTypeColumnItem extends StatelessWidget {
