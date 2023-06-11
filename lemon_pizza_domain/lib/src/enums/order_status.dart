@@ -7,4 +7,5 @@ enum OrderStatus {
   paymentInProgress,
   paymentSucceeded,
   paymentFailed,
+  paymentError,
 }

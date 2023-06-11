@@ -8,8 +8,10 @@ class OrderRepositoryMemory implements OrderRepository {
   final random = Random();
 
   @override
-  double getPizzaPrice({required PizzaType pizzaType, required PizzaSize pizzaSize}) {
-    return switch (pizzaType) {
+  double getPizzaPrice({
+    required PizzaType pizzaType,
+    required PizzaSize pizzaSize,
+  }) => switch (pizzaType) {
       PizzaType.margherita =>
           switch (pizzaSize) {
            PizzaSize.small => 5.0,
@@ -41,7 +43,6 @@ class OrderRepositoryMemory implements OrderRepository {
            PizzaSize.large => 15.0,
         }
     };
-  }
 
   @override
   Future<OrderRepositorySubmitResponse> createOrder(Order order) async {
