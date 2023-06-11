@@ -136,10 +136,10 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.7"
-  lemon_pizza_model:
+  lemon_pizza_domain:
     dependency: "direct main"
     description:
-      path: "../lemon_pizza_model"
+      path: "../lemon_pizza_domain"
       relative: true
     source: path
     version: "1.0.0"

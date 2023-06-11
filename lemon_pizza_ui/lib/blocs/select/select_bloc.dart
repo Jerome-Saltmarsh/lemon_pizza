@@ -1,6 +1,6 @@
 
 import 'package:bloc/bloc.dart';
-import 'package:lemon_pizza_model/lemon_pizza_model.dart';
+import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
 
 import 'select_state.dart';
 

@@ -6,7 +6,7 @@ import 'package:lemon_pizza/blocs/order/order_repository.dart';
 import 'package:lemon_pizza/blocs/order/order_state.dart';
 import 'package:lemon_pizza/blocs/theme/theme_bloc.dart';
 import 'package:lemon_pizza/blocs/theme/theme_state.dart';
-import 'package:lemon_pizza_model/lemon_pizza_model.dart';
+import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
 
 extension BuildContextExtension on BuildContext {
    FontSize get fontSize => readThemeState.fontSize;

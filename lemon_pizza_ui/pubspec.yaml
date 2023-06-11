@@ -1,7 +1,7 @@
 name: lemon_pizza
 description: the ui layer for lemon pizza
 
-version: 1.0.79
+version: 1.0.80
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -19,8 +19,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  lemon_pizza_model:
-     path: ..\lemon_pizza_model
+  lemon_pizza_domain:
+     path: ..\lemon_pizza_domain
 
   lemon_widgets:
     path: C:\Users\Jerome\github\dart\lemon_widgets

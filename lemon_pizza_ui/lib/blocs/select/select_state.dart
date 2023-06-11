@@ -1,7 +1,7 @@
 
 
 
-import 'package:lemon_pizza_model/lemon_pizza_model.dart';
+import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
 
 class SelectState {
   final PizzaType? pizzaType;

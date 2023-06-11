@@ -5,7 +5,7 @@ import 'package:lemon_pizza/blocs/device/device_type.dart';
 import 'package:lemon_pizza/blocs/order/order_state.dart';
 import 'package:lemon_pizza/blocs/select/select_bloc.dart';
 import 'package:lemon_pizza/blocs/theme/theme_state.dart';
-import 'package:lemon_pizza_model/lemon_pizza_model.dart';
+import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
 
 import '../blocs/order/order_bloc.dart';
 import '../blocs/order/order_repository.dart';

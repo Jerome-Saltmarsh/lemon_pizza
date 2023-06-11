@@ -1,6 +1,0 @@
-
-
-enum OrderApiSubmitResponseStatus {
-    failed,
-    succeeded,
-}
