@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
 import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
 import 'package:lemon_pizza_ui/blocs/device/device_bloc.dart';
 import 'package:lemon_pizza_ui/blocs/device/device_type.dart';
-import 'package:lemon_pizza_ui/blocs/payment/payment_bloc.dart';
-import 'package:lemon_pizza_ui/blocs/payment/payment_models.dart';
-import 'package:lemon_pizza_ui/blocs/payment/payment_state.dart';
 import 'package:lemon_pizza_ui/blocs/select/select_bloc.dart';
 import 'package:lemon_pizza_ui/blocs/theme/theme_state.dart';
 
@@ -25,15 +21,6 @@ class PizzaApp extends StatelessWidget {
           providers: [
             BlocProvider<DeviceBloc>(
               create: (context) => DeviceBloc(DeviceType.desktop),
-            ),
-            BlocProvider<PaymentBloc>(
-              create: (context) => PaymentBloc(PaymentState(
-                status: FormzSubmissionStatus.initial,
-                cardNumber: const CardNumber.pure(),
-                expiryYear: '',
-                expiryMonth: '',
-                cvv: '',
-              )),
             ),
             BlocProvider<SelectBloc>(
               create: (context) => SelectBloc(),

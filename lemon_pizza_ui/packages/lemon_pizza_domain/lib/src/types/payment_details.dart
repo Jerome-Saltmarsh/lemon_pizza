@@ -10,10 +10,10 @@ class PaymentDetails {
   final String? cvvError;
 
   PaymentDetails({
-    required this.cardNumber,
-    required this.expiryYear,
-    required this.expiryMonth,
-    required this.cvv,
+    this.cardNumber = '',
+    this.expiryYear = '',
+    this.expiryMonth = '',
+    this.cvv = '',
     this.cardNumberError,
     this.expiryYearError,
     this.expiryMonthError,

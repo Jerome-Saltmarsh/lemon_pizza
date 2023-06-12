@@ -18,7 +18,6 @@ class OrderBloc extends Cubit<Order> {
     emitOrderState(
       orderItems: [],
       orderStatus: OrderStatus.createOrder,
-      validate: false,
     );
   }
 
@@ -75,7 +74,6 @@ class OrderBloc extends Cubit<Order> {
     OrderStatus? orderStatus,
     CustomerDetails? customerDetails,
     PaymentDetails? paymentDetails,
-    bool? validate,
     OrderType? orderType,
   }){
     emit(Order(
@@ -102,6 +100,7 @@ class OrderBloc extends Cubit<Order> {
   }
 
   void submitOrder() async {
+    print("submitOrder()");
 
     final paymentDetails = state.paymentDetails;
 
@@ -111,7 +110,7 @@ class OrderBloc extends Cubit<Order> {
     String? cvvError;
 
     if (paymentDetails.cardNumber.length < 15){
-       cardNumberError = 'Invalid';
+       cardNumberError = 'Too Short';
     }
     if (paymentDetails.expiryYear.trim().length != 4){
       expiryYearError = 'Invalid';
@@ -125,21 +124,21 @@ class OrderBloc extends Cubit<Order> {
       cvvError = "Invalid";
     }
 
+
     if (
         cardNumberError != null ||
         expiryYearError != null ||
         expiryMonthError != null ||
         cvvError != null
     ){
-      emit(state.copyWith(
-         paymentDetails: state.paymentDetails.copyWith(
-
-            cardNumberError: cardNumberError,
-            expiryYearError: expiryYearError,
-            expiryMonthError: expiryMonthError,
-            cvvError: cvvError,
-         )
-      ));
+      emitOrderState(
+        paymentDetails: state.paymentDetails.copyWith(
+          cardNumberError: cardNumberError,
+          expiryYearError: expiryYearError,
+          expiryMonthError: expiryMonthError,
+          cvvError: cvvError,
+        )
+      );
       return;
     }
 
@@ -162,25 +161,21 @@ class OrderBloc extends Cubit<Order> {
        case OrderStatus.reviewOrder:
          emitOrderState(
            orderStatus: OrderStatus.createOrder,
-           validate: false,
          );
          break;
        case OrderStatus.customerDetails:
          emitOrderState(
            orderStatus: OrderStatus.createOrder,
-           validate: false,
          );
          break;
        case OrderStatus.paymentDetails:
          emitOrderState(
            orderStatus: OrderStatus.customerDetails,
-           validate: false,
          );
          break;
        case OrderStatus.paymentFailed:
          emitOrderState(
            orderStatus: OrderStatus.paymentDetails,
-           validate: false,
          );
          break;
        default:

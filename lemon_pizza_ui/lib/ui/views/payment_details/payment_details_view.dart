@@ -155,16 +155,14 @@ class PaymentDetailsView extends StatelessWidget {
                           buildText("PAYMENT DETAILS", context),
                           const SizedBox(height: 32),
                           CardNumberInput(focusNode: focusNodeCardNumber,),
-                         const SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                               children: [
                                 buildTextFieldExpiryMonth(context),
-                                const SizedBox(
-                                  width: 4,
-                                ),
+                                const SizedBox(width: 4),
                                 buildTextFieldExpiryYear(context),
                               ],),
                               buildTextFieldCVV(context),

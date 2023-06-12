@@ -29,14 +29,12 @@ extension BuildContextExtension on BuildContext {
       OrderStatus? orderStatus,
       CustomerDetails? customerDetails,
       PaymentDetails? paymentDetails,
-      bool? validate,
       OrderType? orderType,
    }) => readOrderBloc.emitOrderState(
       orderItems: orderItems,
       orderStatus: orderStatus,
       customerDetails: customerDetails,
       paymentDetails: paymentDetails,
-      validate: validate,
       orderType: orderType,
    );
 
