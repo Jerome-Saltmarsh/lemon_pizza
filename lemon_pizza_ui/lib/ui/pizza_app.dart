@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
 import 'package:lemon_pizza_ui/blocs/device/device_bloc.dart';
 import 'package:lemon_pizza_ui/blocs/device/device_type.dart';
@@ -27,7 +28,7 @@ class PizzaApp extends StatelessWidget {
             ),
             BlocProvider<PaymentBloc>(
               create: (context) => PaymentBloc(PaymentState(
-                paymentStatus: PaymentStatus.incomplete,
+                status: FormzSubmissionStatus.initial,
                 cardNumber: const CardNumber.pure(),
                 expiryYear: '',
                 expiryMonth: '',

@@ -21,6 +21,7 @@ class PaymentDetails {
   });
 
   PaymentDetails copyWith({
+
     String? cardNumber,
     String? expiryYear,
     String? expiryMonth,

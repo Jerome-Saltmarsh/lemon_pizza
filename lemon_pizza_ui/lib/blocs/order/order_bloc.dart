@@ -133,6 +133,7 @@ class OrderBloc extends Cubit<Order> {
     ){
       emit(state.copyWith(
          paymentDetails: state.paymentDetails.copyWith(
+
             cardNumberError: cardNumberError,
             expiryYearError: expiryYearError,
             expiryMonthError: expiryMonthError,
