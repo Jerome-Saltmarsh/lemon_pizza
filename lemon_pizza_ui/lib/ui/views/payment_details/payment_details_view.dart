@@ -8,6 +8,7 @@ import 'package:lemon_pizza_ui/ui/extensions/build_context_extension.dart';
 import 'package:lemon_pizza_ui/ui/font_families.dart';
 import 'package:lemon_pizza_ui/ui/formatters/numbers_only_formatter.dart';
 import 'package:lemon_pizza_ui/ui/views/payment_details/expiry_month_input.dart';
+import 'package:lemon_pizza_ui/ui/views/payment_details/submit_order_button.dart';
 import 'package:lemon_pizza_ui/ui/widgets/animations/animate_position_down.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
@@ -126,25 +127,7 @@ class PaymentDetailsView extends StatelessWidget {
                        ],
                     ),
                   ),
-                  TextButton(onPressed: context.read<OrderBloc>().submitOrder,
-                      style: ButtonStyle(
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: context.readThemeState.dialogBorderRadius, // Set the border radius here
-                          ),
-                        ),
-                        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                              (Set<MaterialState> states) {
-                            return context.colorScheme.tertiary; // Default color
-                          },
-                        ),
-                      ),
-                      child: Container(
-                          width: 150,
-                          height: 50,
-                          alignment: Alignment.center,
-                          child: Text("PAY ${context.readOrderBloc.formattedTotalCost}",
-                            style: TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.onTertiary),)))
+                  SubmitOrderButton(),
                 ],
               ),
             ),

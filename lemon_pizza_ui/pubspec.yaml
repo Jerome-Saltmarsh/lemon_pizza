@@ -1,7 +1,7 @@
 name: lemon_pizza_ui
 description: the ui layer for lemon pizza
 
-version: 1.0.90
+version: 1.0.91
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -15,7 +15,6 @@ dependencies:
   system_theme: ^2.1.0
   flutter_colorpicker: ^1.0.3
   flutter_bloc: ^8.1.3
-  formz: ^0.6.0
 
   flutter:
     sdk: flutter

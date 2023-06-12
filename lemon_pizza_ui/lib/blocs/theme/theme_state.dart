@@ -14,6 +14,12 @@ class ThemeState {
   final double dialogBorderWidth;
   final EdgeInsets dialogPadding;
 
+  late final buttonStyleShape = MaterialStateProperty.all<RoundedRectangleBorder>(
+    RoundedRectangleBorder(
+      borderRadius: dialogBorderRadius, // Set the border radius here
+    ),
+  );
+
 
   bool get isLight => themeMode == ThemeMode.light;
   bool get isDark => themeMode == ThemeMode.dark;

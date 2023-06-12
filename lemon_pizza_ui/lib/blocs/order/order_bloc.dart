@@ -172,4 +172,9 @@ class OrderBloc extends Cubit<Order> {
         paymentDetails: state.paymentDetails.copyWith(cardNumber: cardNumber)
       ));
   }
+
+  void onChangedPaymentDetailsExpiryMonth(String value) =>
+      emit(state.copyWith(
+        paymentDetails: state.paymentDetails.copyWith(expiryMonth: value)
+      ));
 }
