@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
 import 'package:lemon_pizza_ui/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza_ui/ui/font_families.dart';
+import 'package:lemon_widgets/lemon_widgets.dart';
 
 import 'cardnumber_formatter.dart';
 
@@ -22,12 +23,14 @@ class CardNumberInput extends StatelessWidget {
             focusNode: focusNode,
             inputFormatters: [CardNumberFormatter()],
             decoration: InputDecoration(
+              focusColor: context.colorScheme.onSurface,
               icon: const Icon(Icons.credit_card),
               labelText: 'CardNumber',
               labelStyle: const TextStyle(fontFamily: FontFamilies.roboto),
               errorText: paymentDetails.cardNumberError,
+              errorStyle: const TextStyle(fontFamily: FontFamilies.roboto)
             ),
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.number,
             // onChanged: paymentBloc.onChangedCardNumber,
             textInputAction: TextInputAction.next,
           );

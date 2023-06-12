@@ -1,5 +1,8 @@
 
 import 'package:flutter/services.dart';
 
-final numbersOnlyFormatter = FilteringTextInputFormatter.allow(RegExp(r'[0-9]'));
-final numbersAndSpaceFormatter = FilteringTextInputFormatter.allow(RegExp(r'[0-9\s]+'));
+
+class InputFormatters {
+  static final numbersOnlyFormatter = FilteringTextInputFormatter.allow(RegExp(r'[0-9]'));
+  static final numbersAndSpaceFormatter = FilteringTextInputFormatter.allow(RegExp(r'[0-9\s]+'));
+}

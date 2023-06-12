@@ -10,6 +10,7 @@ import 'package:lemon_pizza_ui/ui/formatters/numbers_only_formatter.dart';
 import 'package:lemon_pizza_ui/ui/widgets/animations/animate_position_down.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
+import 'build_input_decoration.dart';
 import 'cardnumber_input.dart';
 
 class PaymentDetailsView extends StatelessWidget {
@@ -29,30 +30,6 @@ class PaymentDetailsView extends StatelessWidget {
     return TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.error, fontSize:  context.fontSize.regular);
   }
 
-  InputDecoration buildInputDecoration({
-    required BuildContext context,
-    required String text, String? error, Widget? prefixIcon, Color? prefixIconColor}){
-    final color = context.colorScheme.secondary;
-    return InputDecoration(
-      prefixIcon: prefixIcon,
-      prefixIconColor: prefixIconColor,
-      counterText: '',
-      label: buildLabel(text, context),
-      labelStyle: buildLabelStyle(context),
-      focusColor: color,
-      fillColor: color,
-      errorStyle: buildTextStyleError(context),
-      errorText: error,
-      border: OutlineInputBorder(
-        borderSide: BorderSide(color: color),
-        borderRadius: context.readThemeState.dialogBorderRadius,
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: color),
-        borderRadius: context.readThemeState.dialogBorderRadius,
-      ),
-    );
-  }
 
   Widget buildText(String value, BuildContext context){
     return Text(value, style: buildTextStyle(context));
@@ -69,10 +46,10 @@ class PaymentDetailsView extends StatelessWidget {
           cursorColor: context.colorScheme.secondary,
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
           keyboardType: TextInputType.number,
-          inputFormatters: [numbersOnlyFormatter],
+          inputFormatters: [InputFormatters.numbersOnlyFormatter],
           decoration: buildInputDecoration(
               context: context,
-              text: "MM",
+              label: "MM",
               error: context.read<OrderBloc>().state.paymentDetails.expiryMonthError,
           ),
           onChanged: (value){
@@ -92,9 +69,9 @@ class PaymentDetailsView extends StatelessWidget {
           cursorColor: context.colorScheme.secondary,
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
           keyboardType: TextInputType.number,
-          inputFormatters: [numbersOnlyFormatter],
+          inputFormatters: [InputFormatters.numbersOnlyFormatter],
           decoration: buildInputDecoration(
-              text: "YYYY",
+              label: "YYYY",
               error: context.read<OrderBloc>().state.paymentDetails.expiryYearError,
               context: context,
           ),
@@ -115,9 +92,9 @@ class PaymentDetailsView extends StatelessWidget {
           cursorColor: context.colorScheme.secondary,
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
           keyboardType: TextInputType.number,
-          inputFormatters: [numbersOnlyFormatter],
+          inputFormatters: [InputFormatters.numbersOnlyFormatter],
           decoration: buildInputDecoration(
-              text: "CVV",
+              label: "CVV",
               error: context.read<OrderBloc>().state.paymentDetails.cvvError,
               context: context,
           ),
