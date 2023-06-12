@@ -7,6 +7,7 @@ import 'package:lemon_pizza_ui/blocs/order/order_bloc.dart';
 import 'package:lemon_pizza_ui/ui/extensions/build_context_extension.dart';
 import 'package:lemon_pizza_ui/ui/font_families.dart';
 import 'package:lemon_pizza_ui/ui/formatters/numbers_only_formatter.dart';
+import 'package:lemon_pizza_ui/ui/views/payment_details/expiry_month_input.dart';
 import 'package:lemon_pizza_ui/ui/widgets/animations/animate_position_down.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
@@ -38,29 +39,6 @@ class PaymentDetailsView extends StatelessWidget {
   Widget buildLabel(String value, BuildContext context){
     return Text(value, style: buildLabelStyle(context));
   }
-
-  Widget buildTextFieldExpiryMonth(BuildContext context) => SizedBox(
-      width: 70,
-      child: TextField(
-          maxLength: 2,
-          cursorColor: context.colorScheme.secondary,
-          maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          keyboardType: TextInputType.number,
-          inputFormatters: [InputFormatters.numbersOnlyFormatter],
-          decoration: buildInputDecoration(
-              context: context,
-              label: "MM",
-              error: context.read<OrderBloc>().state.paymentDetails.expiryMonthError,
-          ),
-          onChanged: (value){
-            final orderBloc = context.read<OrderBloc>();
-            orderBloc.emitOrderState(
-               paymentDetails: orderBloc.state.paymentDetails.copyWith(expiryMonth: value)
-            );
-          },
-          controller: TextEditingController(text: context.read<OrderBloc>().state.paymentDetails.expiryMonth),
-          ),
-    );
 
   Widget buildTextFieldExpiryYear(BuildContext context) => SizedBox(
       width: 120,
@@ -138,7 +116,7 @@ class PaymentDetailsView extends StatelessWidget {
                             children: [
                               Row(
                               children: [
-                                buildTextFieldExpiryMonth(context),
+                                const ExpiryMonthInput(),
                                 const SizedBox(width: 4),
                                 buildTextFieldExpiryYear(context),
                               ],),

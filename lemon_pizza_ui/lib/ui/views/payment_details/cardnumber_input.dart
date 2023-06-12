@@ -31,7 +31,7 @@ class CardNumberInput extends StatelessWidget {
               errorStyle: const TextStyle(fontFamily: FontFamilies.roboto)
             ),
             keyboardType: TextInputType.number,
-            // onChanged: paymentBloc.onChangedCardNumber,
+            onChanged: context.read<OrderBloc>().onChangedCardNumber,
             textInputAction: TextInputAction.next,
           );
         });

@@ -51,24 +51,6 @@ class OrderBloc extends Cubit<Order> {
      );
   }
 
-  void emitPaymentDetails({
-    String? cardHolderName,
-    String? cardNumber,
-    String? expiryYear,
-    String? expiryMonth,
-    String? cvv,
-  }){
-    final paymentDetails = state.paymentDetails;
-    emitOrderState(
-      paymentDetails: PaymentDetails(
-        cardNumber: cardNumber ?? paymentDetails.cardNumber,
-        expiryYear: expiryYear ?? paymentDetails.expiryYear,
-        expiryMonth: expiryMonth ?? paymentDetails.expiryMonth,
-        cvv: cvv ?? paymentDetails.cvv,
-      )
-    );
-  }
-
   void emitOrderState({
     List<OrderItem>? orderItems,
     OrderStatus? orderStatus,
@@ -184,4 +166,10 @@ class OrderBloc extends Cubit<Order> {
   }
 
   String get formattedTotalCost => formatDollars(state.totalOrderCost);
+
+  void onChangedCardNumber(String cardNumber){
+      emit(state.copyWith(
+        paymentDetails: state.paymentDetails.copyWith(cardNumber: cardNumber)
+      ));
+  }
 }
