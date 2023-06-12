@@ -10,43 +10,38 @@ import 'package:lemon_pizza_ui/ui/formatters/numbers_only_formatter.dart';
 import 'package:lemon_pizza_ui/ui/widgets/animations/animate_position_down.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
 
-class PaymentDetailsView extends StatefulWidget {
-  const PaymentDetailsView({super.key});
+import 'cardnumber_input.dart';
 
-  @override
-  State<PaymentDetailsView> createState() => _PaymentDetailsViewState();
-}
+class PaymentDetailsView extends StatelessWidget {
+  final focusNodeCardNumber = FocusNode();
 
-class _PaymentDetailsViewState extends State<PaymentDetailsView> {
+  PaymentDetailsView({super.key});
 
-  String? errorCardNumber;
-  String? errorCVV;
-  String? errorExpiryYear;
-  String? errorExpiryMonth;
-
-  TextStyle buildTextStyle(){
+  TextStyle buildTextStyle(BuildContext context){
     return TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.secondary, fontSize:  context.fontSize.regular);
   }
 
-  TextStyle buildLabelStyle(){
+  TextStyle buildLabelStyle(BuildContext context){
     return TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.secondary.withOpacity(0.5), fontSize:  context.fontSize.regular);
   }
 
-  TextStyle buildTextStyleError(){
+  TextStyle buildTextStyleError(BuildContext context){
     return TextStyle(fontFamily: FontFamilies.roboto, color: context.colorScheme.error, fontSize:  context.fontSize.regular);
   }
 
-  InputDecoration buildInputDecoration({required String text, String? error, Widget? prefixIcon, Color? prefixIconColor}){
+  InputDecoration buildInputDecoration({
+    required BuildContext context,
+    required String text, String? error, Widget? prefixIcon, Color? prefixIconColor}){
     final color = context.colorScheme.secondary;
     return InputDecoration(
       prefixIcon: prefixIcon,
       prefixIconColor: prefixIconColor,
       counterText: '',
-      label: buildLabel(text),
-      labelStyle: buildLabelStyle(),
+      label: buildLabel(text, context),
+      labelStyle: buildLabelStyle(context),
       focusColor: color,
       fillColor: color,
-      errorStyle: buildTextStyleError(),
+      errorStyle: buildTextStyleError(context),
       errorText: error,
       border: OutlineInputBorder(
         borderSide: BorderSide(color: color),
@@ -59,34 +54,15 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
     );
   }
 
-  Widget buildText(String value){
-    return Text(value, style: buildTextStyle());
+  Widget buildText(String value, BuildContext context){
+    return Text(value, style: buildTextStyle(context));
   }
 
-  Widget buildLabel(String value){
-    return Text(value, style: buildLabelStyle());
+  Widget buildLabel(String value, BuildContext context){
+    return Text(value, style: buildLabelStyle(context));
   }
 
-  Widget buildTextFieldCardNumber() => TextField(
-      cursorColor: context.colorScheme.secondary,
-      controller: TextEditingController(text: context.read<OrderBloc>().state.paymentDetails.cardNumber),
-      style: buildTextStyle(),
-      inputFormatters: [CreditCardNumberFormatter(), numbersAndSpaceFormatter],
-      onChanged: (value){
-        final orderBloc = context.read<OrderBloc>();
-        orderBloc.emitOrderState(
-           paymentDetails: orderBloc.state.paymentDetails.copyWith(cardNumber: value)
-        );
-      },
-      decoration: buildInputDecoration(
-          text: "Card Number",
-          error: errorCardNumber,
-          prefixIcon: const Icon(Icons.credit_card),
-          prefixIconColor: context.colorScheme.secondary.withOpacity(0.5),
-        ),
-    );
-
-  Widget buildTextFieldExpiryMonth() => SizedBox(
+  Widget buildTextFieldExpiryMonth(BuildContext context) => SizedBox(
       width: 70,
       child: TextField(
           maxLength: 2,
@@ -94,7 +70,11 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
           keyboardType: TextInputType.number,
           inputFormatters: [numbersOnlyFormatter],
-          decoration: buildInputDecoration(text: "MM", error: errorExpiryMonth),
+          decoration: buildInputDecoration(
+              context: context,
+              text: "MM",
+              error: context.read<OrderBloc>().state.paymentDetails.expiryMonthError,
+          ),
           onChanged: (value){
             final orderBloc = context.read<OrderBloc>();
             orderBloc.emitOrderState(
@@ -105,7 +85,7 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
           ),
     );
 
-  Widget buildTextFieldExpiryYear() => SizedBox(
+  Widget buildTextFieldExpiryYear(BuildContext context) => SizedBox(
       width: 120,
       child: TextField(
           maxLength: 4,
@@ -113,7 +93,11 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
           keyboardType: TextInputType.number,
           inputFormatters: [numbersOnlyFormatter],
-          decoration: buildInputDecoration(text: "YYYY", error: errorExpiryYear),
+          decoration: buildInputDecoration(
+              text: "YYYY",
+              error: context.read<OrderBloc>().state.paymentDetails.expiryYearError,
+              context: context,
+          ),
           controller: TextEditingController(text: context.read<OrderBloc>().state.paymentDetails.expiryYear),
           onChanged: (value){
              final orderBloc = context.read<OrderBloc>();
@@ -124,7 +108,7 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
           ),
     );
 
-  Widget buildTextFieldCVV() => SizedBox(
+  Widget buildTextFieldCVV(BuildContext context) => SizedBox(
       width: 80,
       child: TextField(
           maxLength: 3,
@@ -132,7 +116,11 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
           keyboardType: TextInputType.number,
           inputFormatters: [numbersOnlyFormatter],
-          decoration: buildInputDecoration(text: "CVV", error: errorCVV),
+          decoration: buildInputDecoration(
+              text: "CVV",
+              error: context.read<OrderBloc>().state.paymentDetails.cvvError,
+              context: context,
+          ),
           controller: TextEditingController(
             text: context.read<OrderBloc>().state.paymentDetails.cvv
           ),
@@ -164,34 +152,28 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
                     width: width,
                     child: Column(
                        children: [
-                          buildText("PAYMENT DETAILS"),
+                          buildText("PAYMENT DETAILS", context),
                           const SizedBox(height: 32),
-                          buildTextFieldCardNumber(),
+                          CardNumberInput(focusNode: focusNodeCardNumber,),
                          const SizedBox(height: 16),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                               children: [
-                                buildTextFieldExpiryMonth(),
+                                buildTextFieldExpiryMonth(context),
                                 const SizedBox(
                                   width: 4,
                                 ),
-                                buildTextFieldExpiryYear(),
+                                buildTextFieldExpiryYear(context),
                               ],),
-                              buildTextFieldCVV(),
+                              buildTextFieldCVV(context),
                             ],
                           ),
                        ],
                     ),
                   ),
-                  TextButton(onPressed: () {
-                    if (!validate()) {
-                      return setState(() {
-                      });
-                    }
-                    context.readOrderBloc.submitOrder();
-                  },
+                  TextButton(onPressed: context.readOrderBloc.submitOrder,
                       style: ButtonStyle(
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
@@ -217,44 +199,6 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
         ),
       ],
     );
-  }
-
-  bool validate(){
-    errorCardNumber = null;
-    errorCVV = null;
-    errorExpiryMonth = null;
-    errorExpiryYear = null;
-
-    final paymentDetails = context.read<OrderBloc>().state.paymentDetails;
-    final cardNumber = paymentDetails.cardNumber;
-
-    if (cardNumber.isEmpty){
-      errorCardNumber = 'required';
-    } else
-    if (cardNumber.length < 16){
-      errorCardNumber = 'too short';
-    }
-    if (paymentDetails.cvv.length != 3){
-      errorCVV = 'invalid';
-    } else
-    if (int.tryParse(paymentDetails.cvv) == null){
-      errorCVV = 'invalid';
-    }
-
-    if (paymentDetails.expiryYear.length != 4){
-      errorExpiryYear = 'invalid';
-    }
-
-    if (paymentDetails.expiryMonth.isEmpty){
-      errorExpiryMonth = 'required';
-    } else {
-      final expiryMonth = int.tryParse(paymentDetails.expiryMonth);
-      if (expiryMonth == null || expiryMonth <= 0 || expiryMonth > 12){
-       errorExpiryMonth = 'invalid';
-      }
-    }
-
-    return errorCardNumber == null && errorCVV == null;
   }
 }
 

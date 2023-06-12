@@ -2,9 +2,11 @@
 
 import 'package:lemon_pizza_domain/lemon_pizza_domain.dart';
 
+import 'payment_models.dart';
+
 class PaymentState {
   final PaymentStatus paymentStatus;
-  final String cardNumber;
+  final CardNumber cardNumber;
   final String expiryYear;
   final String expiryMonth;
   final String cvv;
@@ -19,7 +21,7 @@ class PaymentState {
 
   PaymentState copyWith({
         PaymentStatus? paymentStatus,
-        String? cardNumber,
+        CardNumber? cardNumber,
         String? expiryYear,
         String? expiryMonth,
         String? cvv,

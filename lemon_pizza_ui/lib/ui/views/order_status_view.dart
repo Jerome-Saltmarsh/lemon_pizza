@@ -6,7 +6,7 @@ import 'package:lemon_pizza_ui/ui/views/payment_error_view.dart';
 import 'package:lemon_pizza_ui/ui/widgets/order_status_changed.dart';
 import 'customer_details_view.dart';
 import 'order_create_view/create_order_view.dart';
-import 'payment_details_view.dart';
+import 'payment_details/payment_details_view.dart';
 import 'payment_failed_view.dart';
 import 'payment_in_progress_view.dart';
 import 'payment_succeeded_view.dart';
@@ -28,7 +28,7 @@ class OrderStatusView extends StatelessWidget {
         case OrderStatus.customerDetails:
           return const CustomerDetailsView();
         case OrderStatus.paymentDetails:
-          return const PaymentDetailsView();
+          return PaymentDetailsView();
         case OrderStatus.paymentInProgress:
           return const PaymentInProgressView();
         case OrderStatus.paymentSucceeded:

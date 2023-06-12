@@ -102,6 +102,46 @@ class OrderBloc extends Cubit<Order> {
   }
 
   void submitOrder() async {
+
+    final paymentDetails = state.paymentDetails;
+
+    String? cardNumberError;
+    String? expiryYearError;
+    String? expiryMonthError;
+    String? cvvError;
+
+    if (paymentDetails.cardNumber.length < 15){
+       cardNumberError = 'Invalid';
+    }
+    if (paymentDetails.expiryYear.trim().length != 4){
+      expiryYearError = 'Invalid';
+    }
+    final month = int.tryParse(paymentDetails.expiryMonth);
+    if (month == null || month < 1 || month > 12) {
+      expiryMonthError = 'Invalid';
+    }
+    final cvv = int.tryParse(paymentDetails.cvv);
+    if (cvv == null || cvv.toString().length != 3){
+      cvvError = "Invalid";
+    }
+
+    if (
+        cardNumberError != null ||
+        expiryYearError != null ||
+        expiryMonthError != null ||
+        cvvError != null
+    ){
+      emit(state.copyWith(
+         paymentDetails: state.paymentDetails.copyWith(
+            cardNumberError: cardNumberError,
+            expiryYearError: expiryYearError,
+            expiryMonthError: expiryMonthError,
+            cvvError: cvvError,
+         )
+      ));
+      return;
+    }
+
     emitOrderState(orderStatus: OrderStatus.paymentInProgress);
     await orderRepository.createOrder(state).then((value) {
       if (value.status == OrderRepositorySubmitResponseStatus.succeeded){
