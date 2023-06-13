@@ -21,7 +21,6 @@ class PaymentDetails {
   });
 
   PaymentDetails copyWith({
-
     String? cardNumber,
     String? expiryYear,
     String? expiryMonth,
@@ -30,16 +29,20 @@ class PaymentDetails {
     String? expiryYearError,
     String? expiryMonthError,
     String? cvvError,
+    bool clearCardNumberError = false,
+    bool clearExpiryYearError = false,
+    bool clearExpiryMonthError = false,
+    bool clearCvvError = false,
   }) =>
     PaymentDetails(
       cardNumber: cardNumber ?? this.cardNumber,
       expiryYear: expiryYear ?? this.expiryYear,
       expiryMonth: expiryMonth ?? this.expiryMonth,
       cvv: cvv ?? this.cvv,
-      cardNumberError: cardNumberError ?? this.cardNumberError,
-      expiryYearError: expiryYearError ?? this.expiryYearError,
-      expiryMonthError: expiryMonthError ?? this.expiryMonthError,
-      cvvError: cvvError ?? this.cvvError,
+      cardNumberError: cardNumberError ?? (clearCardNumberError ? null : this.cardNumberError),
+      expiryYearError: expiryYearError ?? (clearExpiryYearError ? null : this.expiryYearError),
+      expiryMonthError: expiryMonthError ?? (clearExpiryMonthError ? null : this.expiryMonthError),
+      cvvError: cvvError ?? (clearCvvError ? null : this.cvvError),
     );
 }
 

@@ -127,7 +127,7 @@ class PaymentDetailsView extends StatelessWidget {
                        ],
                     ),
                   ),
-                  SubmitOrderButton(),
+                  const SubmitOrderButton(),
                 ],
               ),
             ),

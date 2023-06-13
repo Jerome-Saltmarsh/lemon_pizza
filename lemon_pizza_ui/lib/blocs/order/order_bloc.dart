@@ -169,7 +169,10 @@ class OrderBloc extends Cubit<Order> {
 
   void onChangedCardNumber(String cardNumber){
       emit(state.copyWith(
-        paymentDetails: state.paymentDetails.copyWith(cardNumber: cardNumber)
+        paymentDetails: state.paymentDetails.copyWith(
+            cardNumber: cardNumber,
+            clearCardNumberError: true,
+        )
       ));
   }
 
