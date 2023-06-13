@@ -8,6 +8,7 @@ import 'package:lemon_pizza_ui/ui/extensions/build_context_extension.dart';
 import 'package:lemon_pizza_ui/ui/font_families.dart';
 import 'package:lemon_pizza_ui/ui/formatters/numbers_only_formatter.dart';
 import 'package:lemon_pizza_ui/ui/views/payment_details/expiry_month_input.dart';
+import 'package:lemon_pizza_ui/ui/views/payment_details/expiry_year_input.dart';
 import 'package:lemon_pizza_ui/ui/views/payment_details/submit_order_button.dart';
 import 'package:lemon_pizza_ui/ui/widgets/animations/animate_position_down.dart';
 import 'package:lemon_widgets/lemon_widgets.dart';
@@ -41,29 +42,6 @@ class PaymentDetailsView extends StatelessWidget {
     return Text(value, style: buildLabelStyle(context));
   }
 
-  Widget buildTextFieldExpiryYear(BuildContext context) => SizedBox(
-      width: 120,
-      child: TextField(
-          maxLength: 4,
-          cursorColor: context.colorScheme.secondary,
-          maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          keyboardType: TextInputType.number,
-          inputFormatters: [InputFormatters.numbersOnlyFormatter],
-          decoration: buildInputDecoration(
-              label: "YYYY",
-              error: context.read<OrderBloc>().state.paymentDetails.expiryYearError,
-              context: context,
-          ),
-          controller: TextEditingController(text: context.read<OrderBloc>().state.paymentDetails.expiryYear),
-          onChanged: (value){
-             final orderBloc = context.read<OrderBloc>();
-             orderBloc.emitOrderState(
-               paymentDetails: orderBloc.state.paymentDetails.copyWith(expiryYear: value)
-             );
-          },
-          ),
-    );
-
   Widget buildTextFieldCVV(BuildContext context) => SizedBox(
       width: 80,
       child: TextField(
@@ -90,10 +68,7 @@ class PaymentDetailsView extends StatelessWidget {
     );
 
   @override
-  Widget build(BuildContext context) {
-    const width = 400.0;
-
-    return Stack(
+  Widget build(BuildContext context) => Stack(
       alignment: Alignment.center,
       children: [
         AnimatePositionDown(
@@ -105,7 +80,7 @@ class PaymentDetailsView extends StatelessWidget {
                 children: [
                   Container(
                     padding: const EdgeInsets.all(16),
-                    width: width,
+                    width: 400,
                     child: Column(
                        children: [
                           buildText("PAYMENT DETAILS", context),
@@ -115,11 +90,11 @@ class PaymentDetailsView extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(
+                              const Row(
                               children: [
-                                const ExpiryMonthInput(),
-                                const SizedBox(width: 4),
-                                buildTextFieldExpiryYear(context),
+                                ExpiryMonthInput(),
+                                SizedBox(width: 4),
+                                ExpiryYearInput(),
                               ],),
                               buildTextFieldCVV(context),
                             ],
@@ -135,6 +110,5 @@ class PaymentDetailsView extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 

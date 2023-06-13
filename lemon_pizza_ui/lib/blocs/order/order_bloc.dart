@@ -167,17 +167,18 @@ class OrderBloc extends Cubit<Order> {
 
   String get formattedTotalCost => formatDollars(state.totalOrderCost);
 
-  void onChangedCardNumber(String cardNumber){
-      emit(state.copyWith(
+  void onChangedCardNumber(String cardNumber) => emit(state.copyWith(
         paymentDetails: state.paymentDetails.copyWith(
             cardNumber: cardNumber,
             clearCardNumberError: true,
         )
       ));
-  }
 
   void onChangedPaymentDetailsExpiryMonth(String value) =>
       emit(state.copyWith(
-        paymentDetails: state.paymentDetails.copyWith(expiryMonth: value)
+        paymentDetails: state.paymentDetails.copyWith(
+          expiryMonth: value,
+          clearExpiryMonthError: true,
+        )
       ));
 }

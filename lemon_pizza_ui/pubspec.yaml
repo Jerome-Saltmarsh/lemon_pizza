@@ -1,7 +1,7 @@
 name: lemon_pizza_ui
 description: the ui layer for lemon pizza
 
-version: 1.0.92
+version: 1.0.93
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
